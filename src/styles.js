@@ -145,8 +145,6 @@ export const touchableCellStyles = StyleSheet.create({
 		fontSize: 17,
 		fontWeight: '600',
 		textAlign: 'center',
-
-		color: ACCENT_COLOR,
 	},
 	disabledTitle: {
 		color: DISABLED_COLOR,

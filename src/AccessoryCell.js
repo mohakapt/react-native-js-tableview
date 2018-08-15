@@ -18,9 +18,9 @@ import { accessoryCellStyles as styles } from './styles';
 export type Props = {
 	...CellProps,
 
-	accessory?: 'disclosure' | 'detail' | 'checkmark',
-	accessoryTint?: string,
-	accessoryComponent?: React.Node,
+	accessory?: ?('disclosure' | 'detail' | 'checkmark'),
+	accessoryTint: ?string,
+	accessoryComponent: ?React.Node,
 	hideAccessorySeparator?: boolean,
 	accessorySeparatorColor?: string,
 
@@ -29,14 +29,15 @@ export type Props = {
 
 const AccessoryCell = (props: Props) => {
 	const getAccessory = (): React.Node => {
+		let { accessoryTint } = props;
 		const {
 			accessory,
-			accessoryTint,
 			accessoryComponent,
 			hideAccessorySeparator,
 			accessorySeparatorColor,
 			isEnabled,
 			onAccessoryPress,
+			accentColor,
 		} = props;
 
 		const reVal = [];
@@ -52,6 +53,10 @@ const AccessoryCell = (props: Props) => {
 		if (accessoryComponent) {
 			component = accessoryComponent;
 		} else if (accessory) {
+			if (!accessoryTint) {
+				accessoryTint = accessory === 'disclosure' ? ACCESSORY_COLOR : accentColor;
+			}
+
 			component = <Icon name={accessory} tintColor={accessoryTint} />;
 		}
 
@@ -88,7 +93,6 @@ const AccessoryCell = (props: Props) => {
 };
 
 AccessoryCell.defaultProps = {
-	accessoryTint: ACCESSORY_COLOR,
 	hideAccessorySeparator: false,
 	accessorySeparatorColor: SEPARATOR_COLOR,
 	isEnabled: true,

@@ -7,13 +7,12 @@ import {
 	TouchableHighlight,
 	TouchableNativeFeedback,
 } from 'react-native';
-import { TOUCHABLE_COLOR } from './assets/colors';
 
 export type Props = {
 	children: React.Node,
-	style?: any,
+	style: ?any,
 
-	isEnabled?: boolean,
+	isEnabled: boolean,
 	onPress?: () => void | false,
 	onLongPress?: () => | false,
 
@@ -49,7 +48,6 @@ const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor 
 
 Cell.defaultProps = {
 	isEnabled: true,
-	underlayColor: TOUCHABLE_COLOR,
 };
 
 export default Cell;

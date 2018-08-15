@@ -5,45 +5,51 @@ import { View, Text, Image } from 'react-native';
 import UserAvatar from 'react-native-user-avatar';
 import AccessoryCell from './AccessoryCell';
 
-import { ACCENT_COLOR } from './assets/colors';
-
 import type { Props as AccessoryProps } from './AccessoryCell';
 import { bioCellStyles as styles } from './styles';
 
 type Props = {
 	...AccessoryProps,
+
 	title: string,
-	titleStyle: any,
+	titleStyle: ?any,
 
-	subtitle: string,
-	subtitleStyle: any,
+	subtitle: ?string,
+	subtitleStyle: ?any,
 
-	avatarName?: ?string,
-	photoUrl?: ?string,
+	avatarName: ?string,
+	avatarSize: ?string | ?number,
+	photoUrl: ?string,
+	photoStyle: ?any,
 }
 const BioCell = (props: Props) => {
 	const {
 		title,
 		subtitle,
-		photoUrl,
 		avatarName,
+		photoUrl,
+
 		titleStyle,
 		subtitleStyle,
+		photoStyle,
+
+		accentColor,
+		avatarSize,
 	} = props;
 
 	const getPhoto = () => {
 		if (avatarName || (!photoUrl && title)) {
 			return (
 				<UserAvatar
-					style={styles.image}
-					size={styles.image.height}
+					style={[styles.image, photoStyle]}
+					size={avatarSize || styles.image.height}
 					name={avatarName || title}
-					color={ACCENT_COLOR} />
+					color={accentColor} />
 			);
 		} else {
 			return (
 				<Image
-					style={styles.image}
+					style={[styles.image, photoStyle]}
 					source={{ uri: photoUrl }} />
 			);
 		}

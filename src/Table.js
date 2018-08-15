@@ -6,11 +6,11 @@ import { View, ScrollView } from 'react-native';
 import Section from './Section';
 
 import { tableStyles as styles } from './styles';
-import { ACCENT_COLOR } from './assets/colors';
+import { ACCENT_COLOR, TOUCHABLE_COLOR } from './assets/colors';
 
 type Props = {
-	style?: any,
-	scrollViewStyle?: any,
+	style: ?any,
+	scrollViewStyle: ?any,
 	children: React.ChildrenArray<React.Element<typeof Section>>,
 
 	isScrollable?: boolean,
@@ -48,6 +48,7 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, un
 Table.defaultProps = {
 	isScrollable: false,
 	accentColor: ACCENT_COLOR,
+	underlayColor: TOUCHABLE_COLOR,
 };
 
 export default Table;
