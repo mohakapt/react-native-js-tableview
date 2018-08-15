@@ -42,7 +42,7 @@ const Table = ({ style, scrollViewStyle, children, isScrollable }: Props) => {
 };
 
 Table.defaultProps = {
-	isScrollable: true,
+	isScrollable: false,
 };
 
 export default Table;

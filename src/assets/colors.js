@@ -10,4 +10,4 @@ export const TITLE_COLOR = '#253545';
 export const DISABLED_COLOR = '#b5b5b5';
 export const SUBTITLE_COLOR = '#8E8E93';
 export const SEPARATOR_COLOR = Platform.OS === 'ios' ? '#C8C7CD' : '#EBEBEB';
-export const ACCESSORY_COLOR = '#9c9ca0';
+export const ACCESSORY_COLOR = Platform.OS === 'ios' ? '#D1D1D6' : '#9c9ca0';
