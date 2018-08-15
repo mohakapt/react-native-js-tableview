@@ -7,8 +7,7 @@ import {
 	TouchableHighlight,
 	TouchableNativeFeedback,
 } from 'react-native';
-
-import { COLOR_ACCENT_LIGHT } from '../../config/colors';
+import { TOUCHABLE_COLOR } from './assets/colors';
 
 export type Props = {
 	children: React.Node,
@@ -16,10 +15,11 @@ export type Props = {
 
 	isEnabled?: boolean,
 	onPress?: () => void | false,
+	onLongPress?: () => | false,
 	underlayColor?: string,
 };
 
-const Cell = ({ children, style, isEnabled, onPress, underlayColor }: Props) => {
+const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor }: Props) => {
 	const renderCell = (): React.Node => (
 		<View style={style}>
 			{children}
@@ -39,7 +39,7 @@ const Cell = ({ children, style, isEnabled, onPress, underlayColor }: Props) => 
 	});
 
 	return (
-		<Touchable {...touchableProps} disabled={!isEnabled} onPress={onPress}>
+		<Touchable {...touchableProps} disabled={!isEnabled} onPress={onPress} onLongPress={onLongPress}>
 			{renderCell()}
 		</Touchable>
 	);
@@ -47,7 +47,7 @@ const Cell = ({ children, style, isEnabled, onPress, underlayColor }: Props) => 
 
 Cell.defaultProps = {
 	isEnabled: true,
-	underlayColor: COLOR_ACCENT_LIGHT,
+	underlayColor: TOUCHABLE_COLOR,
 };
 
 export default Cell;

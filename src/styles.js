@@ -1,12 +1,24 @@
 /* @flow */
 
 import { StyleSheet, Platform, PixelRatio } from 'react-native';
-import { COLOR_GREY_LIGHT } from '../../config/colors';
+import {
+	ACCENT_COLOR,
+	BACKGROUND_COLOR,
+	HEADER_COLOR,
+	TITLE_COLOR,
+	DISABLED_COLOR,
+	SUBTITLE_COLOR,
+} from './assets/colors';
 
 export const tableStyles = StyleSheet.create({
 	container: {
-		marginHorizontal: Platform.OS === 'ios' ? 0 : 16,
-		paddingBottom: Platform.OS === 'ios' ? 0 : 10,
+		backgroundColor: BACKGROUND_COLOR,
+		...Platform.select({
+			android: {
+				paddingHorizontal: 16,
+				paddingBottom: 10,
+			},
+		}),
 	},
 });
 
@@ -19,7 +31,7 @@ export const sectionStyles = StyleSheet.create({
 			android: {
 				marginTop: 16,
 
-				backgroundColor: '#fff',
+				backgroundColor: 'white',
 				overflow: 'hidden',
 				borderRadius: 3,
 				elevation: 3,
@@ -42,7 +54,7 @@ export const sectionStyles = StyleSheet.create({
 		}),
 	},
 	header: {
-		color: '#6D6D72',
+		color: HEADER_COLOR,
 		fontSize: Platform.OS === 'ios' ? 13 : 15,
 	},
 	footerContainer: {
@@ -57,11 +69,11 @@ export const sectionStyles = StyleSheet.create({
 		}),
 	},
 	footer: {
-		color: '#6D6D72',
+		color: HEADER_COLOR,
 		fontSize: 13,
 	},
 	cellsContainer: {
-		backgroundColor: '#fff',
+		backgroundColor: 'white',
 	},
 });
 
@@ -116,13 +128,13 @@ export const staticCellStyles = StyleSheet.create({
 		fontSize: 17,
 	},
 	disabledTitle: {
-		color: COLOR_GREY_LIGHT,
+		color: DISABLED_COLOR,
 	},
 	subtitle: {
 		marginStart: 4,
 		marginTop: 1,
 		fontSize: 15,
-		color: '#8E8E93',
+		color: SUBTITLE_COLOR,
 	},
 });
 
@@ -134,10 +146,10 @@ export const touchableCellStyles = StyleSheet.create({
 		fontWeight: '600',
 		textAlign: 'center',
 
-		color: '#4DB6AC',
+		color: ACCENT_COLOR,
 	},
 	disabledTitle: {
-		color: COLOR_GREY_LIGHT,
+		color: DISABLED_COLOR,
 	},
 });
 
@@ -161,11 +173,11 @@ export const bioCellStyles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: '#253545',
+		color: TITLE_COLOR,
 	},
 	subtitle: {
 		fontSize: 14,
-		color: '#A9A9A9',
+		color: SUBTITLE_COLOR,
 		marginTop: 2,
 	},
 });
@@ -191,7 +203,7 @@ export const keyValueCellStyles = StyleSheet.create({
 	},
 	value: {
 		fontSize: 15,
-		color: '#8E8E93',
+		color: SUBTITLE_COLOR,
 
 		marginStart: 4,
 	},

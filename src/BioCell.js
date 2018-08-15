@@ -1,14 +1,14 @@
 /* @flow */
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import UserAvatar from 'react-native-user-avatar';
-import { Image } from '../../components';
 import AccessoryCell from './AccessoryCell';
+
+import { ACCENT_COLOR } from './assets/colors';
 
 import type { Props as AccessoryProps } from './AccessoryCell';
 import { bioCellStyles as styles } from './styles';
-import { COLOR_PRIMARY } from '../../config/colors';
 
 type Props = {
 	...AccessoryProps,
@@ -32,10 +32,21 @@ const BioCell = (props: Props) => {
 	} = props;
 
 	const getPhoto = () => {
-		if (avatarName)
-			return <UserAvatar size='75' name={avatarName} color={COLOR_PRIMARY} />;
-		else
-			return <Image style={styles.image} source={{ uri: photoUrl }} />
+		if (avatarName || (!photoUrl && title)) {
+			return (
+				<UserAvatar
+					style={styles.image}
+					size={styles.image.height}
+					name={avatarName || title}
+					color={ACCENT_COLOR} />
+			);
+		} else {
+			return (
+				<Image
+					style={styles.image}
+					source={{ uri: photoUrl }} />
+			);
+		}
 	};
 
 	return (

@@ -4,6 +4,8 @@ import * as React from 'react';
 import { View, Text, Platform } from 'react-native';
 import Cell from './Cell';
 
+import { SEPARATOR_COLOR } from './assets/colors';
+
 import { sectionStyles as styles } from './styles';
 
 type Props = {
@@ -117,7 +119,7 @@ Section.defaultProps = {
 	hideSeparators: false,
 	separatorInsetLeft: 20,
 	separatorInsetRight: 0,
-	separatorColor: Platform.OS === 'ios' ? '#C8C7CD' : '#EBEBEB',
+	separatorColor: SEPARATOR_COLOR,
 };
 
 export default Section;

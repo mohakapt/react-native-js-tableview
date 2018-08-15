@@ -31,5 +31,7 @@
   "bugs": {
     "url": "https://github.com/mohakapt/react-native-js-tableview/issues"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-native-user-avatar": "^1.0.3"
+  }
 }
