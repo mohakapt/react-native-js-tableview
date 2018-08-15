@@ -16,14 +16,20 @@ type Props = {
 }
 
 const TouchableCell = (props: Props) => {
-	const { title, titleStyle, accentColor, isEnabled } = props;
+	const {
+		title, titleStyle,
+		accentColor, isEnabled,
+
+		...remainingProps,
+	} = props;
 
 	const combinedStyles = [styles.title, titleStyle, { color: accentColor }];
-	if (!isEnabled)
+	if (!isEnabled) {
 		combinedStyles.push(styles.disabledTitle);
+	}
 
 	return (
-		<AccessoryCell {...props}>
+		<AccessoryCell isEnabled={isEnabled} accentColor={accentColor} {...props}>
 			<Text style={combinedStyles}>{title}</Text>
 		</AccessoryCell>
 	);

@@ -20,9 +20,17 @@ export type Props = {
 };
 
 const StaticCell = (props: Props) => {
-	const getIcon = (): React.Node => {
-		const { iconComponent } = props;
+	const {
+		title, titleStyle,
+		subtitle, subtitleStyle,
+		iconComponent,
+		contentComponent,
+		isEnabled,
 
+		...remainingProps
+	} = props;
+
+	const getIcon = (): React.Node => {
 		if (iconComponent) {
 			return (
 				<View style={styles.iconContainer}>
@@ -33,8 +41,6 @@ const StaticCell = (props: Props) => {
 	};
 
 	const getTitle = (): React.Node => {
-		const { title, titleStyle, isEnabled } = props;
-
 		const combinedStyles = [styles.title, titleStyle];
 		if (!isEnabled)
 			combinedStyles.push(styles.disabledTitle);
@@ -45,16 +51,12 @@ const StaticCell = (props: Props) => {
 	};
 
 	const getSubtitle = (): React.Node => {
-		const { subtitle, subtitleStyle } = props;
-
 		if (subtitle) {
 			return <Text key='subtitle' style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>;
 		}
 	};
 
 	const getContent = (): React.Node => {
-		const { contentComponent } = props;
-
 		let component;
 		if (contentComponent) {
 			component = contentComponent;
@@ -70,7 +72,7 @@ const StaticCell = (props: Props) => {
 	};
 
 	return (
-		<AccessoryCell {...props}>
+		<AccessoryCell isEnabled={isEnabled} {...remainingProps}>
 			{getIcon()}
 			{getContent()}
 		</AccessoryCell>

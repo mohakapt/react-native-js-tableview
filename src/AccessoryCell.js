@@ -28,18 +28,21 @@ export type Props = {
 };
 
 const AccessoryCell = (props: Props) => {
-	const getAccessory = (): React.Node => {
-		let { accessoryTint } = props;
-		const {
-			accessory,
-			accessoryComponent,
-			hideAccessorySeparator,
-			accessorySeparatorColor,
-			isEnabled,
-			onAccessoryPress,
-			accentColor,
-		} = props;
+	let { accessoryTint } = props;
+	const {
+		accessory,
+		accessoryComponent,
+		hideAccessorySeparator,
+		accessorySeparatorColor,
+		isEnabled,
+		onAccessoryPress,
+		accentColor,
+		children,
+		style,
+		...remainingProps,
+	} = props;
 
+	const getAccessory = (): React.Node => {
 		const reVal = [];
 
 		if (!hideAccessorySeparator && Platform.OS === 'android') {
@@ -82,10 +85,8 @@ const AccessoryCell = (props: Props) => {
 			return reVal;
 		}
 	};
-
-	const { children, style, isEnabled, onPress } = props;
 	return (
-		<Cell style={[style, styles.cell]} isEnabled={isEnabled} onPress={onPress}>
+		<Cell style={[style, styles.cell]} isEnabled={isEnabled} {...remainingProps}>
 			{children}
 			{getAccessory()}
 		</Cell>

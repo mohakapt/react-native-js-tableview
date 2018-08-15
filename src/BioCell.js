@@ -24,17 +24,13 @@ type Props = {
 }
 const BioCell = (props: Props) => {
 	const {
-		title,
-		subtitle,
-		avatarName,
-		photoUrl,
-
-		titleStyle,
-		subtitleStyle,
-		photoStyle,
-
+		title, titleStyle,
+		subtitle, subtitleStyle,
+		avatarName, avatarSize,
+		photoUrl, photoStyle,
 		accentColor,
-		avatarSize,
+
+		...remainingProps,
 	} = props;
 
 	const getPhoto = () => {
@@ -56,7 +52,7 @@ const BioCell = (props: Props) => {
 	};
 
 	return (
-		<AccessoryCell hideAccessorySeparator {...props}>
+		<AccessoryCell hideAccessorySeparator accentColor={accentColor} {...remainingProps}>
 			{getPhoto()}
 
 			<View style={styles.infoContainer}>

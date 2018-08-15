@@ -20,9 +20,16 @@ export type Props = {
 };
 
 const KeyValueCell = (props: Props) => {
-	const getIcon = (): React.Node => {
-		const { iconComponent } = props;
+	const {
+		title, titleStyle,
+		value, valueStyle,
+		iconComponent,
+		contentComponent,
 
+		...remainingProps,
+	} = props;
+
+	const getIcon = (): React.Node => {
 		if (iconComponent) {
 			return (
 				<View style={styles.iconContainer}>
@@ -33,24 +40,18 @@ const KeyValueCell = (props: Props) => {
 	};
 
 	const getTitle = (): React.Node => {
-		const { title, titleStyle } = props;
-
 		if (title) {
 			return <Text key='title' style={[styles.title, titleStyle]}>{title}</Text>;
 		}
 	};
 
 	const getValue = (): React.Node => {
-		const { value, valueStyle } = props;
-
 		if (value) {
 			return <Text key='value' style={[styles.value, valueStyle]}>{value}</Text>;
 		}
 	};
 
 	const getContent = (): React.Node => {
-		const { contentComponent } = props;
-
 		let component;
 		if (contentComponent) {
 			component = contentComponent;
@@ -67,7 +68,7 @@ const KeyValueCell = (props: Props) => {
 	};
 
 	return (
-		<AccessoryCell hideAccessorySeparator {...props}>
+		<AccessoryCell hideAccessorySeparator {...remainingProps}>
 			{getIcon()}
 			{getContent()}
 		</AccessoryCell>
