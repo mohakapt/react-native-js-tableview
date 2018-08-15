@@ -12,13 +12,13 @@ type Props = {
 	style?: any,
 	children?: React.ChildrenArray<React.Element<typeof Cell>>,
 
-	header: ?string,
-	headerStyle: ?any,
-	headerComponent: ?React.Node,
+	header?: ?string,
+	headerStyle?: ?any,
+	headerComponent?: ?React.Node,
 
-	footer: ?string,
-	footerStyle: ?any,
-	footerComponent: ?React.Node,
+	footer?: ?string,
+	footerStyle?: ?any,
+	footerComponent?: ?React.Node,
 
 	hideSeparators?: boolean,
 	separatorInsetLeft?: number,

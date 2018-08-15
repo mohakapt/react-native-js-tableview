@@ -11,12 +11,12 @@ export type Props = {
 	...AccessoryCellProps,
 
 	title: string,
-	titleStyle: ?any,
-	subtitle: ?string,
-	subtitleStyle: ?any,
-	contentComponent: ?React.Node,
+	titleStyle?: ?any,
+	subtitle?: ?string,
+	subtitleStyle?: ?any,
+	contentComponent?: ?React.Node,
 
-	iconComponent: ?React.Node,
+	iconComponent?: ?React.Node,
 };
 
 const StaticCell = (props: Props) => {

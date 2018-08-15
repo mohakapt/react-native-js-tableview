@@ -11,12 +11,12 @@ export type Props = {
 	...AccessoryCellProps,
 
 	title: string,
-	titleStyle: ?any,
-	value: ?string,
-	valueStyle: ?any,
-	contentComponent: ?React.Node,
+	titleStyle?: ?any,
+	value?: ?string,
+	valueStyle?: ?any,
+	contentComponent?: ?React.Node,
 
-	iconComponent: ?React.Node,
+	iconComponent?: ?React.Node,
 };
 
 const KeyValueCell = (props: Props) => {

@@ -12,15 +12,15 @@ type Props = {
 	...AccessoryProps,
 
 	title: string,
-	titleStyle: ?any,
+	titleStyle?: ?any,
 
-	subtitle: ?string,
-	subtitleStyle: ?any,
+	subtitle?: ?string,
+	subtitleStyle?: ?any,
 
-	avatarName: ?string,
-	avatarSize: ?string | ?number,
-	photoUrl: ?string,
-	photoStyle: ?any,
+	avatarName?: ?string,
+	avatarSize?: ?string | ?number,
+	photoUrl?: ?string,
+	photoStyle?: ?any,
 }
 const BioCell = (props: Props) => {
 	const {

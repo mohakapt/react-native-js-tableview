@@ -12,7 +12,7 @@ type Props = {
 	...AccessoryCellProps,
 
 	title: string,
-	titleStyle: ?any,
+	titleStyle?: ?any,
 }
 
 const TouchableCell = (props: Props) => {

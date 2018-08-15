@@ -9,8 +9,8 @@ import { tableStyles as styles } from './styles';
 import { ACCENT_COLOR, TOUCHABLE_COLOR } from './assets/colors';
 
 type Props = {
-	style: ?any,
-	scrollViewStyle: ?any,
+	style?: ?any,
+	scrollViewStyle?: ?any,
 	children: React.ChildrenArray<React.Element<typeof Section>>,
 
 	isScrollable?: boolean,

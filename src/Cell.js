@@ -10,9 +10,9 @@ import {
 
 export type Props = {
 	children: React.Node,
-	style: ?any,
+	style?: ?any,
 
-	isEnabled: boolean,
+	isEnabled?: boolean,
 	onPress?: () => void | false,
 	onLongPress?: () => | false,
 

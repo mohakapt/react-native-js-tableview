@@ -19,12 +19,12 @@ export type Props = {
 	...CellProps,
 
 	accessory?: ?('disclosure' | 'detail' | 'checkmark'),
-	accessoryTint: ?string,
-	accessoryComponent: ?React.Node,
+	accessoryTint?: ?string,
+	accessoryComponent?: ?React.Node,
 	hideAccessorySeparator?: boolean,
 	accessorySeparatorColor?: string,
 
-	onAccessoryPress?: () => void,
+	onAccessoryPress?: () => void | false,
 };
 
 const AccessoryCell = (props: Props) => {
