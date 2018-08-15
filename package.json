@@ -1,20 +1,22 @@
 {
   "name": "react-native-js-tableview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JavaScript implementation for TableView that looks great on both iOS and Android.",
   "main": "lib/index.js",
   "author": "Haytham KATBY <mohakapt@gmail.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "babel src/ -d lib/",
+    "build": "babel src/ -d lib/ --copy-files",
     "prepublish": "yarn run build"
   },
   "peerDependencies": {
     "react-native": "^0.41.2"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "tableview",
+    "uitableview"
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
