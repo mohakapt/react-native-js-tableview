@@ -68,10 +68,11 @@ const Section = (props: Props) => {
 	};
 
 	const getCells = () => {
-		const { children } = props;
+		const { children, accentColor, underlayColor } = props;
 
 		const reVal = [];
-		const childrenArray = React.Children.toArray(children);
+		const childrenArray = React.Children.map(children, child =>
+			React.cloneElement(child, { accentColor, underlayColor }));
 
 		for (let x = 0; x < childrenArray.length; x++) {
 			reVal.push((childrenArray[x]));

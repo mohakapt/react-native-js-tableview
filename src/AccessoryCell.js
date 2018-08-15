@@ -10,7 +10,7 @@ import {
 
 import Cell from './Cell';
 import Icon from './assets/icons';
-import { ACCENT_COLOR, ACCESSORY_COLOR, SEPARATOR_COLOR } from './assets/colors';
+import { ACCESSORY_COLOR, SEPARATOR_COLOR } from './assets/colors';
 
 import type { Props as CellProps } from './Cell';
 import { accessoryCellStyles as styles } from './styles';

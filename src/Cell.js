@@ -16,6 +16,8 @@ export type Props = {
 	isEnabled?: boolean,
 	onPress?: () => void | false,
 	onLongPress?: () => | false,
+
+	accentColor?: string,
 	underlayColor?: string,
 };
 
