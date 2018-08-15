@@ -2,5 +2,4 @@ example
 src
 .idea
 yarn.lock
-.babelrc
 .flowconfig

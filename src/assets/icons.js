@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { Image } from 'react-native';
+import { Image, I18nManager } from 'react-native';
 
 import disclosure from './disclosure.png';
 import detail from './details.png';
@@ -22,8 +22,12 @@ type Props = {
 const Icon = (props: Props) => {
 	const style = {};
 	if (props.tintColor) {
-		style.tintColor = props.tintColor
+		style.tintColor = props.tintColor;
 	}
+	if (props.name === 'disclosure' && I18nManager.isRTL) {
+		style.transform = [{ rotateY: '180deg' }];
+	}
+
 	return (
 		<Image
 			style={[props.style, style]}
