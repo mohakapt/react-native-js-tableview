@@ -9,6 +9,8 @@ _"Who wants native components. You spend hours linking 'em, they make your app c
 	
 A JavaScript implementation for TableView that looks great on both iOS and Android.
 
+![react-native-js-tableview iOS Screenshot](https://raw.githubusercontent.com/mohakapt/react-native-js-tableview/master/images/screenshot_ios.jpg)
+![react-native-js-tableview Android Screenshot](https://raw.githubusercontent.com/mohakapt/react-native-js-tableview/master/images/screenshot_android.jpg)
 
 ### Installation
 
