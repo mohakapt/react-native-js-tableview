@@ -5,7 +5,7 @@ import { View, Text, Platform } from 'react-native';
 import Cell from './Cell';
 
 import { insertProps } from './assets/utilites';
-import { SEPARATOR_COLOR } from './assets/colors';
+import { COLOR_SEPARATOR } from './assets/colors';
 
 import { sectionStyles as styles } from './styles';
 
@@ -123,7 +123,7 @@ Section.defaultProps = {
 	hideSeparators: false,
 	separatorInsetLeft: 20,
 	separatorInsetRight: 0,
-	separatorColor: SEPARATOR_COLOR,
+	separatorColor: COLOR_SEPARATOR,
 };
 
 export default Section;

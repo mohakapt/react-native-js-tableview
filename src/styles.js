@@ -2,26 +2,23 @@
 
 import { StyleSheet, Platform, PixelRatio } from 'react-native';
 import {
-	ACCENT_COLOR,
-	BACKGROUND_COLOR,
-	HEADER_COLOR,
-	TITLE_COLOR,
-	DISABLED_COLOR,
-	SUBTITLE_COLOR,
+	COLOR_BACKGROUND,
+	COLOR_HEADER,
+	COLOR_TITLE,
+	COLOR_DISABLED,
+	COLOR_SUBTITLE,
 } from './assets/colors';
 
 export const tableStyles = StyleSheet.create({
 	container: {
-		backgroundColor: BACKGROUND_COLOR,
-		...Platform.select({
-			android: {
-				marginHorizontal: 6,
-				marginBottom: 6,
-				paddingHorizontal: 10,
-				paddingBottom: 4,
-			},
-		}),
+		backgroundColor: COLOR_BACKGROUND,
 	},
+	table: Platform.select({
+		android: {
+			paddingHorizontal: 16,
+			paddingBottom: 10,
+		},
+	}),
 });
 
 export const sectionStyles = StyleSheet.create({
@@ -56,7 +53,7 @@ export const sectionStyles = StyleSheet.create({
 		}),
 	},
 	header: {
-		color: HEADER_COLOR,
+		color: COLOR_HEADER,
 		fontSize: Platform.OS === 'ios' ? 13 : 15,
 	},
 	footerContainer: {
@@ -71,7 +68,7 @@ export const sectionStyles = StyleSheet.create({
 		}),
 	},
 	footer: {
-		color: HEADER_COLOR,
+		color: COLOR_HEADER,
 		fontSize: 13,
 	},
 	cellsContainer: {
@@ -130,13 +127,13 @@ export const staticCellStyles = StyleSheet.create({
 		fontSize: 17,
 	},
 	disabledTitle: {
-		color: DISABLED_COLOR,
+		color: COLOR_DISABLED,
 	},
 	subtitle: {
 		marginStart: 4,
 		marginTop: 1,
 		fontSize: 15,
-		color: SUBTITLE_COLOR,
+		color: COLOR_SUBTITLE,
 	},
 });
 
@@ -149,7 +146,7 @@ export const touchableCellStyles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	disabledTitle: {
-		color: DISABLED_COLOR,
+		color: COLOR_DISABLED,
 	},
 });
 
@@ -173,11 +170,11 @@ export const bioCellStyles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: TITLE_COLOR,
+		color: COLOR_TITLE,
 	},
 	subtitle: {
 		fontSize: 14,
-		color: SUBTITLE_COLOR,
+		color: COLOR_SUBTITLE,
 		marginTop: 2,
 	},
 });
@@ -203,7 +200,7 @@ export const keyValueCellStyles = StyleSheet.create({
 	},
 	value: {
 		fontSize: 15,
-		color: SUBTITLE_COLOR,
+		color: COLOR_SUBTITLE,
 
 		marginStart: 4,
 	},

@@ -6,7 +6,7 @@ import { View, ScrollView } from 'react-native';
 import Section from './Section';
 
 import { insertProps } from './assets/utilites';
-import { ACCENT_COLOR, TOUCHABLE_COLOR } from './assets/colors';
+import { COLOR_ACCENT, COLOR_TOUCHABLE } from './assets/colors';
 
 import { tableStyles as styles } from './styles';
 
@@ -23,7 +23,7 @@ type Props = {
 
 const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, underlayColor }: Props) => {
 	const renderTable = (): React.Node => {
-		const tableStyle = [style];
+		const tableStyle = [styles.table, style];
 
 		if (!isScrollable) {
 			tableStyle.unshift(styles.container);
@@ -49,8 +49,8 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, un
 
 Table.defaultProps = {
 	isScrollable: false,
-	accentColor: ACCENT_COLOR,
-	underlayColor: TOUCHABLE_COLOR,
+	accentColor: COLOR_ACCENT,
+	underlayColor: COLOR_TOUCHABLE,
 };
 
 export default Table;

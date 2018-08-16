@@ -12,7 +12,7 @@ type State = {
 	selectedBook: number,
 };
 
-export default class App extends Component<Props> {
+export default class App extends Component<Props, State> {
 	static navigationOptions = {
 		title: 'Profile',
 		...Platform.select({
@@ -77,7 +77,7 @@ export default class App extends Component<Props> {
 			<Icon name={name} tintColor={tint || COLOR_ACCENT_DARKER} />
 		);
 		const getBooks = (): Array<React.Node> =>
-			['The Wealth of Nations', 'The Theory of Moral Sentiments', 'Lectures on Jurisprudence', 'Essays on Philosophical Subjects']
+			['The Wealth of Nations', 'The Theory of Moral Sentiments', 'Lectures on Jurisprudence', 'Essays on Philosophical Subjects', 'The Essential Adam Smith']
 				.map((title: string, index: number) =>
 					<StaticCell
 						key={index}
@@ -104,7 +104,7 @@ export default class App extends Component<Props> {
 						title="Adam Smith"
 						subtitle="Scottish economist, philosopher, and author."
 						photoUrl={adamSmithPhoto}
-						accessory="detail"
+						accessory="details"
 						onPress={this.onBioTouched} />
 
 					<KeyValueCell
@@ -153,7 +153,10 @@ export default class App extends Component<Props> {
 				</Section>
 
 				<Section>
-					<TouchableCell title="Log Out" onPress={this.onLogoutTouched} />
+					<TouchableCell
+						title="Log Out"
+						accentColor="#B71C1C"
+						onPress={this.onLogoutTouched} />
 				</Section>
 			</Table>
 		);

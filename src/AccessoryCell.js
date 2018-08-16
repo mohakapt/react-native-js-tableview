@@ -10,7 +10,7 @@ import {
 
 import Cell from './Cell';
 import Icon from './assets/icons';
-import { ACCESSORY_COLOR, SEPARATOR_COLOR } from './assets/colors';
+import { COLOR_ACCESSORY, COLOR_SEPARATOR } from './assets/colors';
 
 import type { Props as CellProps } from './Cell';
 import { accessoryCellStyles as styles } from './styles';
@@ -58,7 +58,7 @@ const AccessoryCell = (props: Props) => {
 			component = accessoryComponent;
 		} else if (accessory) {
 			if (!accessoryTint) {
-				accessoryTint = accessory === 'disclosure' ? ACCESSORY_COLOR : accentColor;
+				accessoryTint = accessory === 'disclosure' ? COLOR_ACCESSORY : accentColor;
 			}
 
 			component = <Icon name={accessory} tintColor={accessoryTint} />;
@@ -96,7 +96,7 @@ const AccessoryCell = (props: Props) => {
 
 AccessoryCell.defaultProps = {
 	hideAccessorySeparator: false,
-	accessorySeparatorColor: SEPARATOR_COLOR,
+	accessorySeparatorColor: COLOR_SEPARATOR,
 	isEnabled: true,
 };
 

@@ -10,7 +10,6 @@ import BioCell from './BioCell';
 import KeyValueCell from './KeyValueCell';
 
 export default Table;
-
 export {
 	Section,
 	Cell,
