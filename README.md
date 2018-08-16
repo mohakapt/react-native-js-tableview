@@ -5,7 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues-raw/mohakapt/react-native-js-tableview.svg)](https://github.com/mohakapt/react-native-js-tableview/issues)
 [![License](https://img.shields.io/github/license/mohakapt/react-native-js-tableview.svg)](https://github.com/mohakapt/react-native-js-tableview)
 
-_"Who wants native components. You spend hours linking them, they make your app crash and they don't work with expo, Yuck!"_ - **Steve Jobs** 😄
+_"Who wants native components. You spend hours linking 'em, they make your app crash and they don't work with expo, Yuck!"_ - **Steve Jobs** 😄
 	
 A JavaScript implementation for TableView that looks great on both iOS and Android.
 

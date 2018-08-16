@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import Table, { Section, KeyValueCell,TouchableCell } from 'react-native-js-tableview';
+import Table, { Section, KeyValueCell, TouchableCell } from 'react-native-js-tableview';
 
 const instructions = Platform.select({
 	ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -24,7 +24,7 @@ export default class App extends Component<Props> {
 			<Table style={styles.container} accentColor='#ffc'>
 				<Section>
 					<KeyValueCell title="Title" />
-					<TouchableCell title="Action"/>
+					<TouchableCell title="Action" />
 				</Section>
 			</Table>
 		);

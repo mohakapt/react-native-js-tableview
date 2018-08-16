@@ -20,7 +20,7 @@ const TouchableCell = (props: Props) => {
 		title, titleStyle,
 		accentColor, isEnabled,
 
-		...remainingProps,
+		...remainingProps
 	} = props;
 
 	const combinedStyles = [styles.title, titleStyle, { color: accentColor }];
@@ -29,7 +29,7 @@ const TouchableCell = (props: Props) => {
 	}
 
 	return (
-		<AccessoryCell isEnabled={isEnabled} accentColor={accentColor} {...props}>
+		<AccessoryCell isEnabled={isEnabled} accentColor={accentColor} {...remainingProps}>
 			<Text style={combinedStyles}>{title}</Text>
 		</AccessoryCell>
 	);

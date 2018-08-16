@@ -30,7 +30,7 @@ const BioCell = (props: Props) => {
 		photoUrl, photoStyle,
 		accentColor,
 
-		...remainingProps,
+		...remainingProps
 	} = props;
 
 	const getPhoto = () => {

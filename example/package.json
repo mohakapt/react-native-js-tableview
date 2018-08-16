@@ -9,8 +9,10 @@
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "react-native-js-tableview": "^1.0.5",
-    "react-native-user-avatar": "^1.0.3"
+    "react-native-js-tableview": "^1.0.9",
+    "react-native-svg": "^6.5.2",
+    "react-native-user-avatar": "^1.0.3",
+    "react-navigation": "^2.11.2"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",

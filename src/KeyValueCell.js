@@ -26,7 +26,7 @@ const KeyValueCell = (props: Props) => {
 		iconComponent,
 		contentComponent,
 
-		...remainingProps,
+		...remainingProps
 	} = props;
 
 	const getIcon = (): React.Node => {

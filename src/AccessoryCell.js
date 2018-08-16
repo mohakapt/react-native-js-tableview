@@ -39,7 +39,8 @@ const AccessoryCell = (props: Props) => {
 		accentColor,
 		children,
 		style,
-		...remainingProps,
+
+		...remainingProps
 	} = props;
 
 	const getAccessory = (): React.Node => {
