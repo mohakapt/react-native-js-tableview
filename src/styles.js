@@ -15,8 +15,10 @@ export const tableStyles = StyleSheet.create({
 		backgroundColor: BACKGROUND_COLOR,
 		...Platform.select({
 			android: {
-				paddingHorizontal: 16,
-				paddingBottom: 10,
+				marginHorizontal: 6,
+				marginBottom: 6,
+				paddingHorizontal: 10,
+				paddingBottom: 4,
 			},
 		}),
 	},

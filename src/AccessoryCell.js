@@ -18,7 +18,7 @@ import { accessoryCellStyles as styles } from './styles';
 export type Props = {
 	...CellProps,
 
-	accessory?: ?('disclosure' | 'detail' | 'checkmark'),
+	accessory?: ?('disclosure' | 'details' | 'checkmark'),
 	accessoryTint?: ?string,
 	accessoryComponent?: ?React.Node,
 	hideAccessorySeparator?: boolean,

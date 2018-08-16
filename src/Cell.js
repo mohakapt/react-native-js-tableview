@@ -9,15 +9,15 @@ import {
 } from 'react-native';
 
 export type Props = {
+	accentColor?: string,
+	underlayColor?: string,
+
 	children: React.Node,
 	style?: ?any,
 
 	isEnabled?: boolean,
 	onPress?: () => void | false,
 	onLongPress?: () => | false,
-
-	accentColor?: string,
-	underlayColor?: string,
 };
 
 const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor }: Props) => {

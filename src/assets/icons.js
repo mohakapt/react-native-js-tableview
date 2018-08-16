@@ -4,12 +4,12 @@ import * as React from 'react';
 import { Image, I18nManager } from 'react-native';
 
 import disclosure from './disclosure.png';
-import detail from './details.png';
+import details from './details.png';
 import checkmark from './checkmark.png';
 
 const icons = {
 	disclosure,
-	detail,
+	details,
 	checkmark,
 };
 

@@ -4,13 +4,17 @@ import * as React from 'react';
 import { View, Text, Platform } from 'react-native';
 import Cell from './Cell';
 
+import { insertProps } from './assets/utilites';
 import { SEPARATOR_COLOR } from './assets/colors';
 
 import { sectionStyles as styles } from './styles';
 
 type Props = {
-	style?: any,
+	accentColor?: string,
+	underlayColor?: string,
+
 	children?: React.ChildrenArray<React.Element<typeof Cell>>,
+	style?: any,
 
 	header?: ?string,
 	headerStyle?: ?any,
@@ -71,8 +75,7 @@ const Section = (props: Props) => {
 		const { children, accentColor, underlayColor } = props;
 
 		const reVal = [];
-		const childrenArray = React.Children.map(children, child =>
-			React.cloneElement(child, { accentColor, underlayColor }));
+		const childrenArray = insertProps(children, { accentColor, underlayColor });
 
 		for (let x = 0; x < childrenArray.length; x++) {
 			reVal.push((childrenArray[x]));
