@@ -50,7 +50,7 @@ const Section = (props: Props) => {
 	};
 
 	const getHeader = (): React.Node => {
-		const { header, headerStyle, headerComponent } = props;
+		const { header, headerStyle, headerComponent, accentColor } = props;
 		const reVal = [];
 
 		if (Platform.OS === 'ios' || header) {
@@ -60,9 +60,15 @@ const Section = (props: Props) => {
 		if (headerComponent) {
 			reVal.unshift(headerComponent);
 		} else if (header) {
+			const combinedStyles = [styles.header];
+			if (Platform.OS === 'android') {
+				combinedStyles.push({ color: accentColor })
+			}
+			combinedStyles.push(headerStyle);
+
 			const textComponent = (
 				<View key='header' style={styles.headerContainer}>
-					<Text style={[styles.header, headerStyle]}>{header}</Text>
+					<Text style={combinedStyles}>{header}</Text>
 				</View>
 			);
 			reVal.unshift(textComponent);
