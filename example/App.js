@@ -124,8 +124,7 @@ export default class App extends Component<Props, State> {
 						onLongPress={this.onContactLongTouched.bind(this, 'email')} />
 				</Section>
 
-				<Section header={generalHeader} footer={generalFooter} headerStyle={styles.sectionHeader}
-				         separatorInsetLeft={54}>
+				<Section header={generalHeader} footer={generalFooter} separatorInsetLeft={54}>
 					<KeyValueCell
 						title="Books"
 						value="3 books"
@@ -171,9 +170,4 @@ const styles = StyleSheet.create({
 	email: {
 		backgroundColor: '#fbfbfb',
 	},
-	sectionHeader: Platform.select({
-		android: {
-			color: COLOR_ACCENT,
-		},
-	}),
 });
