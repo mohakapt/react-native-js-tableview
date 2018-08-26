@@ -10,7 +10,7 @@
     "color": "^3.0.0",
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "react-native-js-tableview": "^1.2.0",
+    "react-native-js-tableview": "^1.2.2",
     "react-native-svg": "^6.5.2",
     "react-native-user-avatar": "^1.0.3",
     "react-navigation": "^2.11.2"
