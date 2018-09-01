@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 import UserAvatar from 'react-native-user-avatar';
 
@@ -9,15 +9,15 @@ import { bioCellStyles as styles } from './styles';
 
 BioCell.propTypes = Object.assign(AccessoryCell.propTypes, {
 	title: PropTypes.string.isRequired,
-	titleStyle: Text.propTypes.style,
+	titleStyle: ViewPropTypes.style,
 
 	subtitle: PropTypes.string,
-	subtitleStyle: Text.propTypes.style,
+	subtitleStyle: ViewPropTypes.style,
 
 	avatarName: PropTypes.string,
 	avatarSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	photoUrl: PropTypes.string,
-	photoStyle: View.propTypes.style,
+	photoStyle: ViewPropTypes.style,
 });
 
 BioCell.defaultProps = {

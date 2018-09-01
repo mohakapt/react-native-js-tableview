@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';
@@ -8,7 +8,7 @@ import { touchableCellStyles as styles } from './styles';
 
 TouchableCell.propTypes = Object.assign(AccessoryCell.propTypes, {
 	title: PropTypes.string.isRequired,
-	titleStyle: Text.propTypes.style,
+	titleStyle: ViewPropTypes.style,
 });
 
 TouchableCell.defaultProps = {

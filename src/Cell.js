@@ -4,6 +4,7 @@ import {
 	Platform,
 	TouchableHighlight,
 	TouchableNativeFeedback,
+	ViewPropTypes,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -12,7 +13,7 @@ Cell.propTypes = {
 	underlayColor: PropTypes.string,
 
 	children: PropTypes.node.isRequired,
-	style: View.propTypes.style,
+	style: ViewPropTypes.style,
 
 	isEnabled: PropTypes.bool,
 	onPress: PropTypes.func,

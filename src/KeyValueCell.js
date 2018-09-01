@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';
@@ -8,9 +8,9 @@ import { keyValueCellStyles as styles } from './styles';
 
 KeyValueCell.propTypes = Object.assign(AccessoryCell.propTypes, {
 	title: PropTypes.string.isRequired,
-	titleString: Text.propTypes.style,
+	titleString: ViewPropTypes.style,
 	value: PropTypes.string,
-	valueStyle: Text.propTypes.style,
+	valueStyle: ViewPropTypes.style,
 	contentComponent: PropTypes.node,
 
 	iconComponent: PropTypes.element,

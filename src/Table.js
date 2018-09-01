@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Section from './Section';
@@ -12,8 +12,8 @@ Table.propTypes = {
 	accentColor: PropTypes.string,
 	underlayColor: PropTypes.string,
 
-	style: View.propTypes.style,
-	scrollViewStyle: View.propTypes.style,
+	style: ViewPropTypes.style,
+	scrollViewStyle: ViewPropTypes.style,
 
 	children: PropTypes.arrayOf(PropTypes.instanceOf(Section)).isRequired,
 	isScrollable: PropTypes.bool,

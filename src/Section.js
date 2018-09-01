@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text, Platform, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Cell from './Cell';
@@ -13,14 +13,14 @@ Section.propTypes = {
 	underlayColor: PropTypes.string,
 
 	children: PropTypes.arrayOf(PropTypes.instanceOf(Cell)).isRequired,
-	style: View.propTypes.style,
+	style: ViewPropTypes.style,
 
 	header: PropTypes.string,
-	headerStyle: Text.propTypes.style,
+	headerStyle: ViewPropTypes.style,
 	headerComponent: PropTypes.node,
 
 	footer: PropTypes.string,
-	footerStyle: Text.propTypes.style,
+	footerStyle: ViewPropTypes.style,
 	footerComponent: PropTypes.node,
 
 	hideSeparators: PropTypes.bool,
