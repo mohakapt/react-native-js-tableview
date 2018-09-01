@@ -1,5 +1,3 @@
-/* @flow */
-
 import * as React from 'react';
 import {
 	View,
@@ -7,21 +5,26 @@ import {
 	TouchableHighlight,
 	TouchableNativeFeedback,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
-export type Props = {
-	accentColor?: string,
-	underlayColor?: string,
+Cell.propTypes = {
+	accentColor: PropTypes.string,
+	underlayColor: PropTypes.string,
 
-	children: React.Node,
-	style?: ?any,
+	children: PropTypes.node.isRequired,
+	style: View.propTypes.style,
 
-	isEnabled?: boolean,
-	onPress?: () => void | false,
-	onLongPress?: () => | false,
+	isEnabled: PropTypes.bool,
+	onPress: PropTypes.func,
+	onLongPress: PropTypes.func,
 };
 
-const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor }: Props) => {
-	const renderCell = (): React.Node => (
+Cell.defaultProps = {
+	isEnabled: true,
+};
+
+const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor }) => {
+	const renderCell = () => (
 		<View style={style}>
 			{children}
 		</View>
@@ -44,10 +47,6 @@ const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor 
 			{renderCell()}
 		</Touchable>
 	);
-};
-
-Cell.defaultProps = {
-	isEnabled: true,
 };
 
 export default Cell;

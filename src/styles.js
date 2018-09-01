@@ -1,5 +1,3 @@
-/* @flow */
-
 import { StyleSheet, Platform, PixelRatio } from 'react-native';
 import {
 	COLOR_BACKGROUND,

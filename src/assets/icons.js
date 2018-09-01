@@ -1,7 +1,6 @@
-/* @flow */
-
 import * as React from 'react';
 import { Image, I18nManager } from 'react-native';
+import PropTypes from 'prop-types';
 
 import disclosure from './disclosure.png';
 import details from './details.png';
@@ -13,13 +12,15 @@ const icons = {
 	checkmark,
 };
 
-type Props = {
-	name: $Keys<typeof icons>,
-	tintColor?: string,
-	style?: any,
-}
+Icon.propTypes = {
+	name: PropTypes.oneOf(Object.keys(icons)).isRequired,
+	tintColor: PropTypes.string,
+	style: Image.propTypes.style,
+};
 
-const Icon = (props: Props) => {
+Icon.defaultProps = {};
+
+const Icon = (props) => {
 	const style = {};
 	if (props.tintColor) {
 		style.tintColor = props.tintColor;
@@ -34,7 +35,5 @@ const Icon = (props: Props) => {
 			source={icons[props.name]} />
 	);
 };
-
-Icon.defaultProps = {};
 
 export default Icon;

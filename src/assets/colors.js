@@ -1,5 +1,3 @@
-/* @flow */
-
 import { Platform } from 'react-native';
 
 export const COLOR_ACCENT = '#4DB6AC';

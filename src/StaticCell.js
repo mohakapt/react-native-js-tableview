@@ -1,25 +1,26 @@
-/* @flow */
-
 import * as React from 'react';
 import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
+
 import AccessoryCell from './AccessoryCell';
 
-import type { Props as AccessoryCellProps } from './AccessoryCell';
 import { staticCellStyles as styles } from './styles';
 
-export type Props = {
-	...AccessoryCellProps,
+StaticCell.propTypes = Object.assign(AccessoryCell.propTypes, {
+	title: PropTypes.string.isRequired,
+	titleStyle: Text.propTypes.style,
+	subtitle: PropTypes.string,
+	subtitleStyle: Text.propTypes.style,
+	contentComponent: PropTypes.node,
 
-	title: string,
-	titleStyle?: ?any,
-	subtitle?: ?string,
-	subtitleStyle?: ?any,
-	contentComponent?: ?React.Node,
+	iconComponent: PropTypes.element,
+});
 
-	iconComponent?: ?React.Node,
+StaticCell.defaultProps = {
+	isEnabled: true,
 };
 
-const StaticCell = (props: Props) => {
+const StaticCell = (props) => {
 	const {
 		title, titleStyle,
 		subtitle, subtitleStyle,
@@ -30,7 +31,7 @@ const StaticCell = (props: Props) => {
 		...remainingProps
 	} = props;
 
-	const getIcon = (): React.Node => {
+	const getIcon = () => {
 		if (iconComponent) {
 			return (
 				<View style={styles.iconContainer}>
@@ -40,7 +41,7 @@ const StaticCell = (props: Props) => {
 		}
 	};
 
-	const getTitle = (): React.Node => {
+	const getTitle = () => {
 		const combinedStyles = [styles.title, titleStyle];
 		if (!isEnabled)
 			combinedStyles.push(styles.disabledTitle);
@@ -50,13 +51,13 @@ const StaticCell = (props: Props) => {
 		}
 	};
 
-	const getSubtitle = (): React.Node => {
+	const getSubtitle = () => {
 		if (subtitle) {
 			return <Text key='subtitle' style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>;
 		}
 	};
 
-	const getContent = (): React.Node => {
+	const getContent = () => {
 		let component;
 		if (contentComponent) {
 			component = contentComponent;
@@ -77,10 +78,6 @@ const StaticCell = (props: Props) => {
 			{getContent()}
 		</AccessoryCell>
 	);
-};
-
-StaticCell.defaultProps = {
-	isEnabled: true,
 };
 
 export default StaticCell;

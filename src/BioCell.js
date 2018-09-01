@@ -1,28 +1,30 @@
-/* @flow */
-
 import * as React from 'react';
 import { View, Text, Image } from 'react-native';
+import PropTypes from 'prop-types';
 import UserAvatar from 'react-native-user-avatar';
+
 import AccessoryCell from './AccessoryCell';
 
-import type { Props as AccessoryProps } from './AccessoryCell';
 import { bioCellStyles as styles } from './styles';
 
-type Props = {
-	...AccessoryProps,
+BioCell.propTypes = Object.assign(AccessoryCell.propTypes, {
+	title: PropTypes.string.isRequired,
+	titleStyle: Text.propTypes.style,
 
-	title: string,
-	titleStyle?: ?any,
+	subtitle: PropTypes.string,
+	subtitleStyle: Text.propTypes.style,
 
-	subtitle?: ?string,
-	subtitleStyle?: ?any,
+	avatarName: PropTypes.string,
+	avatarSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	photoUrl: PropTypes.string,
+	photoStyle: View.propTypes.style,
+});
 
-	avatarName?: ?string,
-	avatarSize?: ?string | ?number,
-	photoUrl?: ?string,
-	photoStyle?: ?any,
-}
-const BioCell = (props: Props) => {
+BioCell.defaultProps = {
+	isEnabled: true,
+};
+
+const BioCell = (props) => {
 	const {
 		title, titleStyle,
 		subtitle, subtitleStyle,

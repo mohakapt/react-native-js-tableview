@@ -1,28 +1,32 @@
-/* @flow */
-
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Section from './Section';
-
 import { insertProps } from './assets/utilites';
 import { COLOR_ACCENT, COLOR_TOUCHABLE } from './assets/colors';
 
 import { tableStyles as styles } from './styles';
 
-type Props = {
-	accentColor?: string,
-	underlayColor?: string,
+Table.propTypes = {
+	accentColor: PropTypes.string,
+	underlayColor: PropTypes.string,
 
-	style?: ?any,
-	scrollViewStyle?: ?any,
+	style: View.propTypes.style,
+	scrollViewStyle: View.propTypes.style,
 
-	children: React.ChildrenArray<React.Element<typeof Section>>,
-	isScrollable?: boolean,
-}
+	children: PropTypes.arrayOf(PropTypes.instanceOf(Section)).isRequired,
+	isScrollable: PropTypes.bool,
+};
+
+Table.defaultProps = {
+	isScrollable: false,
+	accentColor: COLOR_ACCENT,
+	underlayColor: COLOR_TOUCHABLE,
+};
 
 const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, underlayColor }: Props) => {
-	const renderTable = (): React.Node => {
+	const renderTable = () => {
 		const tableStyle = [styles.table, style];
 
 		if (!isScrollable) {
@@ -45,12 +49,6 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, un
 			{renderTable()}
 		</ScrollView>
 	);
-};
-
-Table.defaultProps = {
-	isScrollable: false,
-	accentColor: COLOR_ACCENT,
-	underlayColor: COLOR_TOUCHABLE,
 };
 
 export default Table;

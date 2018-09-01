@@ -1,5 +1,3 @@
-/* @flow */
-
 import Table from './Table';
 import Section from './Section';
 import Cell from './Cell';

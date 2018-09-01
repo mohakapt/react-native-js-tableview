@@ -1,21 +1,21 @@
-/* @flow */
-
 import * as React from 'react';
 import { Text } from 'react-native';
-import AccessoryCell from './AccessoryCell';
+import PropTypes from 'prop-types';
 
-import type { Props as AccessoryCellProps } from './AccessoryCell';
+import AccessoryCell from './AccessoryCell';
 
 import { touchableCellStyles as styles } from './styles';
 
-type Props = {
-	...AccessoryCellProps,
+TouchableCell.propTypes = Object.assign(AccessoryCell.propTypes, {
+	title: PropTypes.string.isRequired,
+	titleStyle: Text.propTypes.style,
+});
 
-	title: string,
-	titleStyle?: ?any,
-}
+TouchableCell.defaultProps = {
+	isEnabled: true,
+};
 
-const TouchableCell = (props: Props) => {
+const TouchableCell = (props) => {
 	const {
 		title, titleStyle,
 		accentColor, isEnabled,
@@ -33,10 +33,6 @@ const TouchableCell = (props: Props) => {
 			<Text style={combinedStyles}>{title}</Text>
 		</AccessoryCell>
 	);
-};
-
-TouchableCell.defaultProps = {
-	isEnabled: true,
 };
 
 export default TouchableCell;

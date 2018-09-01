@@ -1,37 +1,43 @@
-/* @flow */
-
 import * as React from 'react';
 import { View, Text, Platform } from 'react-native';
-import Cell from './Cell';
+import PropTypes from 'prop-types';
 
+import Cell from './Cell';
 import { insertProps } from './assets/utilites';
 import { COLOR_SEPARATOR } from './assets/colors';
 
 import { sectionStyles as styles } from './styles';
 
-type Props = {
-	accentColor?: string,
-	underlayColor?: string,
+Section.propTypes = {
+	accentColor: PropTypes.string,
+	underlayColor: PropTypes.string,
 
-	children?: React.ChildrenArray<React.Element<typeof Cell>>,
-	style?: any,
+	children: PropTypes.arrayOf(PropTypes.instanceOf(Cell)).isRequired,
+	style: View.propTypes.style,
 
-	header?: ?string,
-	headerStyle?: ?any,
-	headerComponent?: ?React.Node,
+	header: PropTypes.string,
+	headerStyle: Text.propTypes.style,
+	headerComponent: PropTypes.node,
 
-	footer?: ?string,
-	footerStyle?: ?any,
-	footerComponent?: ?React.Node,
+	footer: PropTypes.string,
+	footerStyle: Text.propTypes.style,
+	footerComponent: PropTypes.node,
 
-	hideSeparators?: boolean,
-	separatorInsetLeft?: number,
-	separatorInsetRight?: number,
-	separatorColor?: string,
-}
+	hideSeparators: PropTypes.bool,
+	separatorInsetLeft: PropTypes.number,
+	separatorInsetRight: PropTypes.number,
+	separatorColor: PropTypes.string,
+};
 
-const Section = (props: Props) => {
-	const getSeparator = (index: number, useInsets: boolean): React.Element<typeof View> => {
+Section.defaultProps = {
+	hideSeparators: false,
+	separatorInsetLeft: 20,
+	separatorInsetRight: 0,
+	separatorColor: COLOR_SEPARATOR,
+};
+
+const Section = (props) => {
+	const getSeparator = (index, useInsets) => {
 		const { hideSeparators, separatorInsetLeft, separatorInsetRight, separatorColor } = props;
 		let separator = {
 			backgroundColor: separatorColor,
@@ -49,7 +55,7 @@ const Section = (props: Props) => {
 		}
 	};
 
-	const getHeader = (): React.Node => {
+	const getHeader = () => {
 		const { header, headerStyle, headerComponent, accentColor } = props;
 		const reVal = [];
 
@@ -62,7 +68,7 @@ const Section = (props: Props) => {
 		} else if (header) {
 			const combinedStyles = [styles.header];
 			if (Platform.OS === 'android') {
-				combinedStyles.push({ color: accentColor })
+				combinedStyles.push({ color: accentColor });
 			}
 			combinedStyles.push(headerStyle);
 
@@ -92,7 +98,7 @@ const Section = (props: Props) => {
 		return reVal;
 	};
 
-	const getFooter = (): React.Node => {
+	const getFooter = () => {
 		const { footer, footerStyle, footerComponent } = props;
 		const reVal = [];
 
@@ -123,13 +129,6 @@ const Section = (props: Props) => {
 			{getFooter()}
 		</View>
 	);
-};
-
-Section.defaultProps = {
-	hideSeparators: false,
-	separatorInsetLeft: 20,
-	separatorInsetRight: 0,
-	separatorColor: COLOR_SEPARATOR,
 };
 
 export default Section;

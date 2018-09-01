@@ -1,25 +1,26 @@
-/* @flow */
-
 import * as React from 'react';
 import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
+
 import AccessoryCell from './AccessoryCell';
 
-import type { Props as AccessoryCellProps } from './AccessoryCell';
 import { keyValueCellStyles as styles } from './styles';
 
-export type Props = {
-	...AccessoryCellProps,
+KeyValueCell.propTypes = Object.assign(AccessoryCell.propTypes, {
+	title: PropTypes.string.isRequired,
+	titleString: Text.propTypes.style,
+	value: PropTypes.string,
+	valueStyle: Text.propTypes.style,
+	contentComponent: PropTypes.node,
 
-	title: string,
-	titleStyle?: ?any,
-	value?: ?string,
-	valueStyle?: ?any,
-	contentComponent?: ?React.Node,
+	iconComponent: PropTypes.element,
+});
 
-	iconComponent?: ?React.Node,
+KeyValueCell.defaultProps = {
+	isEnabled: true,
 };
 
-const KeyValueCell = (props: Props) => {
+const KeyValueCell = (props) => {
 	const {
 		title, titleStyle,
 		value, valueStyle,
@@ -29,7 +30,7 @@ const KeyValueCell = (props: Props) => {
 		...remainingProps
 	} = props;
 
-	const getIcon = (): React.Node => {
+	const getIcon = () => {
 		if (iconComponent) {
 			return (
 				<View style={styles.iconContainer}>
@@ -39,19 +40,19 @@ const KeyValueCell = (props: Props) => {
 		}
 	};
 
-	const getTitle = (): React.Node => {
+	const getTitle = () => {
 		if (title) {
 			return <Text key='title' style={[styles.title, titleStyle]}>{title}</Text>;
 		}
 	};
 
-	const getValue = (): React.Node => {
+	const getValue = () => {
 		if (value) {
 			return <Text key='value' style={[styles.value, valueStyle]}>{value}</Text>;
 		}
 	};
 
-	const getContent = (): React.Node => {
+	const getContent = () => {
 		let component;
 		if (contentComponent) {
 			component = contentComponent;

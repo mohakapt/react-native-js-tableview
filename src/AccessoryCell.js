@@ -1,5 +1,3 @@
-/* @flow */
-
 import * as React from 'react';
 import {
 	View,
@@ -7,27 +5,31 @@ import {
 	TouchableOpacity,
 	Platform,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Cell from './Cell';
 import Icon from './assets/icons';
 import { COLOR_ACCESSORY, COLOR_SEPARATOR } from './assets/colors';
 
-import type { Props as CellProps } from './Cell';
 import { accessoryCellStyles as styles } from './styles';
 
-export type Props = {
-	...CellProps,
+AccessoryCell.propTypes = Object.assign(Cell.propTypes, {
+	accessory: PropTypes.oneOf(['disclosure', 'details', 'checkmark']),
+	accessoryTint: PropTypes.string,
+	accessoryComponent: PropTypes.element,
+	hideAccessorySeparator: PropTypes.bool,
+	accessorySeparatorColor: PropTypes.string,
 
-	accessory?: ?('disclosure' | 'details' | 'checkmark'),
-	accessoryTint?: ?string,
-	accessoryComponent?: ?React.Node,
-	hideAccessorySeparator?: boolean,
-	accessorySeparatorColor?: string,
+	onAccessoryPress: PropTypes.func,
+});
 
-	onAccessoryPress?: () => void | false,
+AccessoryCell.defaultProps = {
+	hideAccessorySeparator: false,
+	accessorySeparatorColor: COLOR_SEPARATOR,
+	isEnabled: true,
 };
 
-const AccessoryCell = (props: Props) => {
+const AccessoryCell = (props) => {
 	let { accessoryTint } = props;
 	const {
 		accessory,
@@ -43,7 +45,7 @@ const AccessoryCell = (props: Props) => {
 		...remainingProps
 	} = props;
 
-	const getAccessory = (): React.Node => {
+	const getAccessory = () => {
 		const reVal = [];
 
 		if (!hideAccessorySeparator && Platform.OS === 'android') {
@@ -92,12 +94,6 @@ const AccessoryCell = (props: Props) => {
 			{getAccessory()}
 		</Cell>
 	);
-};
-
-AccessoryCell.defaultProps = {
-	hideAccessorySeparator: false,
-	accessorySeparatorColor: COLOR_SEPARATOR,
-	isEnabled: true,
 };
 
 export default AccessoryCell;

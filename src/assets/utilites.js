@@ -1,8 +1,6 @@
-/* @flow */
-
 import * as React from 'react';
 
-export function insertProps(children: any, props: any): Array<React.Node> {
+export function insertProps(children, props) {
 	const childrenArray = React.Children.toArray(children);
 
 	if (!childrenArray) {
