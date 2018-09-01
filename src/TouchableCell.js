@@ -6,18 +6,9 @@ import AccessoryCell from './AccessoryCell';
 
 import { touchableCellStyles as styles } from './styles';
 
-TouchableCell.propTypes = Object.assign(AccessoryCell.propTypes, {
-	title: PropTypes.string.isRequired,
-	titleStyle: ViewPropTypes.style,
-});
-
-TouchableCell.defaultProps = {
-	isEnabled: true,
-};
-
 const TouchableCell = (props) => {
 	const {
-		title, titleStyle,
+		children, title, titleStyle,
 		accentColor, isEnabled,
 
 		...remainingProps
@@ -35,4 +26,14 @@ const TouchableCell = (props) => {
 	);
 };
 
+TouchableCell.propTypes = Object.assign({
+	title: PropTypes.string.isRequired,
+	titleStyle: ViewPropTypes.style,
+}, AccessoryCell.propTypes);
+
+TouchableCell.defaultProps = {
+	isEnabled: true,
+};
+
+delete TouchableCell.propTypes.children;
 export default TouchableCell;

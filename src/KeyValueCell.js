@@ -6,23 +6,9 @@ import AccessoryCell from './AccessoryCell';
 
 import { keyValueCellStyles as styles } from './styles';
 
-KeyValueCell.propTypes = Object.assign(AccessoryCell.propTypes, {
-	title: PropTypes.string.isRequired,
-	titleString: ViewPropTypes.style,
-	value: PropTypes.string,
-	valueStyle: ViewPropTypes.style,
-	contentComponent: PropTypes.node,
-
-	iconComponent: PropTypes.element,
-});
-
-KeyValueCell.defaultProps = {
-	isEnabled: true,
-};
-
 const KeyValueCell = (props) => {
 	const {
-		title, titleStyle,
+		children, title, titleStyle,
 		value, valueStyle,
 		iconComponent,
 		contentComponent,
@@ -76,4 +62,19 @@ const KeyValueCell = (props) => {
 	);
 };
 
+KeyValueCell.propTypes = Object.assign({
+	title: PropTypes.string.isRequired,
+	titleString: ViewPropTypes.style,
+	value: PropTypes.string,
+	valueStyle: ViewPropTypes.style,
+	contentComponent: PropTypes.node,
+
+	iconComponent: PropTypes.element,
+}, AccessoryCell.propTypes);
+
+KeyValueCell.defaultProps = {
+	isEnabled: true,
+};
+
+delete KeyValueCell.propTypes.children;
 export default KeyValueCell;

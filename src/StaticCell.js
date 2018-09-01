@@ -6,23 +6,9 @@ import AccessoryCell from './AccessoryCell';
 
 import { staticCellStyles as styles } from './styles';
 
-StaticCell.propTypes = Object.assign(AccessoryCell.propTypes, {
-	title: PropTypes.string.isRequired,
-	titleStyle: ViewPropTypes.style,
-	subtitle: PropTypes.string,
-	subtitleStyle: ViewPropTypes.style,
-	contentComponent: PropTypes.node,
-
-	iconComponent: PropTypes.element,
-});
-
-StaticCell.defaultProps = {
-	isEnabled: true,
-};
-
 const StaticCell = (props) => {
 	const {
-		title, titleStyle,
+		children, title, titleStyle,
 		subtitle, subtitleStyle,
 		iconComponent,
 		contentComponent,
@@ -80,4 +66,19 @@ const StaticCell = (props) => {
 	);
 };
 
+StaticCell.propTypes = Object.assign({
+	title: PropTypes.string.isRequired,
+	titleStyle: ViewPropTypes.style,
+	subtitle: PropTypes.string,
+	subtitleStyle: ViewPropTypes.style,
+	contentComponent: PropTypes.node,
+
+	iconComponent: PropTypes.element,
+}, AccessoryCell.propTypes);
+
+StaticCell.defaultProps = {
+	isEnabled: true,
+};
+
+delete StaticCell.propTypes.children;
 export default StaticCell;

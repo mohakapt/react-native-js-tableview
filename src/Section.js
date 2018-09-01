@@ -2,39 +2,10 @@ import * as React from 'react';
 import { View, Text, Platform, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Cell from './Cell';
 import { insertProps } from './assets/utilites';
 import { COLOR_SEPARATOR } from './assets/colors';
 
 import { sectionStyles as styles } from './styles';
-
-Section.propTypes = {
-	accentColor: PropTypes.string,
-	underlayColor: PropTypes.string,
-
-	children: PropTypes.arrayOf(PropTypes.instanceOf(Cell)).isRequired,
-	style: ViewPropTypes.style,
-
-	header: PropTypes.string,
-	headerStyle: ViewPropTypes.style,
-	headerComponent: PropTypes.node,
-
-	footer: PropTypes.string,
-	footerStyle: ViewPropTypes.style,
-	footerComponent: PropTypes.node,
-
-	hideSeparators: PropTypes.bool,
-	separatorInsetLeft: PropTypes.number,
-	separatorInsetRight: PropTypes.number,
-	separatorColor: PropTypes.string,
-};
-
-Section.defaultProps = {
-	hideSeparators: false,
-	separatorInsetLeft: 20,
-	separatorInsetRight: 0,
-	separatorColor: COLOR_SEPARATOR,
-};
 
 const Section = (props) => {
 	const getSeparator = (index, useInsets) => {
@@ -129,6 +100,37 @@ const Section = (props) => {
 			{getFooter()}
 		</View>
 	);
+};
+
+Section.propTypes = {
+	accentColor: PropTypes.string,
+	underlayColor: PropTypes.string,
+
+	children: PropTypes.oneOfType([
+		PropTypes.arrayOf(PropTypes.element),
+		PropTypes.PropTypes.element,
+	]).isRequired,
+	style: ViewPropTypes.style,
+
+	header: PropTypes.string,
+	headerStyle: ViewPropTypes.style,
+	headerComponent: PropTypes.node,
+
+	footer: PropTypes.string,
+	footerStyle: ViewPropTypes.style,
+	footerComponent: PropTypes.node,
+
+	hideSeparators: PropTypes.bool,
+	separatorInsetLeft: PropTypes.number,
+	separatorInsetRight: PropTypes.number,
+	separatorColor: PropTypes.string,
+};
+
+Section.defaultProps = {
+	hideSeparators: false,
+	separatorInsetLeft: 20,
+	separatorInsetRight: 0,
+	separatorColor: COLOR_SEPARATOR,
 };
 
 export default Section;

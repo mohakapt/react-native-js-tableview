@@ -2,30 +2,12 @@ import * as React from 'react';
 import { View, ScrollView, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Section from './Section';
 import { insertProps } from './assets/utilites';
 import { COLOR_ACCENT, COLOR_TOUCHABLE } from './assets/colors';
 
 import { tableStyles as styles } from './styles';
 
-Table.propTypes = {
-	accentColor: PropTypes.string,
-	underlayColor: PropTypes.string,
-
-	style: ViewPropTypes.style,
-	scrollViewStyle: ViewPropTypes.style,
-
-	children: PropTypes.arrayOf(PropTypes.instanceOf(Section)).isRequired,
-	isScrollable: PropTypes.bool,
-};
-
-Table.defaultProps = {
-	isScrollable: false,
-	accentColor: COLOR_ACCENT,
-	underlayColor: COLOR_TOUCHABLE,
-};
-
-const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, underlayColor }: Props) => {
+const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, underlayColor }) => {
 	const renderTable = () => {
 		const tableStyle = [styles.table, style];
 
@@ -49,6 +31,26 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, un
 			{renderTable()}
 		</ScrollView>
 	);
+};
+
+Table.propTypes = {
+	accentColor: PropTypes.string,
+	underlayColor: PropTypes.string,
+
+	style: ViewPropTypes.style,
+	scrollViewStyle: ViewPropTypes.style,
+
+	children: PropTypes.oneOfType([
+		PropTypes.arrayOf(PropTypes.element),
+		PropTypes.PropTypes.element,
+	]).isRequired,
+	isScrollable: PropTypes.bool,
+};
+
+Table.defaultProps = {
+	isScrollable: false,
+	accentColor: COLOR_ACCENT,
+	underlayColor: COLOR_TOUCHABLE,
 };
 
 export default Table;

@@ -12,14 +12,6 @@ const icons = {
 	checkmark,
 };
 
-Icon.propTypes = {
-	name: PropTypes.oneOf(Object.keys(icons)).isRequired,
-	tintColor: PropTypes.string,
-	style: ViewPropTypes.style,
-};
-
-Icon.defaultProps = {};
-
 const Icon = (props) => {
 	const style = {};
 	if (props.tintColor) {
@@ -35,5 +27,13 @@ const Icon = (props) => {
 			source={icons[props.name]} />
 	);
 };
+
+Icon.propTypes = {
+	name: PropTypes.oneOf(Object.keys(icons)).isRequired,
+	tintColor: PropTypes.string,
+	style: ViewPropTypes.style,
+};
+
+Icon.defaultProps = {};
 
 export default Icon;

@@ -8,22 +8,6 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-Cell.propTypes = {
-	accentColor: PropTypes.string,
-	underlayColor: PropTypes.string,
-
-	children: PropTypes.node.isRequired,
-	style: ViewPropTypes.style,
-
-	isEnabled: PropTypes.bool,
-	onPress: PropTypes.func,
-	onLongPress: PropTypes.func,
-};
-
-Cell.defaultProps = {
-	isEnabled: true,
-};
-
 const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor }) => {
 	const renderCell = () => (
 		<View style={style}>
@@ -48,6 +32,22 @@ const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor 
 			{renderCell()}
 		</Touchable>
 	);
+};
+
+Cell.propTypes = {
+	accentColor: PropTypes.string,
+	underlayColor: PropTypes.string,
+
+	children: PropTypes.node.isRequired,
+	style: ViewPropTypes.style,
+
+	isEnabled: PropTypes.bool,
+	onPress: PropTypes.func,
+	onLongPress: PropTypes.func,
+};
+
+Cell.defaultProps = {
+	isEnabled: true,
 };
 
 export default Cell;

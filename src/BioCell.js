@@ -7,26 +7,9 @@ import AccessoryCell from './AccessoryCell';
 
 import { bioCellStyles as styles } from './styles';
 
-BioCell.propTypes = Object.assign(AccessoryCell.propTypes, {
-	title: PropTypes.string.isRequired,
-	titleStyle: ViewPropTypes.style,
-
-	subtitle: PropTypes.string,
-	subtitleStyle: ViewPropTypes.style,
-
-	avatarName: PropTypes.string,
-	avatarSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	photoUrl: PropTypes.string,
-	photoStyle: ViewPropTypes.style,
-});
-
-BioCell.defaultProps = {
-	isEnabled: true,
-};
-
 const BioCell = (props) => {
 	const {
-		title, titleStyle,
+		children, title, titleStyle,
 		subtitle, subtitleStyle,
 		avatarName, avatarSize,
 		photoUrl, photoStyle,
@@ -65,4 +48,22 @@ const BioCell = (props) => {
 	);
 };
 
+BioCell.propTypes = Object.assign({
+	title: PropTypes.string.isRequired,
+	titleStyle: ViewPropTypes.style,
+
+	subtitle: PropTypes.string,
+	subtitleStyle: ViewPropTypes.style,
+
+	avatarName: PropTypes.string,
+	avatarSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	photoUrl: PropTypes.string,
+	photoStyle: ViewPropTypes.style,
+}, AccessoryCell.propTypes);
+
+BioCell.defaultProps = {
+	isEnabled: true,
+};
+
+delete BioCell.propTypes.children;
 export default BioCell;

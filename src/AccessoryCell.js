@@ -13,22 +13,6 @@ import { COLOR_ACCESSORY, COLOR_SEPARATOR } from './assets/colors';
 
 import { accessoryCellStyles as styles } from './styles';
 
-AccessoryCell.propTypes = Object.assign(Cell.propTypes, {
-	accessory: PropTypes.oneOf(['disclosure', 'details', 'checkmark']),
-	accessoryTint: PropTypes.string,
-	accessoryComponent: PropTypes.element,
-	hideAccessorySeparator: PropTypes.bool,
-	accessorySeparatorColor: PropTypes.string,
-
-	onAccessoryPress: PropTypes.func,
-});
-
-AccessoryCell.defaultProps = {
-	hideAccessorySeparator: false,
-	accessorySeparatorColor: COLOR_SEPARATOR,
-	isEnabled: true,
-};
-
 const AccessoryCell = (props) => {
 	let { accessoryTint } = props;
 	const {
@@ -94,6 +78,22 @@ const AccessoryCell = (props) => {
 			{getAccessory()}
 		</Cell>
 	);
+};
+
+AccessoryCell.propTypes = Object.assign({
+	accessory: PropTypes.oneOf(['', 'disclosure', 'details', 'checkmark']),
+	accessoryTint: PropTypes.string,
+	accessoryComponent: PropTypes.element,
+	hideAccessorySeparator: PropTypes.bool,
+	accessorySeparatorColor: PropTypes.string,
+
+	onAccessoryPress: PropTypes.func,
+}, Cell.propTypes);
+
+AccessoryCell.defaultProps = {
+	hideAccessorySeparator: false,
+	accessorySeparatorColor: COLOR_SEPARATOR,
+	isEnabled: true,
 };
 
 export default AccessoryCell;
