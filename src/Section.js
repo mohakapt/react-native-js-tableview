@@ -113,11 +113,11 @@ Section.propTypes = {
 	style: ViewPropTypes.style,
 
 	header: PropTypes.string,
-	headerStyle: ViewPropTypes.style,
+	headerStyle: Text.propTypes.style,
 	headerComponent: PropTypes.node,
 
 	footer: PropTypes.string,
-	footerStyle: ViewPropTypes.style,
+	footerStyle: Text.propTypes.style,
 	footerComponent: PropTypes.node,
 
 	hideSeparators: PropTypes.bool,

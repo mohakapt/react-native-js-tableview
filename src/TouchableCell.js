@@ -28,7 +28,7 @@ const TouchableCell = (props) => {
 
 TouchableCell.propTypes = Object.assign({
 	title: PropTypes.string.isRequired,
-	titleStyle: ViewPropTypes.style,
+	titleStyle: Text.propTypes.style,
 }, AccessoryCell.propTypes);
 
 TouchableCell.defaultProps = {

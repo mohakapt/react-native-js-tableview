@@ -68,9 +68,9 @@ const StaticCell = (props) => {
 
 StaticCell.propTypes = Object.assign({
 	title: PropTypes.string.isRequired,
-	titleStyle: ViewPropTypes.style,
+	titleStyle: Text.propTypes.style,
 	subtitle: PropTypes.string,
-	subtitleStyle: ViewPropTypes.style,
+	subtitleStyle: Text.propTypes.style,
 	contentComponent: PropTypes.node,
 
 	iconComponent: PropTypes.element,

@@ -50,15 +50,15 @@ const BioCell = (props) => {
 
 BioCell.propTypes = Object.assign({
 	title: PropTypes.string.isRequired,
-	titleStyle: ViewPropTypes.style,
+	titleStyle: Text.propTypes.style,
 
 	subtitle: PropTypes.string,
-	subtitleStyle: ViewPropTypes.style,
+	subtitleStyle: Text.propTypes.style,
 
 	avatarName: PropTypes.string,
 	avatarSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	photoUrl: PropTypes.string,
-	photoStyle: ViewPropTypes.style,
+	photoStyle: PropTypes.oneOfType([Image.propTypes.style, ViewPropTypes]),
 }, AccessoryCell.propTypes);
 
 BioCell.defaultProps = {
