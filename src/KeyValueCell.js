@@ -47,8 +47,13 @@ const KeyValueCell = (props) => {
 			component = [getTitle(), space, getValue()];
 		}
 
+		const combinedStyles = [styles.contentContainer];
+		if (!props.accessory) {
+			combinedStyles.push({ paddingEnd: 15 });
+		}
+
 		return (
-			<View style={styles.contentContainer}>
+			<View style={combinedStyles}>
 				{component}
 			</View>
 		);
