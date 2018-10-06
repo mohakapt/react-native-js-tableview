@@ -25,6 +25,7 @@ yarn add react-native-js-tableview
 
 
 ### Usage
+
 You can check the example in the source code for more detailed information.<br/>For the complete list of available props there are flow annotations in every component (I will try to provide a list here very soon).
 
 ```js
@@ -52,6 +53,7 @@ class App extends React.Component {
 
 
 ### Properties for all available components
+
 These props are available for all components (`Table` `Section` `Cell` `AccessoryCell` `BioCell` `StaticCell` `KeyValueCell` `TouchableCell`): 
 
 |Prop|Default Value|Description|
@@ -98,6 +100,7 @@ These props are available for all components (`Table` `Section` `Cell` `Accessor
 |`customActionTrigger`|`onPress`|Can be one of: `onPress`, `onLongPress`.|
 
 ###`AccessoryCell`
+
 This cell contains all props from `Cell` component in addition to:
 
 |Prop|Default Value|Description|
@@ -110,6 +113,7 @@ This cell contains all props from `Cell` component in addition to:
 |`onAccessoryPress`|Unavailable||
 
 ###`StaticCell`
+
 This cell contains all props from `Cell` and `AccessoryCell` components in addition to:
 
 `To be continued, meanwhile check FlowTypes or PropTypes for more info.`
