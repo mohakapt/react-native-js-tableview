@@ -62,6 +62,7 @@ These props are available for all components (`Table` `Section` `Cell` `Accessor
 *Note:* The list of props above is inherited from parent to child meaning if you provide on of these props to (for example) a `Table` component all sections inside that table will get the same props unless you override it in the `Section` or the `Cell` component.
 
 ###`Table`
+
 |Prop|Default Value|Description|
 |---|---|---|
 |`style`|Unavailable|The style for the container `View` of the `Table`.|
@@ -69,6 +70,7 @@ These props are available for all components (`Table` `Section` `Cell` `Accessor
 |`scrollViewStyle`|Unavailable|The style for the `ScrollView` if `isScrollable` is `true`.|
 
 ###`Section`
+
 |Prop|Default Value|Description|
 |---|---|---|
 |`style`|Unavailable|The style for the container `View` of the `Section`.|
@@ -84,6 +86,7 @@ These props are available for all components (`Table` `Section` `Cell` `Accessor
 |`separatorColor`|iOS: `#C8C7CD` <br/> Android: `#EBEBEB`|The color of the separators in the `Section`.|
 
 ###`Cell`
+
 |Prop|Default Value|Description|
 |---|---|---|
 |`style`|Unavailable|The style for the container `View` of the `Cell`.|
