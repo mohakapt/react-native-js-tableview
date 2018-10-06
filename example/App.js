@@ -130,6 +130,9 @@ export default class App extends Component<Props, State> {
 						value="3 books"
 						iconComponent={getIcon('book')}
 						accessory="disclosure"
+						customAction='www.google.com'
+						customActionType='openUrl'
+						customActionTrigger='onPress'
 						onPress={this.onWorksTouched.bind(this, 'books')} />
 
 					<KeyValueCell

@@ -12,14 +12,18 @@ const BioCell = (props) => {
 		children, title, titleStyle,
 		subtitle, subtitleStyle,
 		avatarName, avatarSize,
-		photoUrl, photoStyle,
+		photoComponent, photoSource, photoStyle,
 		accentColor,
 
 		...remainingProps
 	} = props;
 
 	const getPhoto = () => {
-		if (avatarName || (!photoUrl && title)) {
+		if (photoComponent) {
+			return photoComponent;
+		}
+
+		if (avatarName || (!photoSource && title)) {
 			return (
 				<UserAvatar
 					style={[styles.image, photoStyle]}
@@ -31,7 +35,7 @@ const BioCell = (props) => {
 			return (
 				<Image
 					style={[styles.image, photoStyle]}
-					source={{ uri: photoUrl }} />
+					source={photoSource} />
 			);
 		}
 	};
@@ -57,7 +61,8 @@ BioCell.propTypes = Object.assign({
 
 	avatarName: PropTypes.string,
 	avatarSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	photoUrl: PropTypes.string,
+	photoComponent: PropTypes.node,
+	photoSource: PropTypes.any,
 	photoStyle: PropTypes.oneOfType([Image.propTypes.style, ViewPropTypes]),
 }, AccessoryCell.propTypes);
 
