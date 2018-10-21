@@ -5,12 +5,15 @@ import {
 	COLOR_TITLE,
 	COLOR_DISABLED,
 	COLOR_SUBTITLE,
+	getColorBackground,
+	getColorSection,
+	getColorSeparator, getColorHeader, getColorFooter,
 } from './assets/colors';
 
 export const tableStyles = StyleSheet.create({
-	container: {
-		backgroundColor: COLOR_BACKGROUND,
-	},
+	container: (theme, blend, accent) => ({
+		backgroundColor: getColorBackground(theme, blend, accent),
+	}),
 	table: Platform.select({
 		android: {
 			paddingHorizontal: 16,
@@ -20,24 +23,29 @@ export const tableStyles = StyleSheet.create({
 });
 
 export const sectionStyles = StyleSheet.create({
-	container: {
-		...Platform.select({
-			ios: {
-				marginTop: 26,
-			},
-			android: {
-				marginTop: 16,
+	container: (theme, blend, accent) => Platform.select({
+		ios: {
+			marginTop: 26,
+		},
+		android: {
+			marginTop: 16,
 
-				backgroundColor: 'white',
-				overflow: 'hidden',
-				borderRadius: 3,
-				elevation: 3,
-			},
-		}),
-	},
-	separator: {
+			backgroundColor: getColorSection(theme, blend, accent),
+			overflow: 'hidden',
+			borderRadius: 3,
+			elevation: 3,
+		},
+	}),
+	cellsContainer: (theme, blend, accent) => ({
+		backgroundColor: getColorSection(theme, blend, accent),
+	}),
+	separator: (theme, start, end) => ({
+		backgroundColor: getColorSeparator(theme),
 		height: 1 / PixelRatio.get(),
-	},
+
+		marginStart: start,
+		marginEnd: end,
+	}),
 	headerContainer: {
 		paddingStart: 16,
 		...Platform.select({
@@ -50,10 +58,10 @@ export const sectionStyles = StyleSheet.create({
 			},
 		}),
 	},
-	header: {
-		color: COLOR_HEADER,
+	header: (theme, accent) => ({
+		color: getColorHeader(theme, accent),
 		fontSize: Platform.OS === 'ios' ? 13 : 15,
-	},
+	}),
 	footerContainer: {
 		paddingStart: 16,
 		...Platform.select({
@@ -65,13 +73,10 @@ export const sectionStyles = StyleSheet.create({
 			},
 		}),
 	},
-	footer: {
-		color: COLOR_HEADER,
+	footer: (theme) => ({
+		color: getColorFooter(theme),
 		fontSize: 13,
-	},
-	cellsContainer: {
-		backgroundColor: 'white',
-	},
+	}),
 });
 
 export const accessoryCellStyles = StyleSheet.create({

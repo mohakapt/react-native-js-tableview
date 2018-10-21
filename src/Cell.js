@@ -70,6 +70,8 @@ const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor,
 Cell.propTypes = {
 	accentColor: PropTypes.string,
 	underlayColor: PropTypes.string,
+	theme: PropTypes.oneOf(['light', 'dark']),
+	blendAccent: PropTypes.bool,
 
 	children: PropTypes.node.isRequired,
 	style: ViewPropTypes.style,

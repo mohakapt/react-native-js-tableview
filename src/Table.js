@@ -7,17 +7,17 @@ import { COLOR_ACCENT, COLOR_TOUCHABLE } from './assets/colors';
 
 import { tableStyles as styles } from './styles';
 
-const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, underlayColor }) => {
+const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, underlayColor, theme, blendAccent }) => {
 	const renderTable = () => {
 		const tableStyle = [styles.table, style];
 
 		if (!isScrollable) {
-			tableStyle.unshift(styles.container);
+			tableStyle.unshift(styles.container(theme, blendAccent, accentColor));
 		}
 
 		return (
 			<View style={tableStyle}>
-				{insertProps(children, { accentColor, underlayColor })}
+				{insertProps(children, { accentColor, underlayColor, theme, blendAccent })}
 			</View>
 		);
 	};
@@ -27,7 +27,7 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, un
 	}
 
 	return (
-		<ScrollView style={[styles.container, scrollViewStyle]}>
+		<ScrollView style={[styles.container(theme, blendAccent, accentColor), scrollViewStyle]}>
 			{renderTable()}
 		</ScrollView>
 	);
@@ -36,6 +36,8 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, un
 Table.propTypes = {
 	accentColor: PropTypes.string,
 	underlayColor: PropTypes.string,
+	theme: PropTypes.oneOf(['light', 'dark']),
+	blendAccent: PropTypes.bool,
 
 	style: ViewPropTypes.style,
 	scrollViewStyle: ViewPropTypes.style,
@@ -43,14 +45,17 @@ Table.propTypes = {
 	children: PropTypes.oneOfType([
 		PropTypes.arrayOf(PropTypes.element),
 		PropTypes.PropTypes.element,
-	]).isRequired,
+	]),
 	isScrollable: PropTypes.bool,
 };
 
 Table.defaultProps = {
-	isScrollable: false,
 	accentColor: COLOR_ACCENT,
 	underlayColor: COLOR_TOUCHABLE,
+	theme: 'light',
+	blendAccent: false,
+
+	isScrollable: false,
 };
 
 export default Table;

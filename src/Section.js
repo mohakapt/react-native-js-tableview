@@ -3,31 +3,30 @@ import { View, Text, Platform, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { insertProps } from './assets/utilites';
-import { COLOR_SEPARATOR } from './assets/colors';
+import { COLOR_SEPARATOR, getColorSection } from './assets/colors';
 
 import { sectionStyles as styles } from './styles';
 
 const Section = (props) => {
 	const getSeparator = (index, useInsets) => {
-		const { hideSeparators, separatorInsetLeft, separatorInsetRight, separatorColor } = props;
-		let separator = {
-			backgroundColor: separatorColor,
-		};
-		if (useInsets) {
-			separator = {
-				...separator,
-				marginStart: separatorInsetLeft,
-				marginEnd: separatorInsetRight,
-			};
+		const { hideSeparators, separatorInsetLeft, separatorInsetRight, theme } = props;
+
+		if (hideSeparators) {
+			return;
 		}
 
-		if (!hideSeparators) {
-			return <View key={index} style={[styles.separator, separator]} />;
+		let separatorStyle;
+		if (useInsets) {
+			separatorStyle = styles.separator(theme, separatorInsetLeft, separatorInsetRight);
+		} else {
+			separatorStyle = styles.separator(theme, 0, 0);
 		}
+
+		return <View key={index} style={separatorStyle} />;
 	};
 
 	const getHeader = () => {
-		const { header, headerStyle, headerComponent, accentColor } = props;
+		const { header, headerStyle, headerComponent, theme, accentColor } = props;
 		const reVal = [];
 
 		if (Platform.OS === 'ios' || header) {
@@ -37,11 +36,10 @@ const Section = (props) => {
 		if (headerComponent) {
 			reVal.unshift(headerComponent);
 		} else if (header) {
-			const combinedStyles = [styles.header];
-			if (Platform.OS === 'android') {
-				combinedStyles.push({ color: accentColor });
-			}
-			combinedStyles.push(headerStyle);
+			const combinedStyles = [
+				styles.header(theme, accentColor),
+				headerStyle,
+			];
 
 			const textComponent = (
 				<View key='header' style={styles.headerContainer}>
@@ -55,10 +53,10 @@ const Section = (props) => {
 	};
 
 	const getCells = () => {
-		const { children, accentColor, underlayColor } = props;
+		const { children, accentColor, underlayColor, theme, blendAccent } = props;
 
 		const reVal = [];
-		const childrenArray = insertProps(children, { accentColor, underlayColor });
+		const childrenArray = insertProps(children, { accentColor, underlayColor, theme, blendAccent });
 
 		for (let x = 0; x < childrenArray.length; x++) {
 			reVal.push((childrenArray[x]));
@@ -70,7 +68,7 @@ const Section = (props) => {
 	};
 
 	const getFooter = () => {
-		const { footer, footerStyle, footerComponent } = props;
+		const { footer, footerStyle, footerComponent, theme } = props;
 		const reVal = [];
 
 		if (Platform.OS === 'ios' || footer) {
@@ -80,9 +78,14 @@ const Section = (props) => {
 		if (footerComponent) {
 			reVal.push(footerComponent);
 		} else if (footer) {
+			const combinedStyles = [
+				styles.footer(theme),
+				footerStyle,
+			];
+
 			const textComponent = (
 				<View key='footer' style={styles.footerContainer}>
-					<Text style={[styles.footer, footerStyle]}>{footer}</Text>
+					<Text style={combinedStyles}>{footer}</Text>
 				</View>
 			);
 			reVal.push(textComponent);
@@ -91,10 +94,11 @@ const Section = (props) => {
 		return reVal;
 	};
 
+	const { accentColor, theme, blendAccent } = props;
 	return (
-		<View style={[styles.container, props.style]}>
+		<View style={[styles.container(theme, blendAccent, accentColor), props.style]}>
 			{getHeader()}
-			<View style={styles.cellsContainer}>
+			<View style={styles.cellsContainer(theme, blendAccent, accentColor)}>
 				{getCells()}
 			</View>
 			{getFooter()}
@@ -105,11 +109,13 @@ const Section = (props) => {
 Section.propTypes = {
 	accentColor: PropTypes.string,
 	underlayColor: PropTypes.string,
+	theme: PropTypes.oneOf(['light', 'dark']),
+	blendAccent: PropTypes.bool,
 
 	children: PropTypes.oneOfType([
 		PropTypes.arrayOf(PropTypes.element),
 		PropTypes.PropTypes.element,
-	]).isRequired,
+	]),
 	style: ViewPropTypes.style,
 
 	header: PropTypes.string,
@@ -123,14 +129,12 @@ Section.propTypes = {
 	hideSeparators: PropTypes.bool,
 	separatorInsetLeft: PropTypes.number,
 	separatorInsetRight: PropTypes.number,
-	separatorColor: PropTypes.string,
 };
 
 Section.defaultProps = {
 	hideSeparators: false,
 	separatorInsetLeft: 20,
 	separatorInsetRight: 0,
-	separatorColor: COLOR_SEPARATOR,
 };
 
 export default Section;

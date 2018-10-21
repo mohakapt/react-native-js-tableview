@@ -2,13 +2,14 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, StatusBar } from 'react-native';
-import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell } from 'react-native-js-tableview';
+import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell } from './src';
 import { COLOR_ACCENT, COLOR_ACCENT_DARK, COLOR_ACCENT_DARKER, COLOR_ACCENT_LIGHT } from './assets/colors';
 import Icon from './assets/icons';
 
 type Props = {};
 
 type State = {
+	theme: 'light' | 'dark',
 	selectedBook: number,
 };
 
@@ -28,7 +29,7 @@ export default class App extends Component<Props, State> {
 	constructor(props) {
 		super(props);
 
-		this.state = { selectedBook: 0 };
+		this.state = { theme: 'dark', selectedBook: 0 };
 	}
 
 	componentWillMount() {
@@ -94,6 +95,8 @@ export default class App extends Component<Props, State> {
 
 		return (
 			<Table
+				theme={this.state.theme}
+				blendAccent={true}
 				style={styles.container}
 				isScrollable={true}
 				accentColor={COLOR_ACCENT}
@@ -171,6 +174,6 @@ const styles = StyleSheet.create({
 		marginBottom: 30,
 	},
 	email: {
-		backgroundColor: '#fbfbfb',
+		//backgroundColor: '#fbfbfb',
 	},
 });
