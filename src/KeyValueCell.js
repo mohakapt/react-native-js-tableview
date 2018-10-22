@@ -76,9 +76,5 @@ KeyValueCell.propTypes = Object.assign({
 	iconComponent: PropTypes.element,
 }, AccessoryCell.propTypes);
 
-KeyValueCell.defaultProps = {
-	disabled: false,
-};
-
 delete KeyValueCell.propTypes.children;
 export default KeyValueCell;

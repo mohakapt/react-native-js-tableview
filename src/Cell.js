@@ -86,8 +86,6 @@ Cell.propTypes = {
 };
 
 Cell.defaultProps = {
-	disabled: false,
-
 	customActionType: 'openUrl',
 	customActionTrigger: 'onPress',
 };

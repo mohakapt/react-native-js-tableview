@@ -4,7 +4,10 @@ import {
 	COLOR_SUBTITLE,
 	getColorBackground,
 	getColorSection,
-	getColorSeparator, getColorHeader, getColorFooter, getColorTitle,
+	getColorSeparator,
+	getColorHeader,
+	getColorFooter,
+	getColorTitle,
 } from './assets/colors';
 
 export const tableStyles = StyleSheet.create({

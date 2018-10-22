@@ -94,7 +94,6 @@ AccessoryCell.propTypes = Object.assign({
 
 AccessoryCell.defaultProps = {
 	hideAccessorySeparator: false,
-	disabled: false,
 };
 
 export default AccessoryCell;

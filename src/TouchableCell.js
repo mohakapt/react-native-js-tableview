@@ -32,9 +32,5 @@ TouchableCell.propTypes = Object.assign({
 	titleStyle: Text.propTypes.style,
 }, AccessoryCell.propTypes);
 
-TouchableCell.defaultProps = {
-	disabled: false,
-};
-
 delete TouchableCell.propTypes.children;
 export default TouchableCell;

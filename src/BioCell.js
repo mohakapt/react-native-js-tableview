@@ -67,9 +67,5 @@ BioCell.propTypes = Object.assign({
 	photoStyle: PropTypes.oneOfType([Image.propTypes.style, ViewPropTypes]),
 }, AccessoryCell.propTypes);
 
-BioCell.defaultProps = {
-	disabled: false,
-};
-
 delete BioCell.propTypes.children;
 export default BioCell;

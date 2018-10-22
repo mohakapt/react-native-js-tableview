@@ -74,9 +74,5 @@ StaticCell.propTypes = Object.assign({
 	iconComponent: PropTypes.element,
 }, AccessoryCell.propTypes);
 
-StaticCell.defaultProps = {
-	disabled: false,
-};
-
 delete StaticCell.propTypes.children;
 export default StaticCell;
