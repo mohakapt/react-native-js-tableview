@@ -10,18 +10,18 @@ const TouchableCell = (props) => {
 	const {
 		children,
 		title, titleStyle,
-		theme, accentColor, disabled,
+		colorPalette, disabled,
 
 		...remainingProps
 	} = props;
 
 	const combinedStyles = [
-		styles.title(theme, accentColor, disabled),
+		styles.title(colorPalette, disabled),
 		titleStyle,
 	];
 
 	return (
-		<AccessoryCell theme={theme} accentColor={accentColor} disabled={disabled}  {...remainingProps}>
+		<AccessoryCell colorPalette={colorPalette} disabled={disabled}  {...remainingProps}>
 			<Text style={combinedStyles}>{title}</Text>
 		</AccessoryCell>
 	);

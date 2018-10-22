@@ -3,11 +3,13 @@ import { View, ScrollView, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { insertProps } from './assets/utilites';
-import { COLOR_ACCENT } from './assets/colors';
+import { COLOR_ACCENT, getColorPalette } from './assets/colors';
 
 import { tableStyles as styles } from './styles';
 
 const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, theme, blendAccent, disabled }) => {
+	const colorPalette = getColorPalette(theme, blendAccent, accentColor);
+	console.log('==============', colorPalette);
 	const renderTable = () => {
 		const tableStyle = [styles.table, style];
 
@@ -17,7 +19,7 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, th
 
 		return (
 			<View style={tableStyle}>
-				{insertProps(children, { accentColor, theme, blendAccent, disabled })}
+				{insertProps(children, { colorPalette, disabled })}
 			</View>
 		);
 	};
@@ -27,7 +29,7 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, th
 	}
 
 	return (
-		<ScrollView style={[styles.container(theme, blendAccent, accentColor), scrollViewStyle]}>
+		<ScrollView style={[styles.container(colorPalette), scrollViewStyle]}>
 			{renderTable()}
 		</ScrollView>
 	);

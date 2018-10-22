@@ -9,12 +9,10 @@ import PropTypes from 'prop-types';
 
 import Cell from './Cell';
 import Icon from './assets/icons';
-import { COLOR_ACCESSORY } from './assets/colors';
 
 import { accessoryCellStyles as styles } from './styles';
 
 const AccessoryCell = (props) => {
-	let { accessoryTint } = props;
 	const {
 		style,
 
@@ -22,7 +20,7 @@ const AccessoryCell = (props) => {
 		hideAccessorySeparator,
 		onAccessoryPress,
 
-		theme, accentColor, disabled,
+		colorPalette, disabled,
 		children,
 
 		...remainingProps
@@ -32,7 +30,7 @@ const AccessoryCell = (props) => {
 		const reVal = [];
 
 		if (!hideAccessorySeparator && Platform.OS === 'android') {
-			const separator = <View key='accessorySeparator' style={styles.separator(theme)} />;
+			const separator = <View key='accessorySeparator' style={styles.separator(colorPalette)} />;
 			reVal.push(separator);
 		}
 
@@ -40,11 +38,7 @@ const AccessoryCell = (props) => {
 		if (accessoryComponent) {
 			component = accessoryComponent;
 		} else if (accessory) {
-			if (!accessoryTint) {
-				accessoryTint = accessory === 'disclosure' ? COLOR_ACCESSORY : accentColor;
-			}
-
-			component = <Icon name={accessory} tintColor={accessoryTint} />;
+			component = <Icon name={accessory} style={styles.accessory(accessory, colorPalette, disabled)} />;
 		}
 
 		if (component) {
@@ -72,8 +66,7 @@ const AccessoryCell = (props) => {
 	return (
 		<Cell
 			style={[style, styles.cell]}
-			theme={theme}
-			accentColor={accentColor}
+			colorPalette={colorPalette}
 			disabled={disabled}
 			{...remainingProps}>
 
@@ -85,7 +78,6 @@ const AccessoryCell = (props) => {
 
 AccessoryCell.propTypes = Object.assign({
 	accessory: PropTypes.oneOf(['', 'disclosure', 'details', 'checkmark']),
-	accessoryTint: PropTypes.string,
 	accessoryComponent: PropTypes.element,
 	hideAccessorySeparator: PropTypes.bool,
 

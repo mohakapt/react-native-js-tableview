@@ -56,26 +56,6 @@ export default class App extends Component<Props, State> {
 		}
 	}
 
-	componentDidMount() {
-		const { isLoggedIn, dispatch, navigation } = this.props;
-
-		if (isLoggedIn) {
-			dispatch(fetchProfile());
-		}
-		navigation.setParams({ isLoggedIn });
-	}
-
-	componentWillReceiveProps(nextProps: Props) {
-		const { isLoggedIn, dispatch, navigation } = nextProps;
-
-		if (!this.props.isLoggedIn && isLoggedIn) {
-			dispatch(fetchProfile());
-		}
-		if (this.props.isLoggedIn !== isLoggedIn) {
-			navigation.setParams({ isLoggedIn });
-		}
-	}
-
 	onBioTouched = () => {
 	};
 
@@ -121,6 +101,7 @@ export default class App extends Component<Props, State> {
 						key={index}
 						title={title}
 						accessory={this.state.selectedBook === index ? 'checkmark' : ''}
+						hideAccessorySeparator
 						onPress={this.onReminderTouched.bind(this, index)} />);
 
 
@@ -139,7 +120,7 @@ export default class App extends Component<Props, State> {
 
 				<Table
 					theme={theme}
-					blendAccent={true}
+					blendAccent={false}
 					style={styles.container}
 					isScrollable={true}
 					accentColor={COLOR_ACCENT}

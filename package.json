@@ -29,6 +29,7 @@
     "url": "https://github.com/mohakapt/react-native-js-tableview/issues"
   },
   "dependencies": {
+    "chroma-js": "^1.4.0",
     "prop-types": "^15.6.2",
     "react-native-user-avatar": "^1.0.3"
   }

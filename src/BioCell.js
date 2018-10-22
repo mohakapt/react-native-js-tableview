@@ -14,10 +14,12 @@ const BioCell = (props) => {
 		subtitle, subtitleStyle,
 		avatarName, avatarSize,
 		photoComponent, photoSource, photoStyle,
-		accentColor,
+		colorPalette, disabled,
 
 		...remainingProps
 	} = props;
+
+	console.log('============== BioCell ', colorPalette);
 
 	const getPhoto = () => {
 		if (photoComponent) {
@@ -30,7 +32,7 @@ const BioCell = (props) => {
 					style={[styles.image, photoStyle]}
 					size={avatarSize || styles.image.height}
 					name={avatarName || title}
-					color={accentColor} />
+					color={colorPalette.accent} />
 			);
 		} else {
 			return (
@@ -42,12 +44,12 @@ const BioCell = (props) => {
 	};
 
 	return (
-		<AccessoryCell hideAccessorySeparator accentColor={accentColor} {...remainingProps}>
+		<AccessoryCell hideAccessorySeparator colorPalette={colorPalette} disabled={disabled} {...remainingProps}>
 			{getPhoto()}
 
 			<View style={styles.infoContainer}>
-				<Text style={[styles.title, titleStyle]}>{title}</Text>
-				<Text style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>
+				<Text style={[styles.title(colorPalette, disabled), titleStyle]}>{title}</Text>
+				<Text style={[styles.subtitle(colorPalette, disabled), subtitleStyle]}>{subtitle}</Text>
 			</View>
 		</AccessoryCell>
 	);

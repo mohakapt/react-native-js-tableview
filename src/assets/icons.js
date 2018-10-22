@@ -23,7 +23,7 @@ const Icon = (props) => {
 
 	return (
 		<Image
-			style={[props.style, style]}
+			style={[style, props.style]}
 			source={icons[props.name]} />
 	);
 };
@@ -31,7 +31,7 @@ const Icon = (props) => {
 Icon.propTypes = {
 	name: PropTypes.oneOf(Object.keys(icons)).isRequired,
 	tintColor: PropTypes.string,
-	style: ViewPropTypes.style,
+	style: PropTypes.object,
 };
 
 Icon.defaultProps = {};

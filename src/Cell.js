@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-const Cell = ({ children, style, disabled, onPress, onLongPress, underlayColor, customAction, customActionType, customActionTrigger }) => {
+const Cell = ({ colorPalette, children, style, disabled, onPress, onLongPress, customAction, customActionType, customActionTrigger }) => {
 	const renderCell = () => (
 		<View style={style}>
 			{children}
@@ -48,7 +48,7 @@ const Cell = ({ children, style, disabled, onPress, onLongPress, underlayColor, 
 	const Touchable = Platform.OS === 'ios' ? TouchableHighlight : TouchableNativeFeedback;
 	const touchableProps = Platform.select({
 		ios: {
-			underlayColor,
+			underlayColor: colorPalette.underlay,
 		},
 		android: {},
 	});
@@ -68,11 +68,6 @@ const Cell = ({ children, style, disabled, onPress, onLongPress, underlayColor, 
 };
 
 Cell.propTypes = {
-	accentColor: PropTypes.string,
-	underlayColor: PropTypes.string,
-	theme: PropTypes.oneOf(['light', 'dark']),
-	blendAccent: PropTypes.bool,
-
 	children: PropTypes.node.isRequired,
 	style: ViewPropTypes.style,
 

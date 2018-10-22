@@ -13,7 +13,7 @@ const KeyValueCell = (props) => {
 		value, valueStyle,
 		iconComponent,
 		contentComponent,
-		theme, disabled,
+		colorPalette, disabled,
 
 		...remainingProps
 	} = props;
@@ -30,14 +30,14 @@ const KeyValueCell = (props) => {
 
 	const getTitle = () => {
 		if (title) {
-			const combinedStyles = [styles.title(theme, disabled), titleStyle];
+			const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
 			return <Text key='title' style={combinedStyles}>{title}</Text>;
 		}
 	};
 
 	const getValue = () => {
 		if (value) {
-			const combinedStyles = [styles.value(theme, disabled), valueStyle];
+			const combinedStyles = [styles.value(colorPalette, disabled), valueStyle];
 			return <Text key='value' style={combinedStyles}>{value}</Text>;
 		}
 	};
@@ -59,7 +59,7 @@ const KeyValueCell = (props) => {
 	};
 
 	return (
-		<AccessoryCell hideAccessorySeparator theme={theme} disabled={disabled} {...remainingProps}>
+		<AccessoryCell hideAccessorySeparator colorPalette={colorPalette} disabled={disabled} {...remainingProps}>
 			{getIcon()}
 			{getContent()}
 		</AccessoryCell>

@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, PixelRatio } from 'react-native';
+import { StyleSheet, Platform, PixelRatio, I18nManager } from 'react-native';
 import {
 	COLOR_TITLE,
 	COLOR_SUBTITLE,
@@ -11,8 +11,8 @@ import {
 } from './assets/colors';
 
 export const tableStyles = StyleSheet.create({
-	container: (theme, blend, accent) => ({
-		backgroundColor: getColorBackground(theme, blend, accent),
+	container: (palette) => ({
+		backgroundColor: palette.background,
 	}),
 	table: Platform.select({
 		android: {
@@ -23,24 +23,24 @@ export const tableStyles = StyleSheet.create({
 });
 
 export const sectionStyles = StyleSheet.create({
-	container: (theme, blend, accent) => Platform.select({
+	container: (palette) => Platform.select({
 		ios: {
 			marginTop: 26,
 		},
 		android: {
 			marginTop: 16,
 
-			backgroundColor: getColorSection(theme, blend, accent),
+			backgroundColor: palette.section,
 			overflow: 'hidden',
 			borderRadius: 3,
 			elevation: 3,
 		},
 	}),
-	cellsContainer: (theme, blend, accent) => ({
-		backgroundColor: getColorSection(theme, blend, accent),
+	cellsContainer: (palette) => ({
+		backgroundColor: palette.section,
 	}),
-	separator: (theme, start, end) => ({
-		backgroundColor: getColorSeparator(theme),
+	separator: (palette, start, end) => ({
+		backgroundColor: palette.separator,
 		height: 1 / PixelRatio.get(),
 
 		marginStart: start,
@@ -58,8 +58,8 @@ export const sectionStyles = StyleSheet.create({
 			},
 		}),
 	},
-	header: (theme, accent) => ({
-		color: getColorHeader(theme, accent),
+	header: (palette) => ({
+		color: palette.header,
 		fontSize: Platform.OS === 'ios' ? 13 : 15,
 	}),
 	footerContainer: {
@@ -73,8 +73,8 @@ export const sectionStyles = StyleSheet.create({
 			},
 		}),
 	},
-	footer: (theme) => ({
-		color: getColorFooter(theme),
+	footer: (palette) => ({
+		color: palette.footer,
 		fontSize: 13,
 	}),
 });
@@ -103,12 +103,21 @@ export const accessoryCellStyles = StyleSheet.create({
 			},
 		}),
 	},
-	separator: (theme) => ({
-		backgroundColor: getColorSeparator(theme),
+	separator: (palette) => ({
+		backgroundColor: palette.separator,
 
 		width: 1 / PixelRatio.get(),
 		height: 30,
 	}),
+	accessory: (accessory, palette, disabled) => {
+		const style = {};
+		style.tintColor = (accessory === 'disclosure' ? palette.accessory : palette.accent);
+
+		if (disabled) {
+			style.tintColor = palette.disabled;
+		}
+		return style;
+	},
 });
 
 export const staticCellStyles = StyleSheet.create({
@@ -128,25 +137,27 @@ export const staticCellStyles = StyleSheet.create({
 
 		marginVertical: 10,
 	},
-	title: (theme, disabled) => ({
+	title: (palette, disabled) => ({
 		fontSize: 17,
-		color: getColorTitle(theme),
+		color: disabled ? palette.disabled : palette.title,
 	}),
-	subtitle: (theme, disabled) => ({
+	subtitle: (palette, disabled) => ({
 		marginStart: 4,
 		marginTop: 1,
 		fontSize: 15,
-		color: COLOR_SUBTITLE,
+		color: disabled ? palette.disabled : palette.subtitle,
 	}),
 });
 
 export const touchableCellStyles = StyleSheet.create({
-	title: (theme, accent, disabled) => ({
+	title: (palette, disabled) => ({
 		flex: 1,
 
 		fontSize: 17,
 		fontWeight: '600',
 		textAlign: 'center',
+
+		color: disabled ? palette.disabled : palette.accent,
 	}),
 });
 
@@ -167,16 +178,18 @@ export const bioCellStyles = StyleSheet.create({
 		flex: 1,
 		marginStart: 16,
 	},
-	title: {
+	title: (palette, disabled) => ({
 		fontSize: 18,
 		fontWeight: '500',
-		color: COLOR_TITLE,
-	},
-	subtitle: {
+
+		color: disabled ? palette.disabled : palette.title,
+	}),
+	subtitle: (palette, disabled) => ({
 		fontSize: 14,
-		color: COLOR_SUBTITLE,
 		marginTop: 2,
-	},
+
+		color: disabled ? palette.disabled : palette.subtitle,
+	}),
 });
 
 export const keyValueCellStyles = StyleSheet.create({
@@ -197,15 +210,15 @@ export const keyValueCellStyles = StyleSheet.create({
 
 		paddingEnd: hasAccessory ? 0 : 15,
 	}),
-	title: (theme, disabled) => ({
+	title: (palette, disabled) => ({
 		fontSize: 17,
-		color: getColorTitle(theme),
+		color: disabled ? palette.disabled : palette.title,
 	}),
-	value: (theme, disabled) => ({
+	value: (palette, disabled) => ({
 		fontSize: 15,
-		color: COLOR_SUBTITLE,
-
 		marginStart: 4,
+
+		color: disabled ? palette.disabled : palette.subtitle,
 	}),
 	space: {
 		flex: 1,

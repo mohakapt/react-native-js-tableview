@@ -12,7 +12,7 @@ const StaticCell = (props) => {
 		title, titleStyle,
 		subtitle, subtitleStyle,
 		iconComponent, contentComponent,
-		theme, disabled,
+		colorPalette, disabled,
 
 		...remainingProps
 	} = props;
@@ -29,14 +29,14 @@ const StaticCell = (props) => {
 
 	const getTitle = () => {
 		if (title) {
-			const combinedStyles = [styles.title(theme, disabled), titleStyle];
+			const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
 			return <Text key='title' style={combinedStyles}>{title}</Text>;
 		}
 	};
 
 	const getSubtitle = () => {
 		if (subtitle) {
-			const combinedStyles = [styles.subtitle(theme, disabled), subtitleStyle];
+			const combinedStyles = [styles.subtitle(colorPalette, disabled), subtitleStyle];
 			return <Text key='subtitle' style={combinedStyles}>{subtitle}</Text>;
 		}
 	};
@@ -57,7 +57,7 @@ const StaticCell = (props) => {
 	};
 
 	return (
-		<AccessoryCell theme={theme} disabled={disabled} {...remainingProps}>
+		<AccessoryCell colorPalette={colorPalette} disabled={disabled} {...remainingProps}>
 			{getIcon()}
 			{getContent()}
 		</AccessoryCell>

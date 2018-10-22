@@ -7,8 +7,10 @@ import { insertProps } from './assets/utilites';
 import { sectionStyles as styles } from './styles';
 
 const Section = (props) => {
+	const { colorPalette } = props;
+
 	const getSeparator = (index, useInsets) => {
-		const { hideSeparators, separatorInsetLeft, separatorInsetRight, theme } = props;
+		const { hideSeparators, separatorInsetLeft, separatorInsetRight } = props;
 
 		if (hideSeparators) {
 			return;
@@ -16,16 +18,16 @@ const Section = (props) => {
 
 		let separatorStyle;
 		if (useInsets) {
-			separatorStyle = styles.separator(theme, separatorInsetLeft, separatorInsetRight);
+			separatorStyle = styles.separator(colorPalette, separatorInsetLeft, separatorInsetRight);
 		} else {
-			separatorStyle = styles.separator(theme, 0, 0);
+			separatorStyle = styles.separator(colorPalette, 0, 0);
 		}
 
 		return <View key={index} style={separatorStyle} />;
 	};
 
 	const getHeader = () => {
-		const { header, headerStyle, headerComponent, theme, accentColor } = props;
+		const { header, headerStyle, headerComponent } = props;
 		const reVal = [];
 
 		if (Platform.OS === 'ios' || header) {
@@ -36,7 +38,7 @@ const Section = (props) => {
 			reVal.unshift(headerComponent);
 		} else if (header) {
 			const combinedStyles = [
-				styles.header(theme, accentColor),
+				styles.header(colorPalette),
 				headerStyle,
 			];
 
@@ -52,10 +54,10 @@ const Section = (props) => {
 	};
 
 	const getCells = () => {
-		const { children, accentColor, theme, blendAccent, disabled } = props;
+		const { children, colorPalette, disabled } = props;
 
 		const reVal = [];
-		const childrenArray = insertProps(children, { accentColor, theme, blendAccent, disabled });
+		const childrenArray = insertProps(children, { colorPalette, disabled });
 
 		for (let x = 0; x < childrenArray.length; x++) {
 			reVal.push((childrenArray[x]));
@@ -67,7 +69,7 @@ const Section = (props) => {
 	};
 
 	const getFooter = () => {
-		const { footer, footerStyle, footerComponent, theme } = props;
+		const { footer, footerStyle, footerComponent } = props;
 		const reVal = [];
 
 		if (Platform.OS === 'ios' || footer) {
@@ -78,7 +80,7 @@ const Section = (props) => {
 			reVal.push(footerComponent);
 		} else if (footer) {
 			const combinedStyles = [
-				styles.footer(theme),
+				styles.footer(colorPalette),
 				footerStyle,
 			];
 
@@ -93,11 +95,10 @@ const Section = (props) => {
 		return reVal;
 	};
 
-	const { accentColor, theme, blendAccent } = props;
 	return (
-		<View style={[styles.container(theme, blendAccent, accentColor), props.style]}>
+		<View style={[styles.container(colorPalette), props.style]}>
 			{getHeader()}
-			<View style={styles.cellsContainer(theme, blendAccent, accentColor)}>
+			<View style={styles.cellsContainer(colorPalette)}>
 				{getCells()}
 			</View>
 			{getFooter()}
@@ -106,9 +107,6 @@ const Section = (props) => {
 };
 
 Section.propTypes = {
-	accentColor: PropTypes.string,
-	theme: PropTypes.oneOf(['light', 'dark']),
-	blendAccent: PropTypes.bool,
 	disabled: PropTypes.bool,
 
 	children: PropTypes.oneOfType([
