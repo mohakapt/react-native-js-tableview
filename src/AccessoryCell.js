@@ -9,22 +9,21 @@ import PropTypes from 'prop-types';
 
 import Cell from './Cell';
 import Icon from './assets/icons';
-import { COLOR_ACCESSORY, COLOR_SEPARATOR } from './assets/colors';
+import { COLOR_ACCESSORY } from './assets/colors';
 
 import { accessoryCellStyles as styles } from './styles';
 
 const AccessoryCell = (props) => {
 	let { accessoryTint } = props;
 	const {
-		accessory,
-		accessoryComponent,
-		hideAccessorySeparator,
-		accessorySeparatorColor,
-		isEnabled,
-		onAccessoryPress,
-		accentColor,
-		children,
 		style,
+
+		accessory, accessoryComponent,
+		hideAccessorySeparator,
+		onAccessoryPress,
+
+		theme, accentColor, disabled,
+		children,
 
 		...remainingProps
 	} = props;
@@ -33,9 +32,7 @@ const AccessoryCell = (props) => {
 		const reVal = [];
 
 		if (!hideAccessorySeparator && Platform.OS === 'android') {
-			const style = { backgroundColor: accessorySeparatorColor };
-			const separator =
-				<View key='accessorySeparator' style={[styles.separator, style]} />;
+			const separator = <View key='accessorySeparator' style={styles.separator(theme)} />;
 			reVal.push(separator);
 		}
 
@@ -60,7 +57,7 @@ const AccessoryCell = (props) => {
 			if (onAccessoryPress) {
 				const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
 				const touchable = (
-					<Touchable key='touchableAccessory' disabled={!isEnabled} onPress={onAccessoryPress}>
+					<Touchable key='touchableAccessory' disabled={disabled} onPress={onAccessoryPress}>
 						{view}
 					</Touchable>
 				);
@@ -73,7 +70,13 @@ const AccessoryCell = (props) => {
 		}
 	};
 	return (
-		<Cell style={[style, styles.cell]} isEnabled={isEnabled} {...remainingProps}>
+		<Cell
+			style={[style, styles.cell]}
+			theme={theme}
+			accentColor={accentColor}
+			disabled={disabled}
+			{...remainingProps}>
+
 			{children}
 			{getAccessory()}
 		</Cell>
@@ -85,15 +88,13 @@ AccessoryCell.propTypes = Object.assign({
 	accessoryTint: PropTypes.string,
 	accessoryComponent: PropTypes.element,
 	hideAccessorySeparator: PropTypes.bool,
-	accessorySeparatorColor: PropTypes.string,
 
 	onAccessoryPress: PropTypes.func,
 }, Cell.propTypes);
 
 AccessoryCell.defaultProps = {
 	hideAccessorySeparator: false,
-	accessorySeparatorColor: COLOR_SEPARATOR,
-	isEnabled: true,
+	disabled: false,
 };
 
 export default AccessoryCell;

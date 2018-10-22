@@ -8,10 +8,12 @@ import { keyValueCellStyles as styles } from './styles';
 
 const KeyValueCell = (props) => {
 	const {
-		children, title, titleStyle,
+		children,
+		title, titleStyle,
 		value, valueStyle,
 		iconComponent,
 		contentComponent,
+		theme, disabled,
 
 		...remainingProps
 	} = props;
@@ -28,13 +30,15 @@ const KeyValueCell = (props) => {
 
 	const getTitle = () => {
 		if (title) {
-			return <Text key='title' style={[styles.title, titleStyle]}>{title}</Text>;
+			const combinedStyles = [styles.title(theme, disabled), titleStyle];
+			return <Text key='title' style={combinedStyles}>{title}</Text>;
 		}
 	};
 
 	const getValue = () => {
 		if (value) {
-			return <Text key='value' style={[styles.value, valueStyle]}>{value}</Text>;
+			const combinedStyles = [styles.value(theme, disabled), valueStyle];
+			return <Text key='value' style={combinedStyles}>{value}</Text>;
 		}
 	};
 
@@ -47,20 +51,15 @@ const KeyValueCell = (props) => {
 			component = [getTitle(), space, getValue()];
 		}
 
-		const combinedStyles = [styles.contentContainer];
-		if (!props.accessory) {
-			combinedStyles.push({ paddingEnd: 15 });
-		}
-
 		return (
-			<View style={combinedStyles}>
+			<View style={styles.contentContainer(!props.accessory)}>
 				{component}
 			</View>
 		);
 	};
 
 	return (
-		<AccessoryCell hideAccessorySeparator {...remainingProps}>
+		<AccessoryCell hideAccessorySeparator theme={theme} disabled={disabled} {...remainingProps}>
 			{getIcon()}
 			{getContent()}
 		</AccessoryCell>
@@ -78,7 +77,7 @@ KeyValueCell.propTypes = Object.assign({
 }, AccessoryCell.propTypes);
 
 KeyValueCell.defaultProps = {
-	isEnabled: true,
+	disabled: false,
 };
 
 delete KeyValueCell.propTypes.children;

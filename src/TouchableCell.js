@@ -8,19 +8,20 @@ import { touchableCellStyles as styles } from './styles';
 
 const TouchableCell = (props) => {
 	const {
-		children, title, titleStyle,
-		accentColor, isEnabled,
+		children,
+		title, titleStyle,
+		theme, accentColor, disabled,
 
 		...remainingProps
 	} = props;
 
-	const combinedStyles = [styles.title, titleStyle, { color: accentColor }];
-	if (!isEnabled) {
-		combinedStyles.push(styles.disabledTitle);
-	}
+	const combinedStyles = [
+		styles.title(theme, accentColor, disabled),
+		titleStyle,
+	];
 
 	return (
-		<AccessoryCell isEnabled={isEnabled} accentColor={accentColor} {...remainingProps}>
+		<AccessoryCell theme={theme} accentColor={accentColor} disabled={disabled}  {...remainingProps}>
 			<Text style={combinedStyles}>{title}</Text>
 		</AccessoryCell>
 	);
@@ -32,7 +33,7 @@ TouchableCell.propTypes = Object.assign({
 }, AccessoryCell.propTypes);
 
 TouchableCell.defaultProps = {
-	isEnabled: true,
+	disabled: false,
 };
 
 delete TouchableCell.propTypes.children;

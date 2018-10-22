@@ -1,13 +1,10 @@
 import { StyleSheet, Platform, PixelRatio } from 'react-native';
 import {
-	COLOR_BACKGROUND,
-	COLOR_HEADER,
 	COLOR_TITLE,
-	COLOR_DISABLED,
 	COLOR_SUBTITLE,
 	getColorBackground,
 	getColorSection,
-	getColorSeparator, getColorHeader, getColorFooter,
+	getColorSeparator, getColorHeader, getColorFooter, getColorTitle,
 } from './assets/colors';
 
 export const tableStyles = StyleSheet.create({
@@ -103,10 +100,12 @@ export const accessoryCellStyles = StyleSheet.create({
 			},
 		}),
 	},
-	separator: {
+	separator: (theme) => ({
+		backgroundColor: getColorSeparator(theme),
+
 		width: 1 / PixelRatio.get(),
 		height: 30,
-	},
+	}),
 });
 
 export const staticCellStyles = StyleSheet.create({
@@ -126,31 +125,26 @@ export const staticCellStyles = StyleSheet.create({
 
 		marginVertical: 10,
 	},
-	title: {
+	title: (theme, disabled) => ({
 		fontSize: 17,
-	},
-	disabledTitle: {
-		color: COLOR_DISABLED,
-	},
-	subtitle: {
+		color: getColorTitle(theme),
+	}),
+	subtitle: (theme, disabled) => ({
 		marginStart: 4,
 		marginTop: 1,
 		fontSize: 15,
 		color: COLOR_SUBTITLE,
-	},
+	}),
 });
 
 export const touchableCellStyles = StyleSheet.create({
-	title: {
+	title: (theme, accent, disabled) => ({
 		flex: 1,
 
 		fontSize: 17,
 		fontWeight: '600',
 		textAlign: 'center',
-	},
-	disabledTitle: {
-		color: COLOR_DISABLED,
-	},
+	}),
 });
 
 export const bioCellStyles = StyleSheet.create({
@@ -190,23 +184,26 @@ export const keyValueCellStyles = StyleSheet.create({
 
 		marginStart: 12,
 	},
-	contentContainer: {
+	contentContainer: (hasAccessory) => ({
 		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'center',
 
 		marginStart: 15,
 		marginVertical: 10,
-	},
-	title: {
+
+		paddingEnd: hasAccessory ? 0 : 15,
+	}),
+	title: (theme, disabled) => ({
 		fontSize: 17,
-	},
-	value: {
+		color: getColorTitle(theme),
+	}),
+	value: (theme, disabled) => ({
 		fontSize: 15,
 		color: COLOR_SUBTITLE,
 
 		marginStart: 4,
-	},
+	}),
 	space: {
 		flex: 1,
 	},

@@ -6,7 +6,9 @@ import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell } from
 import { COLOR_ACCENT, COLOR_ACCENT_DARK, COLOR_ACCENT_DARKER, COLOR_ACCENT_LIGHT } from './assets/colors';
 import Icon from './assets/icons';
 
-type Props = {};
+type Props = {
+	navigation: any,
+};
 
 type State = {
 	theme: 'light' | 'dark',
@@ -14,22 +16,38 @@ type State = {
 };
 
 export default class App extends Component<Props, State> {
-	static navigationOptions = {
-		title: 'Profile',
-		...Platform.select({
-			android: {
-				headerStyle: {
-					backgroundColor: COLOR_ACCENT,
+	static navigationOptions = ({ navigation }) => {
+		const { params = {} } = navigation.state;
+		const theme = params.theme || 'light';
+
+		return {
+			title: 'Profile',
+
+			...Platform.select({
+				ios: {
+					headerStyle: {
+						backgroundColor: theme === 'dark' ? '#1B1B1B' : '#F7F7F7',
+						borderBottomColor: theme === 'dark' ? '#3A3A3A' : '#A7A7AA',
+					},
+					headerTintColor: theme === 'dark' ? 'white' : 'black',
 				},
-				headerTintColor: 'white',
-			},
-		}),
+				android: {
+					headerStyle: {
+						backgroundColor: COLOR_ACCENT,
+					},
+					headerTintColor: 'white',
+				},
+			}),
+		};
 	};
 
 	constructor(props) {
 		super(props);
 
-		this.state = { theme: 'dark', selectedBook: 0 };
+		const theme = 'dark';
+
+		this.state = { theme, selectedBook: 0 };
+		this.props.navigation.setParams({ theme });
 	}
 
 	componentWillMount() {
@@ -38,8 +56,27 @@ export default class App extends Component<Props, State> {
 		}
 	}
 
-	onBioTouched = () => {
+	componentDidMount() {
+		const { isLoggedIn, dispatch, navigation } = this.props;
 
+		if (isLoggedIn) {
+			dispatch(fetchProfile());
+		}
+		navigation.setParams({ isLoggedIn });
+	}
+
+	componentWillReceiveProps(nextProps: Props) {
+		const { isLoggedIn, dispatch, navigation } = nextProps;
+
+		if (!this.props.isLoggedIn && isLoggedIn) {
+			dispatch(fetchProfile());
+		}
+		if (this.props.isLoggedIn !== isLoggedIn) {
+			navigation.setParams({ isLoggedIn });
+		}
+	}
+
+	onBioTouched = () => {
 	};
 
 	onContactTouched = (contact: 'phone' | 'email') => {
@@ -93,77 +130,84 @@ export default class App extends Component<Props, State> {
 			generalHeader = generalHeader.toUpperCase();
 		}
 
+		const { theme } = this.state;
 		return (
-			<Table
-				theme={this.state.theme}
-				blendAccent={true}
-				style={styles.container}
-				isScrollable={true}
-				accentColor={COLOR_ACCENT}
-				underlayColor={COLOR_ACCENT_LIGHT}>
+			<>
+				<StatusBar
+					backgroundColor={COLOR_ACCENT_DARK}
+					barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} />
 
-				<Section>
-					<BioCell
-						title="Adam Smith"
-						subtitle="Scottish economist, philosopher, and author."
-						photoUrl={adamSmithPhoto}
-						accessory="details"
-						onPress={this.onBioTouched} />
+				<Table
+					theme={theme}
+					blendAccent={true}
+					style={styles.container}
+					isScrollable={true}
+					accentColor={COLOR_ACCENT}
+					underlayColor={COLOR_ACCENT_LIGHT}>
 
-					<KeyValueCell
-						style={styles.email}
-						title="+1-541-754-3010"
-						iconComponent={getIcon('phone')}
-						accessory="disclosure"
-						onPress={this.onContactTouched.bind(this, 'phone')}
-						onLongPress={this.onContactLongTouched.bind(this, 'phone')} />
+					<Section>
+						<BioCell
+							title="Adam Smith"
+							subtitle="Scottish economist, philosopher, and author."
+							photoUrl={adamSmithPhoto}
+							accessory="details"
+							onPress={this.onBioTouched} />
 
-					<KeyValueCell
-						style={styles.email}
-						title="a.smith@gmail.com"
-						iconComponent={getIcon('email')}
-						accessory="disclosure"
-						onPress={this.onContactTouched.bind(this, 'email')}
-						onLongPress={this.onContactLongTouched.bind(this, 'email')} />
-				</Section>
+						<KeyValueCell
+							style={styles.email}
+							title="+1-541-754-3010"
+							iconComponent={getIcon('phone')}
+							accessory="disclosure"
+							onPress={this.onContactTouched.bind(this, 'phone')}
+							onLongPress={this.onContactLongTouched.bind(this, 'phone')} />
 
-				<Section header={generalHeader} footer={generalFooter} separatorInsetLeft={54}>
-					<KeyValueCell
-						title="Books"
-						value="3 books"
-						iconComponent={getIcon('book')}
-						accessory="disclosure"
-						customAction='www.google.com'
-						customActionType='openUrl'
-						customActionTrigger='onPress'
-						onPress={this.onWorksTouched.bind(this, 'books')} />
+						<KeyValueCell
+							style={styles.email}
+							title="a.smith@gmail.com"
+							iconComponent={getIcon('email')}
+							accessory="disclosure"
+							onPress={this.onContactTouched.bind(this, 'email')}
+							onLongPress={this.onContactLongTouched.bind(this, 'email')} />
+					</Section>
 
-					<KeyValueCell
-						title="Articles"
-						value="238 articles"
-						iconComponent={getIcon('article')}
-						accessory="disclosure"
-						onPress={this.onWorksTouched.bind(this, 'books')} />
+					<Section header={generalHeader} footer={generalFooter} separatorInsetLeft={54}>
+						<KeyValueCell
+							title="Books"
+							value="3 books"
+							iconComponent={getIcon('book')}
+							accessory="disclosure"
+							customAction='www.google.com'
+							customActionType='openUrl'
+							customActionTrigger='onPress'
+							onPress={this.onWorksTouched.bind(this, 'books')} />
 
-					<KeyValueCell
-						title="Projects"
-						value="8 projects"
-						iconComponent={getIcon('project')}
-						accessory="disclosure"
-						onPress={this.onWorksTouched.bind(this, 'books')} />
-				</Section>
+						<KeyValueCell
+							title="Articles"
+							value="238 articles"
+							iconComponent={getIcon('article')}
+							accessory="disclosure"
+							onPress={this.onWorksTouched.bind(this, 'books')} />
 
-				<Section header="Select Your favorite book:">
-					{getBooks()}
-				</Section>
+						<KeyValueCell
+							title="Projects"
+							value="8 projects"
+							iconComponent={getIcon('project')}
+							accessory="disclosure"
+							onPress={this.onWorksTouched.bind(this, 'books')} />
+					</Section>
 
-				<Section>
-					<TouchableCell
-						title="Log Out"
-						accentColor="#B71C1C"
-						onPress={this.onLogoutTouched} />
-				</Section>
-			</Table>
+					<Section header="Select Your favorite book:">
+						{getBooks()}
+					</Section>
+
+					<Section>
+						<TouchableCell
+							title="Log Out"
+							accentColor="#B71C1C"
+							onPress={this.onLogoutTouched} />
+					</Section>
+				</Table>
+			</>
 		);
 	}
 }

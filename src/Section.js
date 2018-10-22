@@ -3,7 +3,6 @@ import { View, Text, Platform, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { insertProps } from './assets/utilites';
-import { COLOR_SEPARATOR, getColorSection } from './assets/colors';
 
 import { sectionStyles as styles } from './styles';
 
@@ -53,10 +52,10 @@ const Section = (props) => {
 	};
 
 	const getCells = () => {
-		const { children, accentColor, underlayColor, theme, blendAccent } = props;
+		const { children, accentColor, theme, blendAccent, disabled } = props;
 
 		const reVal = [];
-		const childrenArray = insertProps(children, { accentColor, underlayColor, theme, blendAccent });
+		const childrenArray = insertProps(children, { accentColor, theme, blendAccent, disabled });
 
 		for (let x = 0; x < childrenArray.length; x++) {
 			reVal.push((childrenArray[x]));
@@ -108,9 +107,9 @@ const Section = (props) => {
 
 Section.propTypes = {
 	accentColor: PropTypes.string,
-	underlayColor: PropTypes.string,
 	theme: PropTypes.oneOf(['light', 'dark']),
 	blendAccent: PropTypes.bool,
+	disabled: PropTypes.bool,
 
 	children: PropTypes.oneOfType([
 		PropTypes.arrayOf(PropTypes.element),

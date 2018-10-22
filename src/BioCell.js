@@ -9,7 +9,8 @@ import { bioCellStyles as styles } from './styles';
 
 const BioCell = (props) => {
 	const {
-		children, title, titleStyle,
+		children,
+		title, titleStyle,
 		subtitle, subtitleStyle,
 		avatarName, avatarSize,
 		photoComponent, photoSource, photoStyle,
@@ -67,7 +68,7 @@ BioCell.propTypes = Object.assign({
 }, AccessoryCell.propTypes);
 
 BioCell.defaultProps = {
-	isEnabled: true,
+	disabled: false,
 };
 
 delete BioCell.propTypes.children;

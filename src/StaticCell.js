@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, ViewPropTypes } from 'react-native';
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';
@@ -8,11 +8,11 @@ import { staticCellStyles as styles } from './styles';
 
 const StaticCell = (props) => {
 	const {
-		children, title, titleStyle,
+		children,
+		title, titleStyle,
 		subtitle, subtitleStyle,
-		iconComponent,
-		contentComponent,
-		isEnabled,
+		iconComponent, contentComponent,
+		theme, disabled,
 
 		...remainingProps
 	} = props;
@@ -28,18 +28,16 @@ const StaticCell = (props) => {
 	};
 
 	const getTitle = () => {
-		const combinedStyles = [styles.title, titleStyle];
-		if (!isEnabled)
-			combinedStyles.push(styles.disabledTitle);
-
 		if (title) {
+			const combinedStyles = [styles.title(theme, disabled), titleStyle];
 			return <Text key='title' style={combinedStyles}>{title}</Text>;
 		}
 	};
 
 	const getSubtitle = () => {
 		if (subtitle) {
-			return <Text key='subtitle' style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>;
+			const combinedStyles = [styles.subtitle(theme, disabled), subtitleStyle];
+			return <Text key='subtitle' style={combinedStyles}>{subtitle}</Text>;
 		}
 	};
 
@@ -59,7 +57,7 @@ const StaticCell = (props) => {
 	};
 
 	return (
-		<AccessoryCell isEnabled={isEnabled} {...remainingProps}>
+		<AccessoryCell theme={theme} disabled={disabled} {...remainingProps}>
 			{getIcon()}
 			{getContent()}
 		</AccessoryCell>
@@ -77,7 +75,7 @@ StaticCell.propTypes = Object.assign({
 }, AccessoryCell.propTypes);
 
 StaticCell.defaultProps = {
-	isEnabled: true,
+	disabled: false,
 };
 
 delete StaticCell.propTypes.children;

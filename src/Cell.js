@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor, customAction, customActionType, customActionTrigger }) => {
+const Cell = ({ children, style, disabled, onPress, onLongPress, underlayColor, customAction, customActionType, customActionTrigger }) => {
 	const renderCell = () => (
 		<View style={style}>
 			{children}
@@ -58,7 +58,7 @@ const Cell = ({ children, style, isEnabled, onPress, onLongPress, underlayColor,
 	return (
 		<Touchable
 			{...touchableProps}
-			disabled={!isEnabled}
+			disabled={disabled}
 			onPress={onPressAction}
 			onLongPress={onLongPressAction}>
 
@@ -76,7 +76,7 @@ Cell.propTypes = {
 	children: PropTypes.node.isRequired,
 	style: ViewPropTypes.style,
 
-	isEnabled: PropTypes.bool,
+	disabled: PropTypes.bool,
 	onPress: PropTypes.func,
 	onLongPress: PropTypes.func,
 
@@ -86,7 +86,7 @@ Cell.propTypes = {
 };
 
 Cell.defaultProps = {
-	isEnabled: true,
+	disabled: false,
 
 	customActionType: 'openUrl',
 	customActionTrigger: 'onPress',

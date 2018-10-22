@@ -4,8 +4,6 @@ import chroma from 'chroma-js';
 export const COLOR_ACCENT = '#4DB6AC';
 export const COLOR_TOUCHABLE = '#F5FFFE';
 
-export const COLOR_BACKGROUND = Platform.OS === 'ios' ? '#F0EFF5' : '#F9F9F9';
-export const COLOR_HEADER = '#6D6D72';
 export const COLOR_TITLE = '#253545';
 export const COLOR_DISABLED = '#b5b5b5';
 export const COLOR_SUBTITLE = '#8E8E93';
@@ -62,4 +60,11 @@ export const getColorFooter = (theme) => {
 	const headerDark = '#8F8F95';
 
 	return theme === 'dark' ? headerDark : headerLight;
+};
+
+export const getColorTitle = (theme) => {
+	const titleLight = Platform.OS === 'ios' ? 'black' : '#757575';
+	const titleDark = Platform.OS === 'ios' ? 'white' : '#8A8A8A';
+
+	return theme === 'dark' ? titleDark : titleLight;
 };
