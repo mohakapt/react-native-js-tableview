@@ -5,6 +5,7 @@ import { Platform, StyleSheet, StatusBar } from 'react-native';
 import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell } from './src';
 import { COLOR_ACCENT, COLOR_ACCENT_DARK, COLOR_ACCENT_DARKER, COLOR_ACCENT_LIGHT } from './assets/colors';
 import Icon from './assets/icons';
+import NavBarItem from './NavBarItem';
 
 type Props = {
 	navigation: any,
@@ -18,10 +19,14 @@ type State = {
 export default class App extends Component<Props, State> {
 	static navigationOptions = ({ navigation }) => {
 		const { params = {} } = navigation.state;
-		const theme = params.theme || 'light';
+		const { theme = 'light', onToggleThemeTouched } = params;
 
 		return {
 			title: 'Profile',
+			headerRight: <NavBarItem
+				tintColor={theme === 'dark' ? '#E0E0E0' : '#1F1F1F'}
+				icon='theme'
+				onPress={onToggleThemeTouched} />,
 
 			...Platform.select({
 				ios: {
@@ -47,7 +52,7 @@ export default class App extends Component<Props, State> {
 		const theme = 'dark';
 
 		this.state = { theme, selectedBook: 0 };
-		this.props.navigation.setParams({ theme });
+		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
 	}
 
 	componentWillMount() {
@@ -55,6 +60,13 @@ export default class App extends Component<Props, State> {
 			StatusBar.setBackgroundColor(COLOR_ACCENT_DARK);
 		}
 	}
+
+	onToggleThemeTouched = () => {
+		const theme = (this.state.theme === 'dark') ? 'light' : 'dark';
+
+		this.setState({ theme });
+		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
+	};
 
 	onBioTouched = () => {
 	};

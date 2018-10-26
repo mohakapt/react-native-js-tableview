@@ -8,6 +8,7 @@ import phone from './phone';
 import book from './book';
 import article from './article';
 import project from './project';
+import theme from './theme';
 
 const svgs = {
 	email,
@@ -15,6 +16,7 @@ const svgs = {
 	book,
 	article,
 	project,
+	theme,
 };
 
 type Props = {
