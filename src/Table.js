@@ -9,7 +9,7 @@ import { tableStyles as styles } from './styles';
 
 const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, theme, blendAccent, disabled }) => {
 	const colorPalette = getColorPalette(theme, blendAccent, accentColor);
-	console.log('==============', colorPalette);
+
 	const renderTable = () => {
 		const tableStyle = [styles.table, style];
 

@@ -19,8 +19,6 @@ const BioCell = (props) => {
 		...remainingProps
 	} = props;
 
-	console.log('============== BioCell ', colorPalette);
-
 	const getPhoto = () => {
 		if (photoComponent) {
 			return photoComponent;
