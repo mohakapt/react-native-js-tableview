@@ -9,8 +9,8 @@
 _"Who wants native components. You spend hours linking 'em, they make your app crash and they don't work with expo, Yuck!"_ - **Steve Jobs** 😄
 <br/><br/>
 
-![react-native-js-tableview iOS Screenshot](https://raw.githubusercontent.com/mohakapt/react-native-js-tableview/master/images/screenshot_ios.jpg)
-![react-native-js-tableview Android Screenshot](https://raw.githubusercontent.com/mohakapt/react-native-js-tableview/master/images/screenshot_android.jpg)
+![react-native-js-tableview iOS Screenshot](https://raw.githubusercontent.com/mohakapt/react-native-js-tableview/master/images/screenshot_ios.gif)
+![react-native-js-tableview Android Screenshot](https://raw.githubusercontent.com/mohakapt/react-native-js-tableview/master/images/screenshot_android.gif)
 
 
 ### Installation
@@ -51,7 +51,7 @@ import Table from 'react-native-js-table';
 or
 
 ```js
-var Table = require('react-native-js-table');
+const Table = require('react-native-js-table');
 ```
 
 This Table component is built so that features in the table (such as Sections, Cells, etc.) are
