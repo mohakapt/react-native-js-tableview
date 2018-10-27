@@ -7,10 +7,9 @@
   },
   "dependencies": {
     "chroma-js": "^1.4.0",
-    "color": "^3.0.0",
     "react": "16.5.0",
     "react-native": "0.57.0",
-    "react-native-js-tableview": "^1.4.8",
+    "react-native-js-tableview": "^2.0.0",
     "react-native-svg": "^6.5.2",
     "react-native-user-avatar": "^1.0.3",
     "react-navigation": "^2.11.2"
@@ -18,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/runtime": "^7.1.2",
-    "metro-react-native-babel-preset": "^0.48.1"
+    "metro-react-native-babel-preset": "^0.48.1",
+    "prop-types": "^15.6.2"
   }
 }

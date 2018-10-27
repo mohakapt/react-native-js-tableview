@@ -1,13 +1,26 @@
 /* @flow */
 
 import { Platform } from 'react-native';
-import Color from 'color';
+import chroma from 'chroma-js';
 
-export const COLOR_ACCENT = Platform.OS === 'ios' ? '#007AFF' : '#009688';
+export const getColorPalette = (theme) => {
+	const accentColor = Platform.OS === 'ios' ? '#007AFF' : '#009688';
 
-export const COLOR_ACCENT_LIGHT = Platform.OS === 'ios' ?
-	Color(COLOR_ACCENT).desaturate(0.5).lighten(0.9).hex() :
-	Color(COLOR_ACCENT).desaturate(0.8).lighten(2.1).hex();
+	const scale = chroma.scale([accentColor, theme === 'dark' ? 'white' : 'black']);
+	const accent = scale(0.1).hex();
 
-export const COLOR_ACCENT_DARK = Color(COLOR_ACCENT).darken(0.3).hex();
-export const COLOR_ACCENT_DARKER = Color(COLOR_ACCENT).desaturate(0.3).darken(0.3).hex();
+	const shades = chroma.scale([accent, 'black']);
+	const statusBar = shades(0.3).hex();
+	const icons = shades(0.3).desaturate(0.6).hex();
+
+	return {
+		accent,
+		statusBar,
+		icons,
+
+		header: Platform.select({ android: accent, ios: theme === 'dark' ? '#1B1B1B' : '#F7F7F7' }),
+		headerSeparator: theme === 'dark' ? '#3A3A3A' : '#A7A7AA',
+		headerText: Platform.OS === 'android' || theme === 'dark' ? 'white' : 'black',
+		headerIcon: theme === 'dark' ? '#E0E0E0' : '#1F1F1F',
+	};
+};

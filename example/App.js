@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, StatusBar } from 'react-native';
-import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell } from './src';
-import { COLOR_ACCENT, COLOR_ACCENT_DARK, COLOR_ACCENT_DARKER, COLOR_ACCENT_LIGHT } from './assets/colors';
+import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell } from 'react-native-js-tableview';
+import { getColorPalette } from './assets/colors';
 import Icon from './assets/icons';
 import NavBarItem from './NavBarItem';
 
@@ -20,29 +20,20 @@ export default class App extends Component<Props, State> {
 	static navigationOptions = ({ navigation }) => {
 		const { params = {} } = navigation.state;
 		const { theme = 'light', onToggleThemeTouched } = params;
+		const palette = getColorPalette(theme);
 
 		return {
 			title: 'Profile',
 			headerRight: <NavBarItem
-				tintColor={theme === 'dark' ? '#E0E0E0' : '#1F1F1F'}
+				tintColor={palette.headerIcon}
 				icon='theme'
 				onPress={onToggleThemeTouched} />,
 
-			...Platform.select({
-				ios: {
-					headerStyle: {
-						backgroundColor: theme === 'dark' ? '#1B1B1B' : '#F7F7F7',
-						borderBottomColor: theme === 'dark' ? '#3A3A3A' : '#A7A7AA',
-					},
-					headerTintColor: theme === 'dark' ? 'white' : 'black',
-				},
-				android: {
-					headerStyle: {
-						backgroundColor: COLOR_ACCENT,
-					},
-					headerTintColor: 'white',
-				},
-			}),
+			headerTintColor: palette.headerText,
+			headerStyle: {
+				backgroundColor: palette.header,
+				...Platform.select({ ios: { borderBottomColor: palette.headerSeparator } }),
+			},
 		};
 	};
 
@@ -53,12 +44,6 @@ export default class App extends Component<Props, State> {
 
 		this.state = { theme, selectedBook: 0 };
 		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
-	}
-
-	componentWillMount() {
-		if (Platform.OS === 'android') {
-			StatusBar.setBackgroundColor(COLOR_ACCENT_DARK);
-		}
 	}
 
 	onToggleThemeTouched = () => {
@@ -102,9 +87,12 @@ export default class App extends Component<Props, State> {
 	};
 
 	render() {
+		const { theme } = this.state;
+		const palette = getColorPalette(theme);
+
 		const adamSmithPhoto = 'https://static1.squarespace.com/static/56eddde762cd9413e151ac92/t/56f6e29eb2d7c7b358cf8dad/1459020450333/';
 		const getIcon = (name: string, tint: ?string): React.Node => (
-			<Icon name={name} tintColor={tint || COLOR_ACCENT_DARKER} />
+			<Icon name={name} tintColor={tint || palette.icons} />
 		);
 		const getBooks = (): Array<React.Node> =>
 			['The Wealth of Nations', 'The Theory of Moral Sentiments', 'Lectures on Jurisprudence', 'Essays on Philosophical Subjects', 'The Essential Adam Smith']
@@ -123,80 +111,78 @@ export default class App extends Component<Props, State> {
 			generalHeader = generalHeader.toUpperCase();
 		}
 
-		const { theme } = this.state;
 		return (
 			<>
 				<StatusBar
-					backgroundColor={COLOR_ACCENT_DARK}
-					barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} />
+					backgroundColor={palette.statusBar}
+					barStyle={Platform.OS === 'android' || theme === 'dark' ? 'light-content' : 'dark-content'} />
 
 				<Table
+					accentColor={palette.accent}
 					theme={theme}
 					blendAccent={false}
 					style={styles.container}
-					isScrollable={true}
-					accentColor={COLOR_ACCENT}
-					underlayColor={COLOR_ACCENT_LIGHT}>
+					isScrollable={true}>
 
 					<Section>
 						<BioCell
-							title="Adam Smith"
-							subtitle="Scottish economist, philosopher, and author."
-							photoUrl={adamSmithPhoto}
-							accessory="details"
+							title='Adam Smith'
+							subtitle='Scottish economist, philosopher, and author.'
+							photoSource={{ uri: adamSmithPhoto }}
+							accessory='details'
 							onPress={this.onBioTouched} />
 
 						<KeyValueCell
 							style={styles.email}
-							title="+1-541-754-3010"
+							title='+1-541-754-3010'
 							iconComponent={getIcon('phone')}
-							accessory="disclosure"
+							accessory='disclosure'
 							onPress={this.onContactTouched.bind(this, 'phone')}
 							onLongPress={this.onContactLongTouched.bind(this, 'phone')} />
 
 						<KeyValueCell
 							style={styles.email}
-							title="a.smith@gmail.com"
+							title='a.smith@gmail.com'
 							iconComponent={getIcon('email')}
-							accessory="disclosure"
+							accessory='disclosure'
 							onPress={this.onContactTouched.bind(this, 'email')}
 							onLongPress={this.onContactLongTouched.bind(this, 'email')} />
 					</Section>
 
 					<Section header={generalHeader} footer={generalFooter} separatorInsetLeft={54}>
 						<KeyValueCell
-							title="Books"
-							value="3 books"
+							title='Books'
+							value='3 books'
 							iconComponent={getIcon('book')}
-							accessory="disclosure"
+							accessory='disclosure'
 							customAction='www.google.com'
 							customActionType='openUrl'
 							customActionTrigger='onPress'
 							onPress={this.onWorksTouched.bind(this, 'books')} />
 
 						<KeyValueCell
-							title="Articles"
-							value="238 articles"
+							title='Articles'
+							value='238 articles'
 							iconComponent={getIcon('article')}
-							accessory="disclosure"
+							accessory='disclosure'
 							onPress={this.onWorksTouched.bind(this, 'books')} />
 
 						<KeyValueCell
-							title="Projects"
-							value="8 projects"
+							title='Projects'
+							value='8 projects'
 							iconComponent={getIcon('project')}
-							accessory="disclosure"
+							accessory='disclosure'
 							onPress={this.onWorksTouched.bind(this, 'books')} />
 					</Section>
 
-					<Section header="Select Your favorite book:">
+					<Section header='Select Your favorite book:'>
 						{getBooks()}
 					</Section>
 
 					<Section>
 						<TouchableCell
-							title="Log Out"
-							accentColor="#B71C1C"
+							title='Log Out'
+							accentColor={'#B71C1C'}
 							onPress={this.onLogoutTouched} />
 					</Section>
 				</Table>
