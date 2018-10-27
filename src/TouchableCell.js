@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, ViewPropTypes } from 'react-native';
+import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';

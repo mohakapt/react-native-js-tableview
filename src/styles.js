@@ -1,14 +1,4 @@
-import { StyleSheet, Platform, PixelRatio, I18nManager } from 'react-native';
-import {
-	COLOR_TITLE,
-	COLOR_SUBTITLE,
-	getColorBackground,
-	getColorSection,
-	getColorSeparator,
-	getColorHeader,
-	getColorFooter,
-	getColorTitle,
-} from './assets/colors';
+import { StyleSheet, Platform, PixelRatio } from 'react-native';
 
 export const tableStyles = StyleSheet.create({
 	container: (palette) => ({

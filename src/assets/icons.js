@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, I18nManager, ViewPropTypes } from 'react-native';
+import { Image, I18nManager } from 'react-native';
 import PropTypes from 'prop-types';
 
 import disclosure from './disclosure.png';
