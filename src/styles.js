@@ -49,6 +49,7 @@ export const sectionStyles = StyleSheet.create({
 		}),
 	},
 	header: (palette) => ({
+		alignSelf: 'flex-start',
 		color: palette.header,
 		fontSize: Platform.OS === 'ios' ? 13 : 15,
 	}),
@@ -64,6 +65,7 @@ export const sectionStyles = StyleSheet.create({
 		}),
 	},
 	footer: (palette) => ({
+		alignSelf: 'flex-start',
 		color: palette.footer,
 		fontSize: 13,
 	}),
@@ -128,10 +130,14 @@ export const staticCellStyles = StyleSheet.create({
 		marginVertical: 10,
 	},
 	title: (palette, disabled) => ({
+		alignSelf: 'flex-start',
+
 		fontSize: 17,
 		color: disabled ? palette.disabled : palette.title,
 	}),
 	subtitle: (palette, disabled) => ({
+		alignSelf: 'flex-start',
+
 		marginStart: 4,
 		marginTop: 1,
 		fontSize: 15,
@@ -169,12 +175,16 @@ export const bioCellStyles = StyleSheet.create({
 		marginStart: 16,
 	},
 	title: (palette, disabled) => ({
+		alignSelf: 'flex-start',
+
 		fontSize: 18,
 		fontWeight: '500',
 
 		color: disabled ? palette.disabled : palette.title,
 	}),
 	subtitle: (palette, disabled) => ({
+		alignSelf: 'flex-start',
+
 		fontSize: 14,
 		marginTop: 2,
 
@@ -201,10 +211,14 @@ export const keyValueCellStyles = StyleSheet.create({
 		paddingEnd: hasAccessory ? 0 : 15,
 	}),
 	title: (palette, disabled) => ({
+		alignSelf: 'flex-start',
+
 		fontSize: 17,
 		color: disabled ? palette.disabled : palette.title,
 	}),
 	value: (palette, disabled) => ({
+		alignSelf: 'flex-start',
+
 		fontSize: 15,
 		marginStart: 4,
 

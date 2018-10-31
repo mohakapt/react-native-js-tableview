@@ -52,7 +52,7 @@ const KeyValueCell = (props) => {
 		}
 
 		return (
-			<View style={styles.contentContainer(!props.accessory)}>
+			<View style={styles.contentContainer(!!props.accessory)}>
 				{component}
 			</View>
 		);

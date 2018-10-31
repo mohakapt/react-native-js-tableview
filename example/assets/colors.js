@@ -6,7 +6,7 @@ import chroma from 'chroma-js';
 export const getColorPalette = (theme) => {
 	const accentColor = Platform.OS === 'ios' ? '#007AFF' : '#009688';
 
-	const scale = chroma.scale([accentColor, theme === 'dark' ? 'white' : 'black']);
+	const scale = chroma.scale([accentColor, theme === 'dark' ? 'black' : 'white']);
 	const accent = scale(0.1).hex();
 
 	const shades = chroma.scale([accent, 'black']);
