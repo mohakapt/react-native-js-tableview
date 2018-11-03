@@ -18,10 +18,11 @@ export const getColorPalette = (theme, blend, accent) => {
 		separator: Platform.OS === 'ios' ? '#C8C7CD' : '#EBEBEB',
 		header: Platform.OS === 'ios' ? '#6D6D72' : accent,
 		footer: Platform.OS === 'ios' ? '#6D6D72' : '#575759',
-		accessory: Platform.OS === 'ios' ? '#D1D1D6' : '#9c9ca0',
+		accessory: Platform.OS === 'ios' ? '#b2b2b4' : '#9c9ca0',
 		title: Platform.OS === 'ios' ? '#000' : '#1a1a1a',
 		subtitle: '#8E8E93',
 		disabled: '#b5b5b5',
+		progress: Platform.OS === 'ios' ? '#373737' : accent,
 	};
 
 	const dark = {
@@ -31,10 +32,11 @@ export const getColorPalette = (theme, blend, accent) => {
 		separator: Platform.OS === 'ios' ? '#3E3E40' : '#5E5E5E',
 		header: Platform.OS === 'ios' ? '#8F8F95' : accent,
 		footer: Platform.OS === 'ios' ? '#8F8F95' : '#9f9fa6',
-		accessory: Platform.OS === 'ios' ? '#D1D1D6' : '#9c9ca0',       // <-
+		accessory: Platform.OS === 'ios' ? '#969696' : '#9c9ca0',
 		title: Platform.OS === 'ios' ? 'white' : '#e6e6e6',
 		subtitle: '#8E8E93',       // <-
-		disabled: '#4b4b4b',       // <-
+		disabled: '#4b4b4b',
+		progress: Platform.OS === 'ios' ? '#c8c8c8' : accent,
 	};
 
 	const palette = theme === 'dark' ? dark : light;

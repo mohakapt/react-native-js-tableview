@@ -3,6 +3,7 @@ import {
 	View,
 	TouchableNativeFeedback,
 	TouchableOpacity,
+	ActivityIndicator,
 	Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -17,7 +18,7 @@ const AccessoryCell = (props) => {
 		style,
 
 		accessory, accessoryComponent,
-		hideAccessorySeparator,
+		hideAccessorySeparator, loading,
 		onAccessoryPress,
 
 		colorPalette, disabled,
@@ -35,7 +36,9 @@ const AccessoryCell = (props) => {
 		}
 
 		let component;
-		if (accessoryComponent) {
+		if (loading) {
+			component = <ActivityIndicator animating={true} color={colorPalette.progress} size='small' />;
+		} else if (accessoryComponent) {
 			component = accessoryComponent;
 		} else if (accessory) {
 			component = <Icon name={accessory} style={styles.accessory(accessory, colorPalette, disabled)} />;
@@ -80,6 +83,7 @@ AccessoryCell.propTypes = Object.assign({
 	accessory: PropTypes.oneOf(['', 'disclosure', 'details', 'checkmark']),
 	accessoryComponent: PropTypes.element,
 	hideAccessorySeparator: PropTypes.bool,
+	loading: PropTypes.bool,
 
 	onAccessoryPress: PropTypes.func,
 }, Cell.propTypes);

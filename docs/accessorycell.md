@@ -8,7 +8,7 @@
 |`accessory`|`Accessory`|   |A custom action that appears on the left side of the cell. Can be one of `disclosure`, `details`, `checkmark`.|
 |`accessoryComponent`|`React.Node`|   |A custom component to put in place of the accessory, `accessory` will be ignored if this prop is provided.|
 |`hideAccessorySeparator`|`bool`|`false`|   |
-|`accessorySeparatorColor`|`string`|iOS: `#C8C7CD`<br/>Android: `#EBEBEB`|   |
+|`loading`|`bool`|`false`|   |
 |`onAccessoryPress`|`() => void`|   |   |
 
 ## Types

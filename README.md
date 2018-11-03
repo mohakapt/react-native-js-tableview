@@ -69,7 +69,7 @@ import Table, { Section, BioCell, StaticCell, TouchableCell } from 'react-native
 class App extends React.Component {
   render() {
     return (
-      <Table style={styles.container} accentColor="#4DB6AC" isScrollable={true}>
+      <Table style={styles.container} accentColor="#4DB6AC" scrollable={true}>
         <Section header="GENERAL" footer="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
           <BioCell title="Adam Smith" subtitle="Scottish economist, philosopher, and author." />
           <StaticCell title="Profile" accessory="disclosure" onPress={() => {}} />

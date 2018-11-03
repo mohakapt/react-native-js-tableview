@@ -9,8 +9,8 @@
 |`blendAccent`|`bool`|`dark`: `true`<br/>`light`: `false`|Determines whether to mix `accentColor` with the background of the table.|
 |`disabled`|`bool`|`false`|Boolean to indicate whether the `Table` and its content are interactive.|
 |`style`|`Style`|   |The style for the container `View` of the `Table`.|
-|`isScrollable`|`bool`|`false`|Wraps the `Table` with `ScrollView`, Useful to disable when you have your own `ScrollView`.|
-|`scrollViewStyle`|`Style`|   |The style for the `ScrollView` when `isScrollable` is `true`.|
+|`scrollable`|`bool`|`false`|Wraps the `Table` with `ScrollView`, Useful to disable when you have your own `ScrollView`.|
+|`scrollViewStyle`|`Style`|   |The style for the `ScrollView` when `scrollable` is `true`.|
 
 ## Types
 

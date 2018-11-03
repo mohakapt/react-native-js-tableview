@@ -7,13 +7,13 @@ import { COLOR_ACCENT, getColorPalette } from './assets/colors';
 
 import { tableStyles as styles } from './styles';
 
-const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, theme, blendAccent, disabled }) => {
+const Table = ({ style, scrollViewStyle, children, scrollable, accentColor, theme, blendAccent, disabled }) => {
 	const colorPalette = getColorPalette(theme, blendAccent, accentColor);
 
 	const renderTable = () => {
 		const tableStyle = [styles.table, style];
 
-		if (!isScrollable) {
+		if (!scrollable) {
 			tableStyle.unshift(styles.container(theme, blendAccent, accentColor));
 		}
 
@@ -24,7 +24,7 @@ const Table = ({ style, scrollViewStyle, children, isScrollable, accentColor, th
 		);
 	};
 
-	if (!isScrollable) {
+	if (!scrollable) {
 		return renderTable();
 	}
 
@@ -48,7 +48,7 @@ Table.propTypes = {
 		PropTypes.arrayOf(PropTypes.element),
 		PropTypes.PropTypes.element,
 	]),
-	isScrollable: PropTypes.bool,
+	scrollable: PropTypes.bool,
 };
 
 Table.defaultProps = {
@@ -57,7 +57,7 @@ Table.defaultProps = {
 	blendAccent: false,
 	disabled: false,
 
-	isScrollable: false,
+	scrollable: false,
 };
 
 export default Table;

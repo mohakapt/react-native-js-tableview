@@ -122,7 +122,7 @@ export default class App extends Component<Props, State> {
 					theme={theme}
 					blendAccent={false}
 					style={styles.container}
-					isScrollable={true}>
+					scrollable={true}>
 
 					<Section>
 						<BioCell
@@ -136,7 +136,7 @@ export default class App extends Component<Props, State> {
 							style={styles.email}
 							title='+1-541-754-3010'
 							iconComponent={getIcon('phone')}
-							accessory='disclosure'
+							accessory='disclosure' loading={true}
 							onPress={this.onContactTouched.bind(this, 'phone')}
 							onLongPress={this.onContactLongTouched.bind(this, 'phone')} />
 

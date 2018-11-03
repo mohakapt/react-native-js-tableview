@@ -8,7 +8,7 @@ declare module 'react-native-js-tableview' {
 		scrollViewStyle?: ?any,
 
 		children: React$ChildrenArray<React$Element<typeof SectionProps>>,
-		isScrollable?: boolean,
+		scrollable?: boolean,
 	|}
 
 	declare export type SectionProps = {|
