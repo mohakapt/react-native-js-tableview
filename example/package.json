@@ -9,7 +9,7 @@
     "chroma-js": "^1.4.0",
     "react": "16.5.0",
     "react-native": "0.57.0",
-    "react-native-js-tableview": "^2.0.0",
+    "react-native-js-tableview": "^2.1.0",
     "react-native-svg": "^6.5.2",
     "react-native-user-avatar": "^1.0.3",
     "react-navigation": "^2.11.2"

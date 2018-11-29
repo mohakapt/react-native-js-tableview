@@ -211,18 +211,41 @@ export const keyValueCellStyles = StyleSheet.create({
 		paddingEnd: hasAccessory ? 0 : 15,
 	}),
 	title: (palette, disabled) => ({
-		alignSelf: 'flex-start',
-
 		fontSize: 17,
 		color: disabled ? palette.disabled : palette.title,
 	}),
 	value: (palette, disabled) => ({
-		alignSelf: 'flex-start',
-
 		fontSize: 15,
 		marginStart: 4,
 
 		color: disabled ? palette.disabled : palette.subtitle,
+	}),
+	space: {
+		flex: 1,
+	},
+});
+
+export const switchCellStyles = StyleSheet.create({
+	iconContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		minWidth: 30,
+
+		marginStart: 12,
+	},
+	contentContainer: (hasAccessory) => ({
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center',
+
+		marginStart: 15,
+		marginVertical: 10,
+
+		paddingEnd: hasAccessory ? 0 : 15,
+	}),
+	title: (palette, disabled) => ({
+		fontSize: 17,
+		color: disabled ? palette.disabled : palette.title,
 	}),
 	space: {
 		flex: 1,

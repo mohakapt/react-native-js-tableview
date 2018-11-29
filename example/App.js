@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, StatusBar } from 'react-native';
-import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell } from 'react-native-js-tableview';
+import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell, SwitchCell } from 'react-native-js-tableview';
 import { getColorPalette } from './assets/colors';
 import Icon from './assets/icons';
 import NavBarItem from './NavBarItem';
@@ -13,6 +13,7 @@ type Props = {
 
 type State = {
 	theme: 'light' | 'dark',
+	enabledRecommendations: boolean,
 	selectedBook: number,
 };
 
@@ -42,7 +43,7 @@ export default class App extends Component<Props, State> {
 
 		const theme = 'dark';
 
-		this.state = { theme, selectedBook: 0 };
+		this.state = { theme, enabledRecommendations: false, selectedBook: 0 };
 		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
 	}
 
@@ -78,6 +79,11 @@ export default class App extends Component<Props, State> {
 
 	};
 
+	onEnableRecommendationsSwitched = () => {
+		const { enabledRecommendations } = this.state;
+		this.setState({ enabledRecommendations: !enabledRecommendations });
+	};
+
 	onReminderTouched = (index: number) => {
 		this.setState({ selectedBook: index });
 	};
@@ -87,7 +93,7 @@ export default class App extends Component<Props, State> {
 	};
 
 	render() {
-		const { theme } = this.state;
+		const { theme, enabledRecommendations } = this.state;
 		const palette = getColorPalette(theme);
 
 		const adamSmithPhoto = 'https://static1.squarespace.com/static/56eddde762cd9413e151ac92/t/56f6e29eb2d7c7b358cf8dad/1459020450333/';
@@ -100,6 +106,7 @@ export default class App extends Component<Props, State> {
 					<StaticCell
 						key={index}
 						title={title}
+						disabled={!this.state.enabledRecommendations}
 						accessory={this.state.selectedBook === index ? 'checkmark' : ''}
 						hideAccessorySeparator
 						onPress={this.onReminderTouched.bind(this, index)} />);
@@ -176,6 +183,12 @@ export default class App extends Component<Props, State> {
 					</Section>
 
 					<Section header='Select Your favorite book:'>
+						<SwitchCell
+							title='Enable Recommendations'
+							value={enabledRecommendations}
+							onSwitch={this.onEnableRecommendationsSwitched}
+						/>
+
 						{getBooks()}
 					</Section>
 

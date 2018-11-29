@@ -6,6 +6,7 @@ import StaticCell from './StaticCell';
 import TouchableCell from './TouchableCell';
 import BioCell from './BioCell';
 import KeyValueCell from './KeyValueCell';
+import SwitchCell from './SwitchCell';
 
 export default Table;
 export {
@@ -16,4 +17,5 @@ export {
 	TouchableCell,
 	BioCell,
 	KeyValueCell,
+	SwitchCell,
 };

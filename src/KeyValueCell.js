@@ -68,7 +68,7 @@ const KeyValueCell = (props) => {
 
 KeyValueCell.propTypes = Object.assign({
 	title: PropTypes.string.isRequired,
-	titleString: Text.propTypes.style,
+	titleStyle: Text.propTypes.style,
 	value: PropTypes.string,
 	valueStyle: Text.propTypes.style,
 	contentComponent: PropTypes.node,

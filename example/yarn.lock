@@ -3782,10 +3782,10 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
-react-native-js-tableview@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-js-tableview/-/react-native-js-tableview-2.0.0.tgz#73acbbf3e7c1532c09677d9819ee45f2d39dc59a"
-  integrity sha512-Su42jlB7AkteFHHVhSWdtiUzFlehU7O3tJn7Yyt1hEUtig6Mgf35Q9WXWTPssF9RNy/cOEpBPJ1qidUhHy5Ccw==
+react-native-js-tableview@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-js-tableview/-/react-native-js-tableview-2.1.0.tgz#c63e53df9105914ba9535e7b6cabfdaa77a121a2"
+  integrity sha512-GqYHbsFnZifxAWURUBqyGN1fI6SYoGokn61YUWKAFA0/ynKU4KDA6xrSHcw7+qCCWWA7KBEWjDcStSgUiPeKXw==
   dependencies:
     chroma-js "^1.4.0"
     prop-types "^15.6.2"
