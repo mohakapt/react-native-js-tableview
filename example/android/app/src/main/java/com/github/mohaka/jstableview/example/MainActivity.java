@@ -1,4 +1,4 @@
-package com.example;
+package com.github.mohaka.jstableview.example;
 
 import com.facebook.react.ReactActivity;
 

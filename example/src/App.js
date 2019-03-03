@@ -1,8 +1,15 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, StatusBar } from 'react-native';
-import Table, { Section, KeyValueCell, StaticCell, TouchableCell, BioCell, SwitchCell } from 'react-native-js-tableview';
+import { Platform, StyleSheet, StatusBar, UIManager, LayoutAnimation } from 'react-native';
+import Table, {
+	Section,
+	KeyValueCell,
+	StaticCell,
+	TouchableCell,
+	BioCell,
+	SwitchCell,
+} from 'react-native-js-tableview';
 import { getColorPalette } from './assets/colors';
 import Icon from './assets/icons';
 import NavBarItem from './NavBarItem';
@@ -41,15 +48,19 @@ export default class App extends Component<Props, State> {
 	constructor(props) {
 		super(props);
 
-		const theme = 'dark';
+		if (Platform.OS === 'android')
+			UIManager.setLayoutAnimationEnabledExperimental &&
+			UIManager.setLayoutAnimationEnabledExperimental(true);
 
+		const theme = 'dark';
 		this.state = { theme, enabledRecommendations: false, selectedBook: 0 };
 		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
 	}
 
 	onToggleThemeTouched = () => {
-		const theme = (this.state.theme === 'dark') ? 'light' : 'dark';
+		LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
+		const theme = (this.state.theme === 'dark') ? 'light' : 'dark';
 		this.setState({ theme });
 		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
 	};

@@ -2,7 +2,7 @@
   "name": "react-native-js-tableview",
   "version": "2.2.1",
   "description": "A JavaScript implementation for TableView that looks great on both iOS and Android.",
-  "main": "src/index.js",
+  "main": "index.js",
   "author": "Haytham KATBY <mohakapt@gmail.com>",
   "license": "MIT",
   "private": false,
