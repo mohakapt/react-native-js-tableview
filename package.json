@@ -19,10 +19,10 @@
     "uitableview"
   ],
   "devDependencies": {
-    "@babel/core": "^7.0.0-0",
-    "metro-react-native-babel-preset": "^0.51.1",
+    "@babel/core": "^7.3.4",
+    "metro-react-native-babel-preset": "^0.53.0",
     "react": "16.6.3",
-    "react-native": "^0.58.5",
+    "react-native": "^0.58.6",
     "react-native-svg": "^9.2.4",
     "react-navigation": "^2.11.2"
   },
@@ -34,8 +34,8 @@
     "url": "https://github.com/mohakapt/react-native-js-tableview/issues"
   },
   "dependencies": {
-    "chroma-js": "^1.4.0",
+    "chroma-js": "^2.*",
     "prop-types": "^15.*",
-    "react-native-user-avatar": "^1.0.3"
+    "react-native-user-avatar": "^1.*"
   }
 }

@@ -42,6 +42,8 @@ yarn add react-native-js-tableview
 
 [`<TouchableCell />` Component API](docs/touchablecell.md)
 
+[`<SwitchCell />` Component API](docs/switchcell.md)
+
 
 ### General Usage
 
