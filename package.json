@@ -6,7 +6,9 @@
   "author": "Haytham KATBY <mohakapt@gmail.com>",
   "license": "MIT",
   "private": false,
-  "scripts": {},
+  "scripts": {
+    "start": "react-native start"
+  },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
@@ -17,9 +19,12 @@
     "uitableview"
   ],
   "devDependencies": {
-    "babel-preset-react-native": "^5.0.2",
-    "react": "^16.4.2",
-    "react-native": "^0.56.0"
+    "@babel/core": "^7.0.0-0",
+    "metro-react-native-babel-preset": "^0.51.1",
+    "react": "16.6.3",
+    "react-native": "^0.58.5",
+    "react-native-svg": "^9.2.4",
+    "react-navigation": "^2.11.2"
   },
   "repository": {
     "type": "git",
@@ -30,7 +35,7 @@
   },
   "dependencies": {
     "chroma-js": "^1.4.0",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.*",
     "react-native-user-avatar": "^1.0.3"
   }
 }
