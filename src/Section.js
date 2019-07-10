@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Platform, Text, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 import { ThemeContext, ThemeProvider } from './ThemeContext';
 
 import { sectionStyles as styles } from './styles';
 
-class Section extends React.Component {
+class Section extends Component {
 	static contextType = ThemeContext;
 
 	static propTypes = {
@@ -38,6 +38,7 @@ class Section extends React.Component {
 
 	render() {
 		const { colorPalette } = this.context;
+		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
 
 		const renderSeparator = (index, useInsets) => {
 			const { hideSeparators, separatorInsetLeft, separatorInsetRight } = this.props;
@@ -125,7 +126,6 @@ class Section extends React.Component {
 			return reVal;
 		};
 
-		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
 		return (
 			<ThemeProvider value={{ colorPalette, disabled }}>
 				<View style={[styles.container(colorPalette), this.props.style]}>

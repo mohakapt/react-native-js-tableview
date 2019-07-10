@@ -1,102 +1,105 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { ActivityIndicator, Platform, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Cell from './Cell';
 import Icon from './assets/icons';
+import { ThemeContext } from './ThemeContext';
 
 import { accessoryCellStyles as styles } from './styles';
 
-const AccessoryCell = (props) => {
-	const {
-		style,
+class AccessoryCell extends Component {
+	static contextType = ThemeContext;
 
-		accessory, accessoryComponent,
-		hideAccessorySeparator, loading,
-		onAccessoryPress,
+	static propTypes = Object.assign({
+		accessory: PropTypes.oneOf(['', 'disclosure', 'details', 'checkmark']),
+		accessoryComponent: PropTypes.element,
+		hideAccessorySeparator: PropTypes.bool,
+		loading: PropTypes.bool,
 
-		colorPalette, disabled,
-		children,
+		onAccessoryPress: PropTypes.func,
+	}, Cell.propTypes);
 
-		...remainingProps
-	} = props;
+	static defaultProps = {
+		hideAccessorySeparator: false,
+	};
 
-	const getAccessory = () => {
-		const reVal = [];
+	render() {
+		const {
+			style, children,
 
-		if (!hideAccessorySeparator && Platform.OS === 'android') {
-			const separator = <View key='accessorySeparator' style={styles.separator(colorPalette)} />;
-			reVal.push(separator);
-		}
+			accessory, accessoryComponent,
+			hideAccessorySeparator, loading,
+			onAccessoryPress,
 
-		let component;
-		if (loading) {
-			component = <ActivityIndicator animating={true} color={colorPalette.progress} size='small' />;
-		} else if (accessoryComponent) {
-			component = accessoryComponent;
-		} else if (accessory) {
-			component = <Icon name={accessory} style={styles.accessory(accessory, colorPalette, disabled)} />;
-		}
+			...remainingProps
+		} = this.props;
+		const { colorPalette } = this.context;
+		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
 
-		if (component) {
-			const view = (
-				<View key='accessoryContainer' style={styles.container}>
-					{component}
-				</View>
-			);
+		const renderAccessory = () => {
+			const reVal = [];
 
-			if (onAccessoryPress) {
-				const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
-				const touchableProps = Platform.select({
-					ios: {
-						underlayColor: colorPalette.underlay,
-					},
-					android: {
-						background: TouchableNativeFeedback.Ripple(colorPalette.ripple, false),
-					},
-				});
-				const touchable = (
-					<Touchable
-						{...touchableProps}
-						key='touchableAccessory'
-						disabled={disabled}
-						onPress={onAccessoryPress}>
-
-						{view}
-					</Touchable>
-				);
-				reVal.push(touchable);
-			} else {
-				reVal.push(view);
+			if (!hideAccessorySeparator && Platform.OS === 'android') {
+				const separator = <View key='accessorySeparator' style={styles.separator(colorPalette)} />;
+				reVal.push(separator);
 			}
 
-			return reVal;
-		}
-	};
-	return (
-		<Cell
-			style={[style, styles.cell]}
-			colorPalette={colorPalette}
-			disabled={disabled}
-			{...remainingProps}>
+			let component;
+			if (loading) {
+				component = <ActivityIndicator animating={true} color={colorPalette.progress} size='small' />;
+			} else if (accessoryComponent) {
+				component = accessoryComponent;
+			} else if (accessory) {
+				component = <Icon name={accessory} style={styles.accessory(accessory, colorPalette, disabled)} />;
+			}
 
-			{children}
-			{getAccessory()}
-		</Cell>
-	);
-};
+			if (component) {
+				const view = (
+					<View key='accessoryContainer' style={styles.container}>
+						{component}
+					</View>
+				);
 
-AccessoryCell.propTypes = Object.assign({
-	accessory: PropTypes.oneOf(['', 'disclosure', 'details', 'checkmark']),
-	accessoryComponent: PropTypes.element,
-	hideAccessorySeparator: PropTypes.bool,
-	loading: PropTypes.bool,
+				if (onAccessoryPress) {
+					const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
+					const touchableProps = Platform.select({
+						ios: {
+							underlayColor: colorPalette.underlay,
+						},
+						android: {
+							background: TouchableNativeFeedback.Ripple(colorPalette.ripple, false),
+						},
+					});
+					const touchable = (
+						<Touchable
+							{...touchableProps}
+							key='touchableAccessory'
+							disabled={disabled}
+							onPress={onAccessoryPress}>
 
-	onAccessoryPress: PropTypes.func,
-}, Cell.propTypes);
+							{view}
+						</Touchable>
+					);
+					reVal.push(touchable);
+				} else {
+					reVal.push(view);
+				}
 
-AccessoryCell.defaultProps = {
-	hideAccessorySeparator: false,
-};
+				return reVal;
+			}
+		};
+		return (
+			<Cell
+				style={[style, styles.cell]}
+				disabled={disabled}
+				{...remainingProps}>
+
+				{children}
+				{renderAccessory()}
+			</Cell>
+		);
+	}
+}
 
 export default AccessoryCell;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Image, Text, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 import UserAvatar from 'react-native-user-avatar';
@@ -8,7 +8,7 @@ import { ThemeContext } from './ThemeContext';
 
 import { bioCellStyles as styles } from './styles';
 
-class BioCell extends React.Component {
+class BioCell extends Component {
 	static contextType = ThemeContext;
 
 	static propTypes = Object.assign({
@@ -62,7 +62,7 @@ class BioCell extends React.Component {
 		};
 
 		return (
-			<AccessoryCell hideAccessorySeparator colorPalette={colorPalette} disabled={disabled} {...remainingProps}>
+			<AccessoryCell hideAccessorySeparator disabled={disabled} {...remainingProps}>
 				{getPhoto()}
 
 				<View style={styles.infoContainer}>

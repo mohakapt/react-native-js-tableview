@@ -25,8 +25,11 @@ class Cell extends Component {
 	};
 
 	render() {
-		const { style, children } = this.props;
-		const { onPress, onLongPress, customAction, customActionType, customActionTrigger } = this.props;
+		const {
+			style, children,
+			onPress, onLongPress,
+			customAction, customActionType, customActionTrigger,
+		} = this.props;
 		const { colorPalette } = this.context;
 		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
 

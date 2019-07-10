@@ -1,36 +1,42 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';
+import { ThemeContext } from './ThemeContext';
 
 import { touchableCellStyles as styles } from './styles';
 
-const TouchableCell = (props) => {
-	const {
-		children,
-		title, titleStyle,
-		colorPalette, disabled,
+class TouchableCell extends Component {
+	static contextType = ThemeContext;
 
-		...remainingProps
-	} = props;
+	static propTypes = Object.assign({
+		title: PropTypes.string.isRequired,
+		titleStyle: Text.propTypes.style,
+	}, AccessoryCell.propTypes);
 
-	const combinedStyles = [
-		styles.title(colorPalette, disabled),
-		titleStyle,
-	];
+	render() {
+		const {
+			children,
+			title, titleStyle,
 
-	return (
-		<AccessoryCell colorPalette={colorPalette} disabled={disabled}  {...remainingProps}>
-			<Text style={combinedStyles}>{title}</Text>
-		</AccessoryCell>
-	);
-};
+			...remainingProps
+		} = this.props;
+		const { colorPalette } = this.context;
+		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
 
-TouchableCell.propTypes = Object.assign({
-	title: PropTypes.string.isRequired,
-	titleStyle: Text.propTypes.style,
-}, AccessoryCell.propTypes);
+		const combinedStyles = [
+			styles.title(colorPalette, disabled),
+			titleStyle,
+		];
+
+		return (
+			<AccessoryCell disabled={disabled} {...remainingProps}>
+				<Text style={combinedStyles}>{title}</Text>
+			</AccessoryCell>
+		);
+	}
+}
 
 delete TouchableCell.propTypes.children;
 export default TouchableCell;

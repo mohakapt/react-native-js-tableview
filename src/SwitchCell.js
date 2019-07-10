@@ -1,90 +1,95 @@
-import * as React from 'react';
-import { View, Text, Switch } from 'react-native';
+import React, { Component } from 'react';
+import { Switch, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';
+import { ThemeContext } from './ThemeContext';
 
 import { switchCellStyles as styles } from './styles';
 
-const SwitchCell = (props) => {
-	const {
-		children, onPress,
-		title, titleStyle,
-		value, onSwitch,
-		thumbTintColor, ios_backgroundColor, tintColor,
-		iconComponent,
-		colorPalette, disabled,
+class SwitchCell extends Component {
+	static contextType = ThemeContext;
 
-		...remainingProps
-	} = props;
+	static propTypes = Object.assign({
+		title: PropTypes.string.isRequired,
+		titleStyle: Text.propTypes.style,
+		value: PropTypes.bool,
+		onSwitch: PropTypes.func,
 
-	const getIcon = () => {
-		if (iconComponent) {
+		iconComponent: PropTypes.element,
+	}, AccessoryCell.propTypes);
+
+	render() {
+		const {
+			children, onPress,
+			title, titleStyle,
+			value, onSwitch,
+			thumbTintColor, ios_backgroundColor, tintColor,
+			iconComponent,
+
+			...remainingProps
+		} = this.props;
+		const { colorPalette } = this.context;
+		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+
+		const renderIcon = () => {
+			if (iconComponent) {
+				return (
+					<View style={styles.iconContainer}>
+						{iconComponent}
+					</View>
+				);
+			}
+		};
+
+		const renderTitle = () => {
+			if (title) {
+				const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
+				return <Text key='title' style={combinedStyles}>{title}</Text>;
+			}
+		};
+
+		const renderSwitch = () => {
 			return (
-				<View style={styles.iconContainer}>
-					{iconComponent}
+				<Switch
+					key='switch'
+					value={value}
+					disabled={disabled}
+					trackColor={colorPalette.accent}
+					thumbTintColor={thumbTintColor}
+					ios_backgroundColor={ios_backgroundColor}
+					tintColor={tintColor}
+					onValueChange={onSwitch}
+				/>
+			);
+		};
+
+		const renderContent = () => {
+			const space = <View key='space' style={styles.space} />;
+			const component = [renderTitle(), space, renderSwitch()];
+
+			return (
+				<View style={styles.contentContainer(!!this.props.accessory)}>
+					{component}
 				</View>
 			);
-		}
-	};
+		};
 
-	const getTitle = () => {
-		if (title) {
-			const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
-			return <Text key='title' style={combinedStyles}>{title}</Text>;
-		}
-	};
-
-	const getSwitch = () => {
 		return (
-			<Switch
-				key='switch'
-				value={value}
+			<AccessoryCell
+				hideAccessorySeparator
 				disabled={disabled}
-				trackColor={colorPalette.accent}
-				thumbTintColor={thumbTintColor}
-				ios_backgroundColor={ios_backgroundColor}
-				tintColor={tintColor}
-				onValueChange={onSwitch}
-			/>
+				onPress={onSwitch}
+				{...remainingProps}
+				customActionTrigger='onLongPress'
+			>
+
+				{renderIcon()}
+				{renderContent()}
+			</AccessoryCell>
 		);
-	};
-
-	const getContent = () => {
-		const space = <View key='space' style={styles.space} />;
-		const component = [getTitle(), space, getSwitch()];
-
-		return (
-			<View style={styles.contentContainer(!!props.accessory)}>
-				{component}
-			</View>
-		);
-	};
-
-	return (
-		<AccessoryCell
-			hideAccessorySeparator
-			colorPalette={colorPalette}
-			disabled={disabled}
-			onPress={onSwitch}
-			{...remainingProps}
-			customActionTrigger='onLongPress'
-		>
-
-			{getIcon()}
-			{getContent()}
-		</AccessoryCell>
-	);
-};
-
-SwitchCell.propTypes = Object.assign({
-	title: PropTypes.string.isRequired,
-	titleStyle: Text.propTypes.style,
-	value: PropTypes.bool,
-	onSwitch: PropTypes.func,
-
-	iconComponent: PropTypes.element,
-}, AccessoryCell.propTypes);
+	}
+}
 
 delete SwitchCell.propTypes.children;
 delete SwitchCell.propTypes.onPress;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { ScrollView, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -7,7 +7,7 @@ import { ThemeProvider } from './ThemeContext';
 
 import { tableStyles as styles } from './styles';
 
-class Table extends React.Component {
+class Table extends Component {
 	static propTypes = {
 		accentColor: PropTypes.string,
 		theme: PropTypes.oneOf(['light', 'dark']),
