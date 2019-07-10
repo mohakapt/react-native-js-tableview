@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-	View,
-	TouchableNativeFeedback,
-	TouchableOpacity,
-	ActivityIndicator,
-	Platform,
-} from 'react-native';
+import { ActivityIndicator, Platform, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Cell from './Cell';
@@ -53,8 +47,21 @@ const AccessoryCell = (props) => {
 
 			if (onAccessoryPress) {
 				const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
+				const touchableProps = Platform.select({
+					ios: {
+						underlayColor: colorPalette.underlay,
+					},
+					android: {
+						background: TouchableNativeFeedback.Ripple(colorPalette.ripple, false),
+					},
+				});
 				const touchable = (
-					<Touchable key='touchableAccessory' disabled={disabled} onPress={onAccessoryPress}>
+					<Touchable
+						{...touchableProps}
+						key='touchableAccessory'
+						disabled={disabled}
+						onPress={onAccessoryPress}>
+
 						{view}
 					</Touchable>
 				);

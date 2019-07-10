@@ -1,63 +1,76 @@
 import * as React from 'react';
-import { View, ScrollView, ViewPropTypes } from 'react-native';
+import { ScrollView, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { insertProps } from './assets/utilites';
 import { COLOR_ACCENT, getColorPalette } from './assets/colors';
+import { ThemeProvider } from './ThemeContext';
 
 import { tableStyles as styles } from './styles';
 
-const Table = ({ style, scrollViewStyle, children, scrollable, accentColor, theme, blendAccent, disabled }) => {
-	const colorPalette = getColorPalette(theme, blendAccent, accentColor);
+class Table extends React.Component {
+	static propTypes = {
+		accentColor: PropTypes.string,
+		theme: PropTypes.oneOf(['light', 'dark']),
+		blendAccent: PropTypes.bool,
+		disabled: PropTypes.bool,
 
-	const renderTable = () => {
-		const tableStyle = [styles.table, style];
+		style: ViewPropTypes.style,
+		scrollViewStyle: ViewPropTypes.style,
 
-		if (!scrollable) {
-			tableStyle.unshift(styles.container(theme, blendAccent, accentColor));
-		}
-
-		return (
-			<View style={tableStyle}>
-				{insertProps(children, { colorPalette, disabled })}
-			</View>
-		);
+		children: PropTypes.oneOfType([
+			PropTypes.arrayOf(PropTypes.element),
+			PropTypes.PropTypes.element,
+		]),
+		scrollable: PropTypes.bool,
 	};
 
-	if (!scrollable) {
-		return renderTable();
+	static defaultProps = {
+		accentColor: COLOR_ACCENT,
+		theme: 'light',
+		blendAccent: false,
+		disabled: false,
+
+		scrollable: false,
+	};
+
+	render() {
+		const { style, scrollViewStyle, children } = this.props;
+		const { scrollable, accentColor, theme, blendAccent, disabled } = this.props;
+
+		const colorPalette = getColorPalette(theme, blendAccent, accentColor);
+
+		const renderTable = () => {
+			const tableStyle = [styles.table, style];
+
+			if (!scrollable) {
+				tableStyle.unshift(styles.container(theme, blendAccent, accentColor));
+			}
+
+			return (
+				<View style={tableStyle}>
+					{children}
+				</View>
+			);
+		};
+
+		const wrapScrollView = (component) => {
+			if (scrollable) {
+				return (
+					<ScrollView style={[styles.container(colorPalette), scrollViewStyle]}>
+						{component}
+					</ScrollView>
+				);
+			} else {
+				return component;
+			}
+		};
+
+		return (
+			<ThemeProvider value={{ colorPalette, disabled }}>
+				{wrapScrollView(renderTable())}
+			</ThemeProvider>
+		);
 	}
-
-	return (
-		<ScrollView style={[styles.container(colorPalette), scrollViewStyle]}>
-			{renderTable()}
-		</ScrollView>
-	);
-};
-
-Table.propTypes = {
-	accentColor: PropTypes.string,
-	theme: PropTypes.oneOf(['light', 'dark']),
-	blendAccent: PropTypes.bool,
-	disabled: PropTypes.bool,
-
-	style: ViewPropTypes.style,
-	scrollViewStyle: ViewPropTypes.style,
-
-	children: PropTypes.oneOfType([
-		PropTypes.arrayOf(PropTypes.element),
-		PropTypes.PropTypes.element,
-	]),
-	scrollable: PropTypes.bool,
-};
-
-Table.defaultProps = {
-	accentColor: COLOR_ACCENT,
-	theme: 'light',
-	blendAccent: false,
-	disabled: false,
-
-	scrollable: false,
-};
+}
 
 export default Table;

@@ -1,137 +1,143 @@
 import * as React from 'react';
-import { View, Text, Platform, ViewPropTypes } from 'react-native';
+import { Platform, Text, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
-
-import { insertProps } from './assets/utilites';
+import { ThemeContext, ThemeProvider } from './ThemeContext';
 
 import { sectionStyles as styles } from './styles';
 
-const Section = (props) => {
-	const { colorPalette } = props;
+class Section extends React.Component {
+	static contextType = ThemeContext;
 
-	const getSeparator = (index, useInsets) => {
-		const { hideSeparators, separatorInsetLeft, separatorInsetRight } = props;
+	static propTypes = {
+		disabled: PropTypes.bool,
 
-		if (hideSeparators) {
-			return;
-		}
+		children: PropTypes.oneOfType([
+			PropTypes.arrayOf(PropTypes.element),
+			PropTypes.PropTypes.element,
+		]),
+		style: ViewPropTypes.style,
 
-		let separatorStyle;
-		if (useInsets) {
-			separatorStyle = styles.separator(colorPalette, separatorInsetLeft, separatorInsetRight);
-		} else {
-			separatorStyle = styles.separator(colorPalette, 0, 0);
-		}
+		header: PropTypes.string,
+		headerStyle: Text.propTypes.style,
+		headerComponent: PropTypes.node,
 
-		return <View key={index} style={separatorStyle} />;
+		footer: PropTypes.string,
+		footerStyle: Text.propTypes.style,
+		footerComponent: PropTypes.node,
+
+		hideSeparators: PropTypes.bool,
+		separatorInsetLeft: PropTypes.number,
+		separatorInsetRight: PropTypes.number,
 	};
 
-	const getHeader = () => {
-		const { header, headerStyle, headerComponent } = props;
-		const reVal = [];
-
-		if (Platform.OS === 'ios' || header) {
-			reVal.push(getSeparator(112, false));
-		}
-
-		if (headerComponent) {
-			reVal.unshift(headerComponent);
-		} else if (header) {
-			const combinedStyles = [
-				styles.header(colorPalette),
-				headerStyle,
-			];
-
-			const textComponent = (
-				<View key='header' style={styles.headerContainer}>
-					<Text style={combinedStyles}>{header}</Text>
-				</View>
-			);
-			reVal.unshift(textComponent);
-		}
-
-		return reVal;
+	static defaultProps = {
+		hideSeparators: false,
+		separatorInsetLeft: 20,
+		separatorInsetRight: 0,
 	};
 
-	const getCells = () => {
-		const { children, colorPalette, disabled } = props;
+	render() {
+		const { colorPalette } = this.context;
 
-		const reVal = [];
-		const childrenArray = insertProps(children, { colorPalette, disabled });
+		const renderSeparator = (index, useInsets) => {
+			const { hideSeparators, separatorInsetLeft, separatorInsetRight } = this.props;
 
-		for (let x = 0; x < childrenArray.length; x++) {
-			reVal.push((childrenArray[x]));
-			if (x < childrenArray.length - 1) {
-				reVal.push(getSeparator(x, true));
+			if (hideSeparators) {
+				return;
 			}
-		}
-		return reVal;
-	};
 
-	const getFooter = () => {
-		const { footer, footerStyle, footerComponent } = props;
-		const reVal = [];
+			let separatorStyle;
+			if (useInsets) {
+				separatorStyle = styles.separator(colorPalette, separatorInsetLeft, separatorInsetRight);
+			} else {
+				separatorStyle = styles.separator(colorPalette, 0, 0);
+			}
 
-		if (Platform.OS === 'ios' || footer) {
-			reVal.push(getSeparator(111, false));
-		}
+			return <View key={index} style={separatorStyle} />;
+		};
 
-		if (footerComponent) {
-			reVal.push(footerComponent);
-		} else if (footer) {
-			const combinedStyles = [
-				styles.footer(colorPalette),
-				footerStyle,
-			];
+		const renderHeader = () => {
+			const { header, headerStyle, headerComponent } = this.props;
+			const reVal = [];
 
-			const textComponent = (
-				<View key='footer' style={styles.footerContainer}>
-					<Text style={combinedStyles}>{footer}</Text>
+			if (Platform.OS === 'ios' || header) {
+				reVal.push(renderSeparator(112, false));
+			}
+
+			if (headerComponent) {
+				reVal.unshift(headerComponent);
+			} else if (header) {
+				const combinedStyles = [
+					styles.header(colorPalette),
+					headerStyle,
+				];
+
+				const textComponent = (
+					<View key='header' style={styles.headerContainer}>
+						<Text style={combinedStyles}>{header}</Text>
+					</View>
+				);
+				reVal.unshift(textComponent);
+			}
+
+			return reVal;
+		};
+
+		const renderCells = () => {
+			const { children } = this.props;
+
+			const reVal = [];
+			const childrenArray = React.Children.toArray(children);
+
+			for (let x = 0; x < childrenArray.length; x++) {
+				reVal.push((childrenArray[x]));
+				if (x < childrenArray.length - 1) {
+					reVal.push(renderSeparator(x, true));
+				}
+			}
+			return reVal;
+		};
+
+		const renderFooter = () => {
+			const { footer, footerStyle, footerComponent } = this.props;
+			const reVal = [];
+
+			if (Platform.OS === 'ios' || footer) {
+				reVal.push(renderSeparator(111, false));
+			}
+
+			if (footerComponent) {
+				reVal.push(footerComponent);
+			} else if (footer) {
+				const combinedStyles = [
+					styles.footer(colorPalette),
+					footerStyle,
+				];
+
+				const textComponent = (
+					<View key='footer' style={styles.footerContainer}>
+						<Text style={combinedStyles}>{footer}</Text>
+					</View>
+				);
+				reVal.push(textComponent);
+			}
+
+			return reVal;
+		};
+
+		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+		return (
+			<ThemeProvider value={{ colorPalette, disabled }}>
+				<View style={[styles.container(colorPalette), this.props.style]}>
+					{renderHeader()}
+					<View style={styles.cellsContainer(colorPalette)}>
+						{renderCells()}
+					</View>
+					{renderFooter()}
 				</View>
-			);
-			reVal.push(textComponent);
-		}
-
-		return reVal;
-	};
-
-	return (
-		<View style={[styles.container(colorPalette), props.style]}>
-			{getHeader()}
-			<View style={styles.cellsContainer(colorPalette)}>
-				{getCells()}
-			</View>
-			{getFooter()}
-		</View>
-	);
-};
-
-Section.propTypes = {
-	disabled: PropTypes.bool,
-
-	children: PropTypes.oneOfType([
-		PropTypes.arrayOf(PropTypes.element),
-		PropTypes.PropTypes.element,
-	]),
-	style: ViewPropTypes.style,
-
-	header: PropTypes.string,
-	headerStyle: Text.propTypes.style,
-	headerComponent: PropTypes.node,
-
-	footer: PropTypes.string,
-	footerStyle: Text.propTypes.style,
-	footerComponent: PropTypes.node,
-
-	hideSeparators: PropTypes.bool,
-	separatorInsetLeft: PropTypes.number,
-	separatorInsetRight: PropTypes.number,
-};
-
-Section.defaultProps = {
-	hideSeparators: false,
-	separatorInsetLeft: 20,
-	separatorInsetRight: 0,
-};
+			</ThemeProvider>
+		);
+	}
+}
 
 export default Section;

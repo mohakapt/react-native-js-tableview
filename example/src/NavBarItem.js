@@ -1,14 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import {
-	Platform,
-	View,
-	Text,
-	TouchableOpacity,
-	TouchableNativeFeedback,
-	StyleSheet,
-} from 'react-native';
+import { Platform, StyleSheet, Text, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 
 import Icon, { hasIcon } from './assets/icons';
 
@@ -37,7 +30,7 @@ const NavBarItem = (props: Props) => {
 	const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
 	const touchableProps = Platform.select({
 		ios: {},
-		android: { background: TouchableNativeFeedback.Ripple('rgba(0, 0, 0, .32)', true) },
+		android: { background: TouchableNativeFeedback.Ripple('rgba(0, 0, 0, .26)', true) },
 	});
 
 	return (
