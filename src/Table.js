@@ -10,7 +10,7 @@ import { tableStyles as styles } from './styles';
 class Table extends Component {
 	static propTypes = {
 		accentColor: PropTypes.string,
-		theme: PropTypes.oneOf(['light', 'dark']),
+		theme: PropTypes.oneOf(['light', 'dark', 'midnight']),
 		blendAccent: PropTypes.bool,
 		disabled: PropTypes.bool,
 
@@ -43,7 +43,7 @@ class Table extends Component {
 			const tableStyle = [styles.table, style];
 
 			if (!scrollable) {
-				tableStyle.unshift(styles.container(theme, blendAccent, accentColor));
+				tableStyle.unshift(styles.container(colorPalette));
 			}
 
 			return (

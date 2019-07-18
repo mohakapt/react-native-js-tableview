@@ -12,14 +12,14 @@ export const blendColors = (theme, color, accent) => {
 
 export const getColorPalette = (theme, blend, accent) => {
 	const light = {
-		background: Platform.OS === 'ios' ? '#F0EFF5' : '#F9F9F9',
+		background: Platform.OS === 'ios' ? '#f5f5f5' : '#F9F9F9',
 		section: '#fff',
-		separator: Platform.OS === 'ios' ? '#C8C7CD' : '#EBEBEB',
-		header: Platform.OS === 'ios' ? '#6D6D72' : accent,
-		footer: Platform.OS === 'ios' ? '#6D6D72' : '#575759',
-		accessory: Platform.OS === 'ios' ? '#b2b2b4' : '#9c9ca0',
+		separator: Platform.OS === 'ios' ? '#cccccc' : '#d7d7d7',
+		header: Platform.OS === 'ios' ? '#707070' : accent,
+		footer: Platform.OS === 'ios' ? '#707070' : '#575759',
+		accessory: Platform.OS === 'ios' ? '#b3b3b3' : '#9c9ca0',
 		title: Platform.OS === 'ios' ? '#000' : '#1a1a1a',
-		subtitle: '#8E8E93',
+		subtitle: '#919191',
 		disabled: '#b5b5b5',
 		progress: Platform.OS === 'ios' ? '#373737' : accent,
 
@@ -30,7 +30,7 @@ export const getColorPalette = (theme, blend, accent) => {
 	const dark = {
 		background: Platform.OS === 'ios' ? '#1A1A1A' : '#1f1f1f',
 		section: Platform.OS === 'ios' ? '#212121' : '#2B2B2B',
-		separator: Platform.OS === 'ios' ? '#3E3E40' : '#5E5E5E',
+		separator: Platform.OS === 'ios' ? '#404040' : '#585858',
 		header: Platform.OS === 'ios' ? '#8F8F95' : accent,
 		footer: Platform.OS === 'ios' ? '#8F8F95' : '#9f9fa6',
 		accessory: Platform.OS === 'ios' ? '#969696' : '#9c9ca0',
@@ -43,7 +43,29 @@ export const getColorPalette = (theme, blend, accent) => {
 		ripple: 'rgba(255,255,255,.2)',
 	};
 
-	const palette = theme === 'dark' ? dark : light;
+	const midnight = {
+		background: Platform.OS === 'ios' ? '#000000' : '#121212',
+		section: Platform.OS === 'ios' ? '#191919' : '#1E1E1E',
+		separator: Platform.OS === 'ios' ? '#404040' : '#4b4b4b',
+		header: Platform.OS === 'ios' ? '#919191' : accent,
+		footer: Platform.OS === 'ios' ? '#919191' : '#a2a2a2',
+		accessory: Platform.OS === 'ios' ? '#5c5c5c' : '#666666',
+		title: Platform.OS === 'ios' ? 'white' : '#E1E1E1',
+		subtitle: '#99989D',       // <-
+		disabled: '#4b4b4b',
+		progress: Platform.OS === 'ios' ? '#c8c8c8' : accent,
+
+		underlay: '#2b2b2b',
+		ripple: 'rgba(255,255,255,.2)',
+	};
+
+	const themes = {
+		light,
+		dark,
+		midnight,
+	};
+
+	const palette = themes[theme];
 	palette.theme = theme;
 	palette.blend = blend;
 	palette.accent = accent;

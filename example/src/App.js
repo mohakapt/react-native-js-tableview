@@ -1,14 +1,14 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, StatusBar, UIManager, LayoutAnimation } from 'react-native';
+import { LayoutAnimation, Platform, StatusBar, StyleSheet, UIManager } from 'react-native';
 import Table, {
-	Section,
-	KeyValueCell,
-	StaticCell,
-	TouchableCell,
 	BioCell,
+	KeyValueCell,
+	Section,
+	StaticCell,
 	SwitchCell,
+	TouchableCell,
 } from 'react-native-js-tableview';
 import { getColorPalette } from './assets/colors';
 import Icon from './assets/icons';
@@ -19,7 +19,7 @@ type Props = {
 };
 
 type State = {
-	theme: 'light' | 'dark',
+	theme: 'light' | 'dark' | 'midnight',
 	enabledRecommendations: boolean,
 	selectedBook: number,
 };
@@ -52,7 +52,7 @@ export default class App extends Component<Props, State> {
 			UIManager.setLayoutAnimationEnabledExperimental &&
 			UIManager.setLayoutAnimationEnabledExperimental(true);
 
-		const theme = 'dark';
+		const theme = 'midnight';
 		this.state = { theme, enabledRecommendations: false, selectedBook: 0 };
 		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
 	}
@@ -60,7 +60,11 @@ export default class App extends Component<Props, State> {
 	onToggleThemeTouched = () => {
 		LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
-		const theme = (this.state.theme === 'dark') ? 'light' : 'dark';
+		const themes = ['dark', 'midnight', 'light'];
+		const oldIndex = themes.findIndex(x => x === this.state.theme);
+		const newIndex = (oldIndex + 1) % themes.length;
+		const theme = themes[newIndex];
+
 		this.setState({ theme });
 		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
 	};
@@ -133,7 +137,7 @@ export default class App extends Component<Props, State> {
 			<>
 				<StatusBar
 					backgroundColor={palette.statusBar}
-					barStyle={Platform.OS === 'android' || theme === 'dark' ? 'light-content' : 'dark-content'} />
+					barStyle={Platform.OS === 'android' || theme !== 'light' ? 'light-content' : 'dark-content'} />
 
 				<Table
 					accentColor={palette.accent}
