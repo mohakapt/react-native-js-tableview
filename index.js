@@ -7,7 +7,9 @@ import TouchableCell from './src/TouchableCell';
 import BioCell from './src/BioCell';
 import KeyValueCell from './src/KeyValueCell';
 import SwitchCell from './src/SwitchCell';
+
 import { ThemeConsumer, ThemeContext, ThemeProvider } from './src/ThemeContext';
+import { blendColors, getColorPalette } from './src/assets/colors';
 
 export default Table;
 export {
@@ -20,7 +22,11 @@ export {
 	BioCell,
 	KeyValueCell,
 	SwitchCell,
+
 	ThemeContext,
 	ThemeConsumer,
 	ThemeProvider,
+
+	blendColors,
+	getColorPalette,
 };

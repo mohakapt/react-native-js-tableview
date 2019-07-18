@@ -158,3 +158,8 @@ declare const ThemeProvider: React.Provider<Theme>;
 declare const ThemeConsumer: React.Consumer<Theme>;
 
 export { ThemeContext, ThemeProvider, ThemeConsumer };
+
+declare function blendColors(theme: Theme, color: string, accent: string): string;
+declare function getColorPalette(theme: Theme, blend: boolean, accent: string): ColorPalette;
+
+export { blendColors, getColorPalette };
