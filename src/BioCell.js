@@ -46,11 +46,12 @@ class BioCell extends Component {
 
 			if (avatarName || (!photoSource && title)) {
 				return (
-					<UserAvatar
-						style={[styles.image, photoStyle]}
-						size={avatarSize || styles.image.height}
-						name={avatarName || title}
-						color={colorPalette.accent} />
+					<View style={[styles.image, photoStyle]}>
+						<UserAvatar
+							size={avatarSize || styles.image.height}
+							name={avatarName || title}
+							color={colorPalette.accent} />
+					</View>
 				);
 			} else {
 				return (
