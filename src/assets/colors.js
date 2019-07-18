@@ -35,7 +35,7 @@ export const getColorPalette = (theme, blend, accent) => {
 		footer: Platform.OS === 'ios' ? '#8F8F95' : '#9f9fa6',
 		accessory: Platform.OS === 'ios' ? '#969696' : '#9c9ca0',
 		title: Platform.OS === 'ios' ? 'white' : '#e6e6e6',
-		subtitle: '#8E8E93',       // <-
+		subtitle: '#8E8E93',
 		disabled: '#4b4b4b',
 		progress: Platform.OS === 'ios' ? '#c8c8c8' : accent,
 
@@ -51,7 +51,7 @@ export const getColorPalette = (theme, blend, accent) => {
 		footer: Platform.OS === 'ios' ? '#919191' : '#a2a2a2',
 		accessory: Platform.OS === 'ios' ? '#5c5c5c' : '#666666',
 		title: Platform.OS === 'ios' ? 'white' : '#E1E1E1',
-		subtitle: '#99989D',       // <-
+		subtitle: '#99989D',
 		disabled: '#4b4b4b',
 		progress: Platform.OS === 'ios' ? '#c8c8c8' : accent,
 

@@ -1,9 +1,27 @@
 import React from 'react';
 import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-export type TableProps = {
+export type Theme = 'light' | 'dark' | 'midnight';
+
+export interface ColorPalette {
+	background: string,
+	section: string,
+	separator: string,
+	header: string,
+	footer: string,
+	accessory: string,
+	title: string,
+	subtitle: string,
+	disabled: string,
+	progress: string,
+
+	underlay: string,
+	ripple: string,
+}
+
+export interface TableProps {
 	accentColor?: string,
-	theme?: 'light' | 'dark' | 'midnight',
+	theme?: Theme,
 	blendAccent?: boolean,
 	disabled?: boolean,
 
@@ -13,7 +31,8 @@ export type TableProps = {
 	children: React.ReactNode,
 	scrollable?: boolean,
 }
-export type SectionProps = {
+
+export interface SectionProps {
 	disabled?: boolean,
 
 	children: React.ReactNode,
@@ -31,7 +50,8 @@ export type SectionProps = {
 	separatorInsetLeft?: number,
 	separatorInsetRight?: number,
 }
-export type CommonCellProps = {
+
+export interface CommonCellProps {
 	style?: ViewStyle,
 
 	disabled?: boolean,
@@ -42,10 +62,12 @@ export type CommonCellProps = {
 	customActionType?: 'call' | 'compose' | 'openUrl',
 	customActionTrigger?: 'onPress' | 'onLongPress',
 }
-export type CellProps = CommonCellProps & {
+
+export interface CellProps extends CommonCellProps {
 	children: React.ReactNode,
 }
-export type AccessoryCellProps = CommonCellProps & {
+
+export interface AccessoryCellProps extends CommonCellProps {
 	accessory?: 'disclosure' | 'details' | 'checkmark',
 	accessoryComponent?: React.ReactNode,
 	hideAccessorySeparator?: boolean,
@@ -53,7 +75,8 @@ export type AccessoryCellProps = CommonCellProps & {
 
 	onAccessoryPress?: () => void,
 }
-export type StaticCellProps = AccessoryCellProps & {
+
+export interface StaticCellProps extends AccessoryCellProps {
 	title: string,
 	titleStyle?: TextStyle,
 	subtitle?: string,
@@ -62,11 +85,13 @@ export type StaticCellProps = AccessoryCellProps & {
 
 	iconComponent?: React.ReactNode,
 }
-export type TouchableCellProps = AccessoryCellProps | {
+
+export interface TouchableCellProps extends AccessoryCellProps {
 	title: string,
 	titleStyle?: TextStyle,
 }
-export type BioCellProps = AccessoryCellProps & {
+
+export interface BioCellProps extends AccessoryCellProps {
 	title: string,
 	titleStyle?: TextStyle,
 
@@ -79,7 +104,8 @@ export type BioCellProps = AccessoryCellProps & {
 	photoSource?: object,
 	photoStyle?: ImageStyle,
 }
-export type KeyValueCellProps = AccessoryCellProps & {
+
+export interface KeyValueCellProps extends AccessoryCellProps {
 	title: string,
 	titleStyle?: TextStyle,
 	value?: string,
@@ -88,7 +114,8 @@ export type KeyValueCellProps = AccessoryCellProps & {
 
 	iconComponent?: React.ReactNode,
 }
-export type SwitchCellProps = AccessoryCellProps & {
+
+export interface SwitchCellProps extends AccessoryCellProps {
 	title: string,
 	titleStyle?: TextStyle,
 	value?: boolean,
@@ -125,3 +152,9 @@ export class KeyValueCell extends React.Component<KeyValueCellProps> {
 
 export class SwitchCell extends React.Component<SwitchCellProps> {
 }
+
+declare const ThemeContext: React.Context<Theme>;
+declare const ThemeProvider: React.Provider<Theme>;
+declare const ThemeConsumer: React.Consumer<Theme>;
+
+export { ThemeContext, ThemeProvider, ThemeConsumer };
