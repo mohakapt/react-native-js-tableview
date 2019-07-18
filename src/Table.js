@@ -12,7 +12,10 @@ class Table extends Component {
 		accentColor: PropTypes.string,
 		theme: PropTypes.oneOf(['light', 'dark', 'midnight']),
 		blendAccent: PropTypes.bool,
-		disabled: PropTypes.bool,
+		colorPalette: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.object,
+		]),
 
 		style: ViewPropTypes.style,
 		scrollViewStyle: ViewPropTypes.style,
@@ -22,6 +25,7 @@ class Table extends Component {
 			PropTypes.PropTypes.element,
 		]),
 		scrollable: PropTypes.bool,
+		disabled: PropTypes.bool,
 	};
 
 	static defaultProps = {
@@ -35,9 +39,19 @@ class Table extends Component {
 
 	render() {
 		const { style, scrollViewStyle, children } = this.props;
-		const { scrollable, accentColor, theme, blendAccent, disabled } = this.props;
+		const { scrollable, accentColor, theme, blendAccent, colorPalette, disabled } = this.props;
 
-		const colorPalette = getColorPalette(theme, blendAccent, accentColor);
+		let palette = getColorPalette(theme, blendAccent, accentColor);
+
+		if (!!colorPalette) {
+			const isFunc = typeof colorPalette === 'function';
+
+			if (isFunc) {
+				palette = colorPalette(palette);
+			} else {
+				palette = colorPalette;
+			}
+		}
 
 		const renderTable = () => {
 			const tableStyle = [styles.table, style];
@@ -56,7 +70,7 @@ class Table extends Component {
 		const wrapScrollView = (component) => {
 			if (scrollable) {
 				return (
-					<ScrollView style={[styles.container(colorPalette), scrollViewStyle]}>
+					<ScrollView style={[styles.container(palette), scrollViewStyle]}>
 						{component}
 					</ScrollView>
 				);
@@ -66,7 +80,7 @@ class Table extends Component {
 		};
 
 		return (
-			<ThemeProvider value={{ colorPalette, disabled }}>
+			<ThemeProvider value={{ colorPalette: palette, disabled }}>
 				{wrapScrollView(renderTable())}
 			</ThemeProvider>
 		);

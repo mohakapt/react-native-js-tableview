@@ -23,13 +23,14 @@ export interface TableProps {
 	accentColor?: string,
 	theme?: Theme,
 	blendAccent?: boolean,
-	disabled?: boolean,
+	colorPalette?: (ColorPalette) | ((colorPalette: ColorPalette) => ColorPalette),
 
 	style?: ViewStyle,
 	scrollViewStyle?: ViewStyle,
 
 	children: React.ReactNode,
 	scrollable?: boolean,
+	disabled?: boolean,
 }
 
 export interface SectionProps {
