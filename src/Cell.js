@@ -24,6 +24,7 @@ class Cell extends Component {
 		customActionTrigger: 'onPress',
 	};
 
+
 	render() {
 		const {
 			style, children,
@@ -31,7 +32,7 @@ class Cell extends Component {
 			customAction, customActionType, customActionTrigger,
 		} = this.props;
 		const { colorPalette } = this.context;
-		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
 
 		const renderCell = () => (
 			<View style={style}>

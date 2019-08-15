@@ -20,6 +20,7 @@ class KeyValueCell extends Component {
 		iconComponent: PropTypes.element,
 	}, AccessoryCell.propTypes);
 
+
 	render() {
 		const {
 			children,
@@ -31,7 +32,7 @@ class KeyValueCell extends Component {
 			...remainingProps
 		} = this.props;
 		const { colorPalette } = this.context;
-		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
 
 		const getIcon = () => {
 			if (iconComponent) {

@@ -36,9 +36,10 @@ class Section extends Component {
 		separatorInsetRight: 0,
 	};
 
+
 	render() {
 		const { colorPalette } = this.context;
-		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
 
 		const renderSeparator = (index, useInsets) => {
 			const { hideSeparators, separatorInsetLeft, separatorInsetRight } = this.props;

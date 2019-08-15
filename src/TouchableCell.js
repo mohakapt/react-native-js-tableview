@@ -15,6 +15,7 @@ class TouchableCell extends Component {
 		titleStyle: Text.propTypes.style,
 	}, AccessoryCell.propTypes);
 
+
 	render() {
 		const {
 			children,
@@ -23,7 +24,7 @@ class TouchableCell extends Component {
 			...remainingProps
 		} = this.props;
 		const { colorPalette } = this.context;
-		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
 
 		const combinedStyles = [
 			styles.title(colorPalette, disabled),

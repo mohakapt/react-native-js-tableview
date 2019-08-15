@@ -24,6 +24,7 @@ class AccessoryCell extends Component {
 		hideAccessorySeparator: false,
 	};
 
+
 	render() {
 		const {
 			style, children,
@@ -35,7 +36,7 @@ class AccessoryCell extends Component {
 			...remainingProps
 		} = this.props;
 		const { colorPalette } = this.context;
-		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
 
 		const renderAccessory = () => {
 			const reVal = [];

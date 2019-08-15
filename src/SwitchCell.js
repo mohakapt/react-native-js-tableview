@@ -19,6 +19,7 @@ class SwitchCell extends Component {
 		iconComponent: PropTypes.element,
 	}, AccessoryCell.propTypes);
 
+
 	render() {
 		const {
 			children, onPress,
@@ -30,7 +31,7 @@ class SwitchCell extends Component {
 			...remainingProps
 		} = this.props;
 		const { colorPalette } = this.context;
-		const disabled = this.props.disabled === undefined ? this.context.disable : this.props.disabled;
+		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
 
 		const renderIcon = () => {
 			if (iconComponent) {
