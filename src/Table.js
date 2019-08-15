@@ -57,7 +57,7 @@ class Table extends Component {
 			const tableStyle = [styles.table, style];
 
 			if (!scrollable) {
-				tableStyle.unshift(styles.container(colorPalette));
+				tableStyle.unshift(styles.container(palette));
 			}
 
 			return (
