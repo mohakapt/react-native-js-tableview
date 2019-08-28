@@ -138,7 +138,6 @@ export const staticCellStyles = StyleSheet.create({
 	subtitle: (palette, disabled) => ({
 		alignSelf: 'flex-start',
 
-		marginStart: 4,
 		marginTop: 1,
 		fontSize: 15,
 		color: disabled ? palette.disabled : palette.subtitle,
