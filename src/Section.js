@@ -11,10 +11,11 @@ class Section extends Component {
 	static propTypes = {
 		disabled: PropTypes.bool,
 
-		children: PropTypes.oneOfType([
-			PropTypes.arrayOf(PropTypes.element),
-			PropTypes.PropTypes.element,
-		]),
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.element, PropTypes.node),
+      PropTypes.element,
+      PropTypes.node
+    ]),
 		style: ViewPropTypes.style,
 
 		header: PropTypes.string,
