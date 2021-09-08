@@ -12,7 +12,7 @@ class SwitchCell extends Component {
 
 	static propTypes = Object.assign({
 		title: PropTypes.string.isRequired,
-		titleStyle: Text.propTypes.style,
+		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		value: PropTypes.bool,
 		onSwitch: PropTypes.func,
 

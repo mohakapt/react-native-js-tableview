@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, Text, View, ViewPropTypes } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { ThemeContext, ThemeProvider } from './ThemeContext';
 
@@ -13,16 +13,16 @@ class Section extends Component {
 
 		children: PropTypes.oneOfType([
 			PropTypes.arrayOf(PropTypes.element),
-			PropTypes.PropTypes.element,
+			PropTypes.element,
 		]),
-		style: ViewPropTypes.style,
+		style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
 		header: PropTypes.string,
-		headerStyle: Text.propTypes.style,
+		headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		headerComponent: PropTypes.node,
 
 		footer: PropTypes.string,
-		footerStyle: Text.propTypes.style,
+		footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		footerComponent: PropTypes.node,
 
 		hideSeparators: PropTypes.bool,

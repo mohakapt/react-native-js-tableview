@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, ViewPropTypes } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { COLOR_ACCENT, getColorPalette } from './assets/colors';
@@ -17,12 +17,12 @@ class Table extends Component {
 			PropTypes.object,
 		]),
 
-		style: ViewPropTypes.style,
-		scrollViewStyle: ViewPropTypes.style,
+		style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		scrollViewStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
 		children: PropTypes.oneOfType([
 			PropTypes.arrayOf(PropTypes.element),
-			PropTypes.PropTypes.element,
+			PropTypes.element,
 		]),
 		scrollable: PropTypes.bool,
 		disabled: PropTypes.bool,

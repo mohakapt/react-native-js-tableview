@@ -12,9 +12,9 @@ class KeyValueCell extends Component {
 
 	static propTypes = Object.assign({
 		title: PropTypes.string.isRequired,
-		titleStyle: Text.propTypes.style,
+		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		value: PropTypes.string,
-		valueStyle: Text.propTypes.style,
+		valueStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		contentComponent: PropTypes.node,
 
 		iconComponent: PropTypes.element,
