@@ -62,10 +62,6 @@ class Section extends Component {
 			const { header, headerStyle, headerComponent } = this.props;
 			const reVal = [];
 
-			if (Platform.OS === 'ios' || header) {
-				reVal.push(renderSeparator(112, false));
-			}
-
 			if (headerComponent) {
 				reVal.unshift(headerComponent);
 			} else if (header) {
@@ -103,10 +99,6 @@ class Section extends Component {
 		const renderFooter = () => {
 			const { footer, footerStyle, footerComponent } = this.props;
 			const reVal = [];
-
-			if (Platform.OS === 'ios' || footer) {
-				reVal.push(renderSeparator(111, false));
-			}
 
 			if (footerComponent) {
 				reVal.push(footerComponent);

@@ -5,6 +5,9 @@ export const tableStyles = StyleSheet.create({
 		backgroundColor: palette.background,
 	}),
 	table: Platform.select({
+		ios: {
+			paddingHorizontal: 16,
+		},
 		android: {
 			paddingHorizontal: 16,
 			paddingBottom: 10,
@@ -27,6 +30,11 @@ export const sectionStyles = StyleSheet.create({
 		},
 	}),
 	cellsContainer: (palette) => ({
+		...Platform.select({
+			ios: {
+				borderRadius: 10,
+			}
+		}),
 		backgroundColor: palette.section,
 	}),
 	separator: (palette, start, end) => ({
