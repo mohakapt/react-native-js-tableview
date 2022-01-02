@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Text, View } from 'react-native';
+import { Switch, Text, View, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';
@@ -80,7 +80,7 @@ class SwitchCell extends Component {
 			<AccessoryCell
 				hideAccessorySeparator
 				disabled={disabled}
-				onPress={onSwitch}
+				onPress={Platform.OS === 'android' ? onSwitch : null}
 				{...remainingProps}
 				customActionTrigger='onLongPress'
 			>
