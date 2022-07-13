@@ -68,24 +68,20 @@ You can check the example in the source code for more detailed information.<br/>
 ```js
 import Table, { Section, BioCell, StaticCell, TouchableCell } from 'react-native-js-tableview';
 
-class App extends React.Component {
-  render() {
-    return (
-      <Table style={styles.container} accentColor="#4DB6AC" scrollable={true}>
-        <Section header="GENERAL" footer="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-          <BioCell title="Adam Smith" subtitle="Scottish economist, philosopher, and author." />
-          <StaticCell title="Profile" accessory="disclosure" onPress={() => {}} />
-          <StaticCell title="Books" accessory="disclosure" onPress={() => {}} />
-          <StaticCell title="Projects" accessory="disclosure" onPress={() => {}} />
-        </Section>
-        
-        <Section>
-          <TouchableCell title="Sign out" onPress={() => {}} />
-        </Section>
-      </Table>
-    );
-  }
-}
+const App = () => (
+  <Table style={styles.container} accentColor='#4DB6AC' scrollable={true}>
+    <Section header='GENERAL' footer='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'>
+      <BioCell title='Adam Smith' subtitle='Scottish economist, philosopher, and author.' />
+      <StaticCell title='Profile' accessory='disclosure' onPress={() => {}} />
+      <StaticCell title='Books' accessory='disclosure' onPress={() => {}} />
+      <StaticCell title='Projects' accessory='disclosure' onPress={() => {}} />
+    </Section>
+
+    <Section>
+      <TouchableCell title='Sign out' onPress={() => {}} />
+    </Section>
+  </Table>
+);
 ```
 
 
