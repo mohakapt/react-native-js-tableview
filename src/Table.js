@@ -26,20 +26,21 @@ class Table extends Component {
 		]),
 		scrollable: PropTypes.bool,
 		disabled: PropTypes.bool,
+		mode: PropTypes.oneOf(['grouped', 'inset-grouped']),
 	};
 
 	static defaultProps = {
 		accentColor: COLOR_ACCENT,
 		theme: 'light',
 		blendAccent: false,
-		disabled: false,
-
 		scrollable: false,
+		disabled: false,
+		mode: 'inset-grouped',
 	};
 
 	render() {
 		const { style, scrollViewStyle, children } = this.props;
-		const { scrollable, accentColor, theme, blendAccent, colorPalette, disabled } = this.props;
+		const { scrollable, accentColor, theme, blendAccent, colorPalette, disabled, mode } = this.props;
 
 		let palette = getColorPalette(theme, blendAccent, accentColor);
 
@@ -80,7 +81,7 @@ class Table extends Component {
 		};
 
 		return (
-			<ThemeProvider value={{ colorPalette: palette, disabled }}>
+			<ThemeProvider value={{ colorPalette: palette, disabled, mode }}>
 				{wrapScrollView(renderTable())}
 			</ThemeProvider>
 		);

@@ -5,37 +5,37 @@ export const tableStyles = StyleSheet.create({
 		backgroundColor: palette.background,
 	}),
 	table: Platform.select({
-		ios: {
-			paddingHorizontal: 16,
-		},
 		android: {
-			paddingHorizontal: 16,
 			paddingBottom: 10,
 		},
 	}),
 });
 
 export const sectionStyles = StyleSheet.create({
-	container: (palette) => Platform.select({
+	container: (palette, inset) => Platform.select({
 		ios: {
 			marginTop: 26,
+			marginHorizontal: inset ? 16 : 0,
 		},
 		android: {
 			marginTop: 16,
+			marginHorizontal: inset ? 16 : 0,
 
 			backgroundColor: palette.section,
 			overflow: 'hidden',
-			borderRadius: 3,
-			elevation: 3,
+			borderRadius: inset ? 3 : 0,
+			elevation: inset ? 3 : 1,
 		},
 	}),
-	cellsContainer: (palette) => ({
+	cellsContainer: (palette, inset) => ({
+		backgroundColor: palette.section,
+		overflow: 'hidden',
+
 		...Platform.select({
 			ios: {
-				borderRadius: 10,
-			}
+				borderRadius: inset ? 10 : 0,
+			},
 		}),
-		backgroundColor: palette.section,
 	}),
 	separator: (palette, start, end) => ({
 		backgroundColor: palette.separator,
@@ -43,35 +43,36 @@ export const sectionStyles = StyleSheet.create({
 
 		marginStart: start,
 		marginEnd: end,
+	sectionSeparator: (palette) => ({
+		backgroundColor: palette.separator,
+		height: 1 / PixelRatio.get(),
 	}),
-	headerContainer: {
-		paddingStart: 16,
-		...Platform.select({
-			ios: {
-				paddingTop: 2,
-				paddingBottom: 6,
-			},
-			android: {
-				paddingVertical: 11,
-			},
-		}),
-	},
+	headerContainer: (inset) => Platform.select({
+		ios: {
+			paddingHorizontal: inset ? 20 : 16,
+			paddingTop: 2,
+			paddingBottom: inset ? 7 : 6,
+		},
+		android: {
+			paddingHorizontal: 16,
+			paddingVertical: 11,
+		},
+	}),
 	header: (palette) => ({
 		alignSelf: 'flex-start',
 		color: palette.header,
 		fontSize: Platform.OS === 'ios' ? 13 : 15,
 	}),
-	footerContainer: {
-		paddingStart: 16,
-		...Platform.select({
-			ios: {
-				paddingTop: 6,
-			},
-			android: {
-				paddingVertical: 7,
-			},
-		}),
-	},
+	footerContainer: (inset) => Platform.select({
+		ios: {
+			paddingHorizontal: inset ? 20 : 16,
+			paddingTop: inset ? 7 : 6,
+		},
+		default: {
+			paddingHorizontal: 16,
+			paddingVertical: 7,
+		},
+	}),
 	footer: (palette) => ({
 		alignSelf: 'flex-start',
 		color: palette.footer,

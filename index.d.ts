@@ -31,10 +31,12 @@ export interface TableProps {
 	children: React.ReactNode,
 	scrollable?: boolean,
 	disabled?: boolean,
+	mode?: 'grouped' | 'inset-grouped',
 }
 
 export interface SectionProps {
 	disabled?: boolean,
+	mode?: 'grouped' | 'inset-grouped',
 
 	children: React.ReactNode,
 	style?: ViewStyle,
@@ -161,6 +163,7 @@ declare const ThemeConsumer: React.Consumer<Theme>;
 export { ThemeContext, ThemeProvider, ThemeConsumer };
 
 declare function blendColors(theme: Theme, color: string, accent: string): string;
+
 declare function getColorPalette(theme: Theme, blend: boolean, accent: string): ColorPalette;
 
 export { blendColors, getColorPalette };
