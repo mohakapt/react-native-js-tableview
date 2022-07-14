@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, Text, View, ViewPropTypes } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { ThemeContext, ThemeProvider } from './ThemeContext';
 
@@ -10,20 +10,21 @@ class Section extends Component {
 
 	static propTypes = {
 		disabled: PropTypes.bool,
+		mode: PropTypes.oneOf(['grouped', 'inset-grouped']),
 
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.element, PropTypes.node),
-      PropTypes.element,
-      PropTypes.node
-    ]),
-		style: ViewPropTypes.style,
+		children: PropTypes.oneOfType([
+				PropTypes.arrayOf(PropTypes.element, PropTypes.node),
+				PropTypes.element,
+				PropTypes.node
+		]),
+		style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
 		header: PropTypes.string,
-		headerStyle: Text.propTypes.style,
+		headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		headerComponent: PropTypes.node,
 
 		footer: PropTypes.string,
-		footerStyle: Text.propTypes.style,
+		footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		footerComponent: PropTypes.node,
 
 		hideSeparators: PropTypes.bool,
@@ -41,6 +42,7 @@ class Section extends Component {
 	render() {
 		const { colorPalette } = this.context;
 		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
+		const mode = this.props.mode === undefined ? this.context.mode : this.props.mode;
 
 		const renderSeparator = (index, useInsets) => {
 			const { hideSeparators, separatorInsetLeft, separatorInsetRight } = this.props;
@@ -59,12 +61,22 @@ class Section extends Component {
 			return <View key={index} style={separatorStyle} />;
 		};
 
+		const renderSectionSeparator = (key) => {
+			const { hideSeparators } = this.props;
+
+			if (hideSeparators && Platform.OS !== 'ios') {
+				return;
+			}
+
+			return <View key={key} style={styles.sectionSeparator(colorPalette)} />;
+		};
+
 		const renderHeader = () => {
 			const { header, headerStyle, headerComponent } = this.props;
 			const reVal = [];
 
-			if (Platform.OS === 'ios' || header) {
-				reVal.push(renderSeparator(112, false));
+			if ((Platform.OS === 'ios' && mode === 'grouped') || (Platform.OS !== 'ios' && header)) {
+				reVal.push(renderSectionSeparator(112));
 			}
 
 			if (headerComponent) {
@@ -76,7 +88,7 @@ class Section extends Component {
 				];
 
 				const textComponent = (
-					<View key='header' style={styles.headerContainer}>
+					<View key='header' style={styles.headerContainer(mode !== 'grouped')}>
 						<Text style={combinedStyles}>{header}</Text>
 					</View>
 				);
@@ -105,8 +117,8 @@ class Section extends Component {
 			const { footer, footerStyle, footerComponent } = this.props;
 			const reVal = [];
 
-			if (Platform.OS === 'ios' || footer) {
-				reVal.push(renderSeparator(111, false));
+			if ((Platform.OS === 'ios' && mode === 'grouped') || (Platform.OS !== 'ios' && footer)) {
+				reVal.push(renderSectionSeparator(111));
 			}
 
 			if (footerComponent) {
@@ -118,7 +130,7 @@ class Section extends Component {
 				];
 
 				const textComponent = (
-					<View key='footer' style={styles.footerContainer}>
+					<View key='footer' style={styles.footerContainer(mode !== 'grouped')}>
 						<Text style={combinedStyles}>{footer}</Text>
 					</View>
 				);
@@ -130,9 +142,9 @@ class Section extends Component {
 
 		return (
 			<ThemeProvider value={{ colorPalette, disabled }}>
-				<View style={[styles.container(colorPalette), this.props.style]}>
+				<View style={[styles.container(colorPalette, mode !== 'grouped'), this.props.style]}>
 					{renderHeader()}
-					<View style={styles.cellsContainer(colorPalette)}>
+					<View style={styles.cellsContainer(colorPalette, mode !== 'grouped')}>
 						{renderCells()}
 					</View>
 					{renderFooter()}

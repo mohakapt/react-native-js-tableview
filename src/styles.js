@@ -5,65 +5,80 @@ export const tableStyles = StyleSheet.create({
 		backgroundColor: palette.background,
 	}),
 	table: Platform.select({
-		android: {
-			paddingHorizontal: 16,
+		default: {
 			paddingBottom: 10,
 		},
 	}),
 });
 
 export const sectionStyles = StyleSheet.create({
-	container: (palette) => Platform.select({
+	container: (palette, inset) => Platform.select({
 		ios: {
 			marginTop: 26,
+			marginHorizontal: inset ? 16 : 0,
 		},
-		android: {
+		default: {
 			marginTop: 16,
+			marginHorizontal: inset ? 16 : 0,
 
 			backgroundColor: palette.section,
 			overflow: 'hidden',
-			borderRadius: 3,
-			elevation: 3,
+			borderRadius: inset ? 3 : 0,
+			elevation: inset ? 3 : 1,
 		},
 	}),
-	cellsContainer: (palette) => ({
+	cellsContainer: (palette, inset) => ({
 		backgroundColor: palette.section,
+		overflow: 'hidden',
+
+		...Platform.select({
+			ios: {
+				borderRadius: inset ? 10 : 0,
+			},
+		}),
 	}),
 	separator: (palette, start, end) => ({
 		backgroundColor: palette.separator,
-		height: 1 / PixelRatio.get(),
+		height: StyleSheet.hairlineWidth,
 
+		marginVertical: -StyleSheet.hairlineWidth,
 		marginStart: start,
 		marginEnd: end,
+
+		zIndex: 1000,
 	}),
-	headerContainer: {
-		paddingStart: 16,
-		...Platform.select({
-			ios: {
-				paddingTop: 2,
-				paddingBottom: 6,
-			},
-			android: {
-				paddingVertical: 11,
-			},
-		}),
-	},
+	sectionSeparator: (palette) => ({
+		backgroundColor: palette.separator,
+		height: StyleSheet.hairlineWidth,
+
+		zIndex: 1000,
+	}),
+	headerContainer: (inset) => Platform.select({
+		ios: {
+			paddingHorizontal: inset ? 20 : 16,
+			paddingTop: 2,
+			paddingBottom: inset ? 7 : 6,
+		},
+		default: {
+			paddingHorizontal: 16,
+			paddingVertical: 11,
+		},
+	}),
 	header: (palette) => ({
 		alignSelf: 'flex-start',
 		color: palette.header,
 		fontSize: Platform.OS === 'ios' ? 13 : 15,
 	}),
-	footerContainer: {
-		paddingStart: 16,
-		...Platform.select({
-			ios: {
-				paddingTop: 6,
-			},
-			android: {
-				paddingVertical: 7,
-			},
-		}),
-	},
+	footerContainer: (inset) => Platform.select({
+		ios: {
+			paddingHorizontal: inset ? 20 : 16,
+			paddingTop: inset ? 7 : 6,
+		},
+		default: {
+			paddingHorizontal: 16,
+			paddingVertical: 7,
+		},
+	}),
 	footer: (palette) => ({
 		alignSelf: 'flex-start',
 		color: palette.footer,
@@ -77,28 +92,26 @@ export const accessoryCellStyles = StyleSheet.create({
 		alignItems: 'center',
 		minHeight: 44,
 	},
-	container: {
-		...Platform.select({
-			ios: {
-				marginEnd: 10,
+	container: Platform.select({
+		ios: {
+			marginEnd: 10,
 
-				paddingStart: 12,
-				paddingEnd: 6,
-				paddingVertical: 8,
-			},
-			android: {
-				marginHorizontal: 4,
-				padding: 8,
+			paddingStart: 12,
+			paddingEnd: 6,
+			paddingVertical: 8,
+		},
+		default: {
+			marginHorizontal: 4,
+			padding: 8,
 
-				overflow: 'hidden',
-				borderRadius: 5,
-			},
-		}),
-	},
+			overflow: 'hidden',
+			borderRadius: 5,
+		},
+	}),
 	separator: (palette) => ({
 		backgroundColor: palette.separator,
 
-		width: 1 / PixelRatio.get(),
+		width: StyleSheet.hairlineWidth,
 		height: 30,
 	}),
 	accessory: (accessory, palette, disabled) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Linking, Platform, TouchableHighlight, TouchableNativeFeedback, View, ViewPropTypes } from 'react-native';
+import { Linking, Platform, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { ThemeContext } from './ThemeContext';
 
@@ -8,7 +8,7 @@ class Cell extends Component {
 
 	static propTypes = {
 		children: PropTypes.node.isRequired,
-		style: ViewPropTypes.style,
+		style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
 		disabled: PropTypes.bool,
 		onPress: PropTypes.func,
@@ -74,7 +74,7 @@ class Cell extends Component {
 			ios: {
 				underlayColor: colorPalette.underlay,
 			},
-			android: {
+			default: {
 				background: TouchableNativeFeedback.Ripple(colorPalette.ripple, false),
 			},
 		});

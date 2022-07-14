@@ -12,9 +12,9 @@ class StaticCell extends Component {
 
 	static propTypes = Object.assign({
 		title: PropTypes.string.isRequired,
-		titleStyle: Text.propTypes.style,
+		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		subtitle: PropTypes.string,
-		subtitleStyle: Text.propTypes.style,
+		subtitleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		contentComponent: PropTypes.node,
 
 		iconComponent: PropTypes.element,

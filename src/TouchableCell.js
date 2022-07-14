@@ -12,7 +12,7 @@ class TouchableCell extends Component {
 
 	static propTypes = Object.assign({
 		title: PropTypes.string.isRequired,
-		titleStyle: Text.propTypes.style,
+		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}, AccessoryCell.propTypes);
 
 

@@ -52,7 +52,7 @@ export default class App extends Component<Props, State> {
 			UIManager.setLayoutAnimationEnabledExperimental &&
 			UIManager.setLayoutAnimationEnabledExperimental(true);
 
-		const theme = 'midnight';
+		const theme = 'light';
 		this.state = { theme, enabledRecommendations: false, selectedBook: 0 };
 		this.props.navigation.setParams({ theme, onToggleThemeTouched: this.onToggleThemeTouched });
 	}
@@ -143,6 +143,7 @@ export default class App extends Component<Props, State> {
 					accentColor={palette.accent}
 					theme={theme}
 					blendAccent={false}
+					mode={Platform.OS === 'ios' ? 'grouped' : 'inset-grouped'}
 					style={styles.container}
 					scrollable={true}>
 

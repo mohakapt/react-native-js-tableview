@@ -1,6 +1,6 @@
 {
   "name": "react-native-js-tableview",
-  "version": "2.4.2",
+  "version": "2.4.4",
   "description": "A JavaScript implementation for TableView that looks great on both iOS and Android.",
   "main": "index.js",
   "author": "Haytham KATBY <mohakapt@gmail.com>",
@@ -24,7 +24,7 @@
     "react": "16.6.3",
     "react-native": "^0.58.6",
     "react-native-svg": "^9.2.4",
-    "react-navigation": "^2.11.2"
+    "react-navigation": "^2.18.3"
   },
   "repository": {
     "type": "git",
