@@ -10,9 +10,9 @@ import detailsIos from './detailsIos.png';
 import checkmarkIos from './checkmarkIos.png';
 
 const icons = {
-	disclosure: Platform.select({android: disclosureAndroid, ios: disclosureIos}),
-	details: Platform.select({android: detailsAndroid, ios: detailsIos}),
-	checkmark: Platform.select({android: checkmarkAndroid, ios: checkmarkIos}),
+	disclosure: Platform.select({ default: disclosureAndroid, ios: disclosureIos }),
+	details: Platform.select({ default: detailsAndroid, ios: detailsIos }),
+	checkmark: Platform.select({ default: checkmarkAndroid, ios: checkmarkIos }),
 };
 
 const Icon = (props) => {

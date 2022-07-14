@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, PixelRatio } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const tableStyles = StyleSheet.create({
 	container: (palette) => ({
