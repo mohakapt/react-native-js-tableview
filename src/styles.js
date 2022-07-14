@@ -39,13 +39,19 @@ export const sectionStyles = StyleSheet.create({
 	}),
 	separator: (palette, start, end) => ({
 		backgroundColor: palette.separator,
-		height: 1 / PixelRatio.get(),
+		height: StyleSheet.hairlineWidth,
 
+		marginVertical: -StyleSheet.hairlineWidth,
 		marginStart: start,
 		marginEnd: end,
+
+		zIndex: 1000,
+	}),
 	sectionSeparator: (palette) => ({
 		backgroundColor: palette.separator,
-		height: 1 / PixelRatio.get(),
+		height: StyleSheet.hairlineWidth,
+
+		zIndex: 1000,
 	}),
 	headerContainer: (inset) => Platform.select({
 		ios: {
@@ -53,7 +59,7 @@ export const sectionStyles = StyleSheet.create({
 			paddingTop: 2,
 			paddingBottom: inset ? 7 : 6,
 		},
-		android: {
+		default: {
 			paddingHorizontal: 16,
 			paddingVertical: 11,
 		},
@@ -105,7 +111,7 @@ export const accessoryCellStyles = StyleSheet.create({
 	separator: (palette) => ({
 		backgroundColor: palette.separator,
 
-		width: 1 / PixelRatio.get(),
+		width: StyleSheet.hairlineWidth,
 		height: 30,
 	}),
 	accessory: (accessory, palette, disabled) => {
