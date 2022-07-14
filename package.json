@@ -24,7 +24,7 @@
     "react": "16.6.3",
     "react-native": "^0.58.6",
     "react-native-svg": "^9.2.4",
-    "react-navigation": "^2.11.2"
+    "react-navigation": "^2.18.3"
   },
   "repository": {
     "type": "git",
