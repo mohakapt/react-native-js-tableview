@@ -6,7 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues-raw/mohakapt/react-native-js-tableview.svg)](https://github.com/mohakapt/react-native-js-tableview/issues)
 [![License](https://img.shields.io/github/license/mohakapt/react-native-js-tableview.svg)](https://github.com/mohakapt/react-native-js-tableview)
 
-_"Who wants native components. You spend hours linking 'em, they make your app crash and they don't work with expo, Yuck!"_ - **Steve Jobs** 😄
+_"Who wants native components. You spend hours linking 'em, they make your app crash, and they don't work with expo, Yuck!"_ - **Steve Jobs** 😄
 <br/><br/>
 
 ![react-native-js-tableview iOS Screenshot](https://raw.githubusercontent.com/mohakapt/react-native-js-tableview/master/images/screenshot_ios.gif)
@@ -86,7 +86,7 @@ const App = () => (
 
 
 ## Contributing
-If you encounter a bug or you have a feature in mind please make a pull request and i will merge it as soon as possible, if you can't (for some reason) make a pull request please open an issue and i will happily do respond to it.
+If you encounter a bug, or you have a feature in mind please make a pull request, and I will merge it as soon as possible, if you can't (for some reason) make a pull request please open an issue, and I will happily do respond to it.
 
 
 ## Versioning
