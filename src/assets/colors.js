@@ -12,18 +12,18 @@ export const blendColors = (theme, color, accent) => {
 
 export const getColorPalette = (theme, blend, accent) => {
 	const light = {
-		background: Platform.OS === 'ios' ? '#f5f5f5' : '#F9F9F9',
+		background: Platform.OS === 'ios' ? '#F2F2F7' : '#F9F9F9',
 		section: '#fff',
-		separator: Platform.OS === 'ios' ? '#cccccc' : '#d7d7d7',
-		header: Platform.OS === 'ios' ? '#707070' : accent,
-		footer: Platform.OS === 'ios' ? '#707070' : '#575759',
-		accessory: Platform.OS === 'ios' ? '#b3b3b3' : '#9c9ca0',
+		separator: Platform.OS === 'ios' ? '#C6C6C6' : '#d7d7d7',
+		header: Platform.OS === 'ios' ? '#85858B' : accent,
+		footer: Platform.OS === 'ios' ? '#85858B' : '#575759',
+		accessory: Platform.OS === 'ios' ? '#C4C4C7' : '#9c9ca0',
 		title: Platform.OS === 'ios' ? '#000' : '#1a1a1a',
-		subtitle: '#919191',
+		subtitle: '#8A8A8E',
 		disabled: '#b5b5b5',
 		progress: Platform.OS === 'ios' ? '#373737' : accent,
 
-		underlay: '#f2f2f2',
+		underlay: '#E5E5EA',
 		ripple: 'rgba(0,0,0,.2)',
 	};
 
@@ -45,17 +45,17 @@ export const getColorPalette = (theme, blend, accent) => {
 
 	const midnight = {
 		background: Platform.OS === 'ios' ? '#000000' : '#121212',
-		section: Platform.OS === 'ios' ? '#191919' : '#1E1E1E',
-		separator: Platform.OS === 'ios' ? '#404040' : '#4b4b4b',
-		header: Platform.OS === 'ios' ? '#919191' : accent,
-		footer: Platform.OS === 'ios' ? '#919191' : '#a2a2a2',
-		accessory: Platform.OS === 'ios' ? '#5c5c5c' : '#666666',
+		section: Platform.OS === 'ios' ? '#1C1C1E' : '#1E1E1E',
+		separator: Platform.OS === 'ios' ? '#3E3E41' : '#4b4b4b',
+		header: Platform.OS === 'ios' ? '#8D8D93' : accent,
+		footer: Platform.OS === 'ios' ? '#8D8D93' : '#a2a2a2',
+		accessory: Platform.OS === 'ios' ? '#5A5A5F' : '#666666',
 		title: Platform.OS === 'ios' ? 'white' : '#E1E1E1',
-		subtitle: '#99989D',
+		subtitle: '#98989F',
 		disabled: '#4b4b4b',
 		progress: Platform.OS === 'ios' ? '#c8c8c8' : accent,
 
-		underlay: '#2b2b2b',
+		underlay: '#2C2C2E',
 		ripple: 'rgba(255,255,255,.2)',
 	};
 
