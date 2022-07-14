@@ -5,7 +5,7 @@ export const tableStyles = StyleSheet.create({
 		backgroundColor: palette.background,
 	}),
 	table: Platform.select({
-		android: {
+		default: {
 			paddingBottom: 10,
 		},
 	}),
@@ -17,7 +17,7 @@ export const sectionStyles = StyleSheet.create({
 			marginTop: 26,
 			marginHorizontal: inset ? 16 : 0,
 		},
-		android: {
+		default: {
 			marginTop: 16,
 			marginHorizontal: inset ? 16 : 0,
 
@@ -86,24 +86,22 @@ export const accessoryCellStyles = StyleSheet.create({
 		alignItems: 'center',
 		minHeight: 44,
 	},
-	container: {
-		...Platform.select({
-			ios: {
-				marginEnd: 10,
+	container: Platform.select({
+		ios: {
+			marginEnd: 10,
 
-				paddingStart: 12,
-				paddingEnd: 6,
-				paddingVertical: 8,
-			},
-			android: {
-				marginHorizontal: 4,
-				padding: 8,
+			paddingStart: 12,
+			paddingEnd: 6,
+			paddingVertical: 8,
+		},
+		default: {
+			marginHorizontal: 4,
+			padding: 8,
 
-				overflow: 'hidden',
-				borderRadius: 5,
-			},
-		}),
-	},
+			overflow: 'hidden',
+			borderRadius: 5,
+		},
+	}),
 	separator: (palette) => ({
 		backgroundColor: palette.separator,
 

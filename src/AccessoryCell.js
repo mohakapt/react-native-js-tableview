@@ -41,7 +41,7 @@ class AccessoryCell extends Component {
 		const renderAccessory = () => {
 			const reVal = [];
 
-			if (!hideAccessorySeparator && Platform.OS === 'android') {
+			if (!hideAccessorySeparator && Platform.OS !== 'ios') {
 				const separator = <View key='accessorySeparator' style={styles.separator(colorPalette)} />;
 				reVal.push(separator);
 			}

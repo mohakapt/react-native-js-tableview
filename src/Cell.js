@@ -74,7 +74,7 @@ class Cell extends Component {
 			ios: {
 				underlayColor: colorPalette.underlay,
 			},
-			android: {
+			default: {
 				background: TouchableNativeFeedback.Ripple(colorPalette.ripple, false),
 			},
 		});
