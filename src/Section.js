@@ -13,8 +13,9 @@ class Section extends Component {
 		mode: PropTypes.oneOf(['grouped', 'inset-grouped']),
 
 		children: PropTypes.oneOfType([
-			PropTypes.arrayOf(PropTypes.element),
-			PropTypes.element,
+				PropTypes.arrayOf(PropTypes.element, PropTypes.node),
+				PropTypes.element,
+				PropTypes.node
 		]),
 		style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
