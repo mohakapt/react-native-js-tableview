@@ -39,6 +39,7 @@ export default class App extends Component<Props, State> {
 
 			headerTintColor: palette.headerText,
 			headerStyle: {
+				marginTop: Platform.OS === 'ios' ? 26 : 0,
 				backgroundColor: palette.header,
 				...Platform.select({ ios: { borderBottomColor: palette.headerSeparator } }),
 			},
