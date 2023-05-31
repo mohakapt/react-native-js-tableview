@@ -46,14 +46,14 @@ class StaticCell extends Component {
 		const renderTitle = () => {
 			if (title) {
 				const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
-				return <Text key='title' style={combinedStyles}>{title}</Text>;
+				return <Text key='title' style={combinedStyles} numberOfLines={1} ellipsizeMode='tail'>{title}</Text>;
 			}
 		};
 
 		const renderSubtitle = () => {
 			if (subtitle) {
 				const combinedStyles = [styles.subtitle(colorPalette, disabled), subtitleStyle];
-				return <Text key='subtitle' style={combinedStyles}>{subtitle}</Text>;
+				return <Text key='subtitle' style={combinedStyles} numberOfLines={1} ellipsizeMode='tail'>{subtitle}</Text>;
 			}
 		};
 

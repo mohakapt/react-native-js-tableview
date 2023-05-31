@@ -47,14 +47,14 @@ class KeyValueCell extends Component {
 		const getTitle = () => {
 			if (title) {
 				const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
-				return <Text key='title' style={combinedStyles}>{title}</Text>;
+				return <Text key='title' style={combinedStyles} numberOfLines={1} ellipsizeMode='tail'>{title}</Text>;
 			}
 		};
 
 		const getValue = () => {
 			if (value) {
 				const combinedStyles = [styles.value(colorPalette, disabled), valueStyle];
-				return <Text key='value' style={combinedStyles}>{value}</Text>;
+				return <Text key='value' style={combinedStyles} numberOfLines={1} ellipsizeMode='tail'>{value}</Text>;
 			}
 		};
 
