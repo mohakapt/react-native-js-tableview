@@ -46,7 +46,7 @@ class SwitchCell extends Component {
 		const renderTitle = () => {
 			if (title) {
 				const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
-				return <Text key='title' style={combinedStyles}>{title}</Text>;
+				return <Text key='title' style={combinedStyles} numberOfLines={1} ellipsizeMode='tail'>{title}</Text>;
 			}
 		};
 
