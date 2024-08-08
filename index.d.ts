@@ -123,7 +123,7 @@ export interface SwitchCellProps extends AccessoryCellProps {
 	titleStyle?: TextStyle,
 	switchOnCell?: boolean,
 	value?: boolean,
-	onSwitch?: () => void,
+	onSwitch?: (value: boolean) => void,
 
 	iconComponent?: React.ReactNode,
 }
