@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Text, View } from 'react-native';
+import { Switch, Text, View, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 
 import AccessoryCell from './AccessoryCell';
@@ -13,17 +13,22 @@ class SwitchCell extends Component {
 	static propTypes = Object.assign({
 		title: PropTypes.string.isRequired,
 		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		switchOnCell: PropTypes.bool,
 		value: PropTypes.bool,
 		onSwitch: PropTypes.func,
 
 		iconComponent: PropTypes.element,
 	}, AccessoryCell.propTypes);
 
+	static defaultProps = {
+		switchOnCell: Platform.OS !== 'ios',
+	};
 
 	render() {
 		const {
 			children, onPress,
 			title, titleStyle,
+			switchOnCell,
 			value, onSwitch,
 			thumbTintColor, ios_backgroundColor, tintColor,
 			iconComponent,
@@ -80,7 +85,7 @@ class SwitchCell extends Component {
 			<AccessoryCell
 				hideAccessorySeparator
 				disabled={disabled}
-				onPress={onSwitch}
+				onPress={switchOnCell ? onSwitch : null}
 				{...remainingProps}
 				customActionTrigger='onLongPress'
 			>

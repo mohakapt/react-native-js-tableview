@@ -121,6 +121,7 @@ export interface KeyValueCellProps extends AccessoryCellProps {
 export interface SwitchCellProps extends AccessoryCellProps {
 	title: string,
 	titleStyle?: TextStyle,
+	switchOnCell?: boolean,
 	value?: boolean,
 	onSwitch?: () => void,
 
