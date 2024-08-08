@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Linking, Platform, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native';
+import { Linking, Platform, TouchableHighlight, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { ThemeContext } from './ThemeContext';
 
@@ -69,7 +69,11 @@ class Cell extends Component {
 			}
 		};
 
-		const Touchable = Platform.OS === 'ios' ? TouchableHighlight : TouchableNativeFeedback;
+		const Touchable = Platform.select({
+			ios: TouchableOpacity,
+			android: TouchableNativeFeedback,
+			default: TouchableHighlight,
+		});
 		const touchableProps = Platform.select({
 			ios: {
 				underlayColor: colorPalette.underlay,
