@@ -2,7 +2,7 @@
 
 ## Props
 
-`StaticCell` supports all the props of [`AccessoryCell`](accessorycell.md), [`Cell`](cell.md), and the following additional props:
+`StaticCell` supports all the props of [`IconCell`](iconcell.md), [`AccessoryCell`](accessorycell.md), [`Cell`](cell.md), and the following additional props:
 
 | Prop                    | Type                                   | Default    | Note                                                                                                     |
 |-------------------------|----------------------------------------|------------|----------------------------------------------------------------------------------------------------------|
@@ -14,8 +14,3 @@
 | `subtitleStyle`         | `Style`                                |            | The style for the subtitle text.                                                                         |
 | `subtitleNumberOfLines` | `number`                               | 0          | The number of lines for the subtitle text. 0 means unlimited lines.                                      |
 | `subtitleEllipsizeMode` | `head` \| `middle` \| `tail` \| `clip` | `tail`     | The ellipsize mode for the subtitle text. Used when the number of lines is limited.                      |
-| `iconComponent`         | `React.Node`                           |            | A custom component to put in place of the icon.                                                          |
-| `iconContainerStyle`    | `Style`                                |            | The style for the container of the icon.                                                                 |
-| `contentComponent`      | `React.Node`                           |            | A custom component to put in place of the content. When provided `title` and `subtitle` will be ignored. |
-| `contentContainerStyle` | `Style`                                |            | The style for the container of the content.                                                              |
-| `children`              | `React.Node`                           |            | An alias for `contentComponent`. When both are provided `children` is prioritized.                       |

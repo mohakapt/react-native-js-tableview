@@ -2,7 +2,7 @@
 
 ## Props
 
-`BioCell` supports all the props of [`StaticCell`](staticcell.md), [`AccessoryCell`](accessorycell.md), [`Cell`](cell.md), and the following additional props:
+`BioCell` supports all the props of [`StaticCell`](staticcell.md), [`IconCell`](iconcell.md), [`AccessoryCell`](accessorycell.md), [`Cell`](cell.md), and the following additional props:
 
 | Prop             | Type          | Default | Note                                                                                                            |
 |------------------|---------------|---------|-----------------------------------------------------------------------------------------------------------------|

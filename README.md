@@ -26,23 +26,16 @@ yarn add react-native-js-tableview
 
 ### Component API
 
-[`<Table />` Component API](docs/table.md)
-
-[`<Section />` Component API](docs/section.md)
-
-[`<Cell />` Component API](docs/cell.md)
-
-[`<AccessoryCell />` Component API](docs/accessorycell.md)
-
-[`<StaticCell />` Component API](docs/staticcell.md)
-
-[`<KeyValueCell />` Component API](docs/keyvaluecell.md)
-
-[`<BioCell />` Component API](docs/biocell.md)
-
-[`<TouchableCell />` Component API](docs/touchablecell.md)
-
-[`<SwitchCell />` Component API](docs/switchcell.md)
+* [`<Table />` Component API](docs/table.md)
+* [`<Section />` Component API](docs/section.md)
+* [`<Cell />` Component API](docs/cell.md)
+* * [`<AccessoryCell />` Component API](docs/accessorycell.md)
+* * * [`<IconCell />` Component API](docs/iconcell.md)
+* * * * [`<StaticCell />` Component API](docs/staticcell.md)
+* * * * * [`<BioCell />` Component API](docs/biocell.md)
+* * * * [`<KeyValueCell />` Component API](docs/keyvaluecell.md)
+* * * * [`<SwitchCell />` Component API](docs/switchcell.md)
+* * * [`<TouchableCell />` Component API](docs/touchablecell.md)
 
 
 ### General Usage
