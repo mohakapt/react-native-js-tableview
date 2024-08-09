@@ -4,7 +4,6 @@ import {
 	Platform,
 	TouchableNativeFeedback,
 	TouchableOpacity,
-	TouchableHighlight,
 	View,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -73,7 +72,7 @@ class AccessoryCell extends Component {
 					const Touchable = Platform.select({
 						ios: TouchableOpacity,
 						android: TouchableNativeFeedback,
-						default: TouchableHighlight,
+						default: TouchableOpacity,
 					});
 					const touchableProps = Platform.select({
 						ios: {

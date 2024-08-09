@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Linking, Platform, TouchableHighlight, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
+import { Linking, Platform, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { ThemeContext } from './ThemeContext';
 
@@ -70,7 +70,7 @@ class Cell extends Component {
 		};
 
 		const Touchable = Platform.select({
-			ios: TouchableOpacity,
+			ios: TouchableHighlight,
 			android: TouchableNativeFeedback,
 			default: TouchableHighlight,
 		});
