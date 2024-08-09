@@ -15,6 +15,7 @@ const getTheme = (theme) => {
 		colors: {
 			...parent.colors,
 			primary: palette.accent,
+			card: palette.header,
 			text: palette.headerText,
 			border: palette.headerSeparator,
 		},
