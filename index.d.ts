@@ -42,10 +42,12 @@ export interface SectionProps {
 	style?: ViewStyle,
 
 	header?: string,
+	headerCapitalized?: boolean,
 	headerStyle?: TextStyle,
 	headerComponent?: React.ReactNode,
 
 	footer?: string,
+	footerCapitalized?: boolean,
 	footerStyle?: TextStyle,
 	footerComponent?: React.ReactNode,
 

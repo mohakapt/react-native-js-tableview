@@ -20,10 +20,12 @@ class Section extends Component {
 		style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
 		header: PropTypes.string,
+		headerCapitalized: PropTypes.bool,
 		headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		headerComponent: PropTypes.node,
 
 		footer: PropTypes.string,
+		footerCapitalized: PropTypes.bool,
 		footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		footerComponent: PropTypes.node,
 
@@ -33,6 +35,8 @@ class Section extends Component {
 	};
 
 	static defaultProps = {
+		headerCapitalized: Platform.OS === 'ios',
+
 		hideSeparators: false,
 		separatorInsetLeft: 20,
 		separatorInsetRight: 0,
@@ -72,7 +76,7 @@ class Section extends Component {
 		};
 
 		const renderHeader = () => {
-			const { header, headerStyle, headerComponent } = this.props;
+			const { header, headerCapitalized, headerStyle, headerComponent } = this.props;
 			const reVal = [];
 
 			if ((Platform.OS === 'ios' && mode === 'grouped') || (Platform.OS !== 'ios' && header)) {
@@ -87,9 +91,10 @@ class Section extends Component {
 					headerStyle,
 				];
 
+				const headerString = headerCapitalized ? header.toUpperCase() : header;
 				const textComponent = (
 					<View key='header' style={styles.headerContainer(mode !== 'grouped')}>
-						<Text style={combinedStyles}>{header}</Text>
+						<Text style={combinedStyles}>{headerString}</Text>
 					</View>
 				);
 				reVal.unshift(textComponent);
@@ -114,7 +119,7 @@ class Section extends Component {
 		};
 
 		const renderFooter = () => {
-			const { footer, footerStyle, footerComponent } = this.props;
+			const { footer, footerCapitalized, footerStyle, footerComponent } = this.props;
 			const reVal = [];
 
 			if ((Platform.OS === 'ios' && mode === 'grouped') || (Platform.OS !== 'ios' && footer)) {
@@ -129,9 +134,10 @@ class Section extends Component {
 					footerStyle,
 				];
 
+				const footerString = footerCapitalized ? footer.toUpperCase() : footer;
 				const textComponent = (
 					<View key='footer' style={styles.footerContainer(mode !== 'grouped')}>
-						<Text style={combinedStyles}>{footer}</Text>
+						<Text style={combinedStyles}>{footerString}</Text>
 					</View>
 				);
 				reVal.push(textComponent);
