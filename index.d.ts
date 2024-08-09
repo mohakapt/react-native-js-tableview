@@ -104,15 +104,10 @@ export interface TouchableCellProps extends AccessoryCellProps {
 	titleStyle?: TextStyle,
 }
 
-export interface BioCellProps extends AccessoryCellProps {
-	title: string,
-	titleStyle?: TextStyle,
-
-	subtitle?: string,
-	subtitleStyle?: TextStyle,
-
+export interface BioCellProps extends StaticCellProps {
 	avatarName?: string,
 	avatarSize?: string | number,
+
 	photoComponent?: React.ReactNode,
 	photoSource?: object,
 	photoStyle?: ImageStyle,

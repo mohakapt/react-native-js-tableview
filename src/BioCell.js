@@ -3,7 +3,7 @@ import { Image, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import UserAvatar from 'react-native-user-avatar';
 
-import AccessoryCell from './AccessoryCell';
+import StaticCell from './StaticCell';
 import { ThemeContext } from './ThemeContext';
 
 import { bioCellStyles as styles } from './styles';
@@ -12,44 +12,38 @@ class BioCell extends Component {
 	static contextType = ThemeContext;
 
 	static propTypes = Object.assign({
-		title: PropTypes.string.isRequired,
-		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-
-		subtitle: PropTypes.string,
-		subtitleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-
 		avatarName: PropTypes.string,
 		avatarSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
 		photoComponent: PropTypes.node,
 		photoSource: PropTypes.any,
 		photoStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-	}, AccessoryCell.propTypes);
+	}, StaticCell.propTypes);
 
 
 	render() {
 		const {
 			children,
-			title, titleStyle,
-			subtitle, subtitleStyle,
 			avatarName, avatarSize,
 			photoComponent, photoSource, photoStyle,
+			contentComponent, contentContainerStyle,
 
 			...remainingProps
 		} = this.props;
 		const { colorPalette } = this.context;
 		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
 
-		const getPhoto = () => {
+		const renderPhoto = () => {
 			if (photoComponent) {
 				return photoComponent;
 			}
 
-			if (avatarName || (!photoSource && title)) {
+			if (avatarName || (!photoSource && this.props.title)) {
 				return (
 					<View style={[styles.image, photoStyle]}>
 						<UserAvatar
 							size={avatarSize || styles.image.height}
-							name={avatarName || title}
+							name={avatarName || this.props.title}
 							color={colorPalette.accent} />
 					</View>
 				);
@@ -63,14 +57,12 @@ class BioCell extends Component {
 		};
 
 		return (
-			<AccessoryCell hideAccessorySeparator disabled={disabled} {...remainingProps}>
-				{getPhoto()}
-
-				<View style={styles.infoContainer}>
-					<Text style={[styles.title(colorPalette, disabled), titleStyle]}>{title}</Text>
-					<Text style={[styles.subtitle(colorPalette, disabled), subtitleStyle]}>{subtitle}</Text>
-				</View>
-			</AccessoryCell>
+			<StaticCell
+				hideAccessorySeparator
+				disabled={disabled}
+				iconComponent={renderPhoto()}
+				iconContainerStyle={[styles.imageContainer, contentContainerStyle]}
+				{...remainingProps} />
 		);
 	}
 }

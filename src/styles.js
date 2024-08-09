@@ -170,38 +170,16 @@ export const touchableCellStyles = StyleSheet.create({
 });
 
 export const bioCellStyles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
 	image: {
 		width: 68,
 		height: 68,
 
 		borderRadius: Platform.OS === 'ios' ? 20 : 34,
+	},
+	imageContainer: {
 		marginVertical: 16,
 		marginStart: 16,
 	},
-	infoContainer: {
-		flex: 1,
-		marginStart: 16,
-	},
-	title: (palette, disabled) => ({
-		alignSelf: 'flex-start',
-
-		fontSize: 18,
-		fontWeight: '500',
-
-		color: disabled ? palette.disabled : palette.title,
-	}),
-	subtitle: (palette, disabled) => ({
-		alignSelf: 'flex-start',
-
-		fontSize: 14,
-		marginTop: 2,
-
-		color: disabled ? palette.disabled : palette.subtitle,
-	}),
 });
 
 export const keyValueCellStyles = StyleSheet.create({
