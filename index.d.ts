@@ -95,6 +95,7 @@ export interface StaticCellProps extends AccessoryCellProps {
 	iconComponent?: React.ReactNode,
 	iconContainerStyle?: ViewStyle,
 
+	children: React.ReactNode,
 	contentComponent?: React.ReactNode,
 	contentContainerStyle?: ViewStyle,
 }

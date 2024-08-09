@@ -24,6 +24,7 @@ class StaticCell extends Component {
 		iconComponent: PropTypes.element,
 		iconContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 
+		children: PropTypes.node,
 		contentComponent: PropTypes.node,
 		contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}, AccessoryCell.propTypes);
@@ -79,7 +80,9 @@ class StaticCell extends Component {
 
 		const renderContent = () => {
 			let component;
-			if (contentComponent) {
+			if (children) {
+				component = children;
+			} else if (contentComponent) {
 				component = contentComponent;
 			} else {
 				component = [renderTitle(), renderSubtitle()];
