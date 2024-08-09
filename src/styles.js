@@ -125,7 +125,7 @@ export const accessoryCellStyles = StyleSheet.create({
 	},
 });
 
-export const staticCellStyles = StyleSheet.create({
+export const iconCellStyles = StyleSheet.create({
 	iconContainer: {
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -135,6 +135,11 @@ export const staticCellStyles = StyleSheet.create({
 	},
 	contentContainer: {
 		flex: 1,
+	}
+})
+
+export const staticCellStyles = StyleSheet.create({
+	contentContainer: {
 		justifyContent: 'center',
 
 		marginStart: 15,
@@ -183,15 +188,7 @@ export const bioCellStyles = StyleSheet.create({
 });
 
 export const keyValueCellStyles = StyleSheet.create({
-	iconContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		minWidth: 30,
-
-		marginStart: 12,
-	},
 	contentContainer: (hasAccessory) => ({
-		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'center',
 
@@ -216,15 +213,7 @@ export const keyValueCellStyles = StyleSheet.create({
 });
 
 export const switchCellStyles = StyleSheet.create({
-	iconContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		minWidth: 30,
-
-		marginStart: 12,
-	},
 	contentContainer: (hasAccessory) => ({
-		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'center',
 

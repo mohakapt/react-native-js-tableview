@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import AccessoryCell from './AccessoryCell';
+import IconCell from './IconCell';
 
 import { keyValueCellStyles as styles } from './styles';
 import { ThemeContext } from './ThemeContext';
@@ -15,34 +15,21 @@ class KeyValueCell extends Component {
 		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		value: PropTypes.string,
 		valueStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-		contentComponent: PropTypes.node,
-
-		iconComponent: PropTypes.element,
-	}, AccessoryCell.propTypes);
+	}, IconCell.propTypes);
 
 
 	render() {
 		const {
-			children,
+			children, // don't pass children to IconCell
+			contentContainerStyle,  // will be combined with other styles and sent to IconCell
+
 			title, titleStyle,
 			value, valueStyle,
-			iconComponent,
-			contentComponent,
 
 			...remainingProps
 		} = this.props;
 		const { colorPalette } = this.context;
 		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
-
-		const getIcon = () => {
-			if (iconComponent) {
-				return (
-					<View style={styles.iconContainer}>
-						{iconComponent}
-					</View>
-				);
-			}
-		};
 
 		const getTitle = () => {
 			if (title) {
@@ -58,30 +45,22 @@ class KeyValueCell extends Component {
 			}
 		};
 
-		const getContent = () => {
-			let component;
-			if (contentComponent) {
-				component = contentComponent;
-			} else {
-				const space = <View key='space' style={styles.space} />;
-				component = [getTitle(), space, getValue()];
-			}
-
-			return (
-				<View style={styles.contentContainer(!!this.props.accessory)}>
-					{component}
-				</View>
-			);
-		};
-
+		const combinedStyles = [styles.contentContainer(!!this.props.accessory), contentContainerStyle];
 		return (
-			<AccessoryCell hideAccessorySeparator disabled={disabled} {...remainingProps}>
-				{getIcon()}
-				{getContent()}
-			</AccessoryCell>
+			<IconCell
+				hideAccessorySeparator
+				disabled={disabled}
+				contentContainerStyle={combinedStyles}
+				{...remainingProps}>
+
+				{getTitle()}
+				<View key='space' style={styles.space} />
+				{getValue()}
+			</IconCell>
 		);
 	}
 }
 
 delete KeyValueCell.propTypes.children;
+delete KeyValueCell.propTypes.contentComponent;
 export default KeyValueCell;

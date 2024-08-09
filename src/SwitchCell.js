@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Text, View, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 
-import AccessoryCell from './AccessoryCell';
+import IconCell from './IconCell';
 import { ThemeContext } from './ThemeContext';
 
 import { switchCellStyles as styles } from './styles';
@@ -18,7 +18,7 @@ class SwitchCell extends Component {
 		onSwitch: PropTypes.func,
 
 		iconComponent: PropTypes.element,
-	}, AccessoryCell.propTypes);
+	}, IconCell.propTypes);
 
 	static defaultProps = {
 		switchOnCell: Platform.OS !== 'ios',
@@ -26,27 +26,19 @@ class SwitchCell extends Component {
 
 	render() {
 		const {
-			children, onPress,
+			children, // don't pass children to IconCell
+			contentContainerStyle,  // will be combined with other styles and sent to IconCell
+
+			onPress,
 			title, titleStyle,
 			switchOnCell,
 			value, onSwitch,
 			thumbTintColor, ios_backgroundColor, tintColor,
-			iconComponent,
 
 			...remainingProps
 		} = this.props;
 		const { colorPalette } = this.context;
 		const disabled = this.props.disabled === undefined ? this.context.disabled : this.props.disabled;
-
-		const renderIcon = () => {
-			if (iconComponent) {
-				return (
-					<View style={styles.iconContainer}>
-						{iconComponent}
-					</View>
-				);
-			}
-		};
 
 		const renderTitle = () => {
 			if (title) {
@@ -65,38 +57,29 @@ class SwitchCell extends Component {
 					thumbTintColor={thumbTintColor}
 					ios_backgroundColor={ios_backgroundColor}
 					tintColor={tintColor}
-					onValueChange={onSwitch}
-				/>
+					onValueChange={onSwitch} />
 			);
 		};
 
-		const renderContent = () => {
-			const space = <View key='space' style={styles.space} />;
-			const component = [renderTitle(), space, renderSwitch()];
-
-			return (
-				<View style={styles.contentContainer(!!this.props.accessory)}>
-					{component}
-				</View>
-			);
-		};
+		const combinedStyles = [styles.contentContainer(!!this.props.accessory), contentContainerStyle];
+		const combinedOnPress = onPress || (switchOnCell ? onSwitch : undefined);
 
 		return (
-			<AccessoryCell
+			<IconCell
 				hideAccessorySeparator
 				disabled={disabled}
-				onPress={switchOnCell ? onSwitch : null}
+				contentContainerStyle={combinedStyles}
+				onPress={combinedOnPress}
 				{...remainingProps}
-				customActionTrigger='onLongPress'
-			>
+				customActionTrigger='onLongPress'>
 
-				{renderIcon()}
-				{renderContent()}
-			</AccessoryCell>
+				{renderTitle()}
+				<View key='space' style={styles.space} />
+				{renderSwitch()}
+			</IconCell>
 		);
 	}
 }
 
 delete SwitchCell.propTypes.children;
-delete SwitchCell.propTypes.onPress;
 export default SwitchCell;

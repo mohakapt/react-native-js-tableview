@@ -2,6 +2,7 @@ import Table from './src/Table';
 import Section from './src/Section';
 import Cell from './src/Cell';
 import AccessoryCell from './src/AccessoryCell';
+import IconCell from './src/IconCell';
 import StaticCell from './src/StaticCell';
 import TouchableCell from './src/TouchableCell';
 import BioCell from './src/BioCell';
@@ -17,6 +18,7 @@ export {
 	Section,
 	Cell,
 	AccessoryCell,
+	IconCell,
 	StaticCell,
 	TouchableCell,
 	BioCell,
