@@ -13,8 +13,12 @@ class StaticCell extends Component {
 	static propTypes = Object.assign({
 		title: PropTypes.string.isRequired,
 		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		titleNumberOfLines: PropTypes.number,
+		titleEllipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
 		subtitle: PropTypes.string,
 		subtitleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+		subtitleNumberOfLines: PropTypes.number,
+		subtitleEllipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
 		contentComponent: PropTypes.node,
 
 		iconComponent: PropTypes.element,
@@ -24,8 +28,8 @@ class StaticCell extends Component {
 	render() {
 		const {
 			children,
-			title, titleStyle,
-			subtitle, subtitleStyle,
+			title, titleStyle, titleNumberOfLines, titleEllipsizeMode,
+			subtitle, subtitleStyle, subtitleNumberOfLines, subtitleEllipsizeMode,
 			iconComponent, contentComponent,
 
 			...remainingProps
@@ -46,14 +50,24 @@ class StaticCell extends Component {
 		const renderTitle = () => {
 			if (title) {
 				const combinedStyles = [styles.title(colorPalette, disabled), titleStyle];
-				return <Text key='title' style={combinedStyles}>{title}</Text>;
+				return <Text
+					key='title'
+					style={combinedStyles}
+					numberOfLines={titleNumberOfLines}
+					ellipsizeMode={titleEllipsizeMode}
+					children={title} />;
 			}
 		};
 
 		const renderSubtitle = () => {
 			if (subtitle) {
 				const combinedStyles = [styles.subtitle(colorPalette, disabled), subtitleStyle];
-				return <Text key='subtitle' style={combinedStyles}>{subtitle}</Text>;
+				return <Text
+					key='subtitle'
+					style={combinedStyles}
+					numberOfLines={subtitleNumberOfLines}
+					ellipsizeMode={subtitleEllipsizeMode}
+					children={subtitle} />;
 			}
 		};
 

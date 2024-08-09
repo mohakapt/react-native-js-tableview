@@ -84,8 +84,12 @@ export interface AccessoryCellProps extends CommonCellProps {
 export interface StaticCellProps extends AccessoryCellProps {
 	title: string,
 	titleStyle?: TextStyle,
+	titleNumberOfLines?: number,
+	titleEllipsizeMode?: 'head' | 'middle' | 'tail' | 'clip',
 	subtitle?: string,
 	subtitleStyle?: TextStyle,
+	subtitleNumberOfLines?: number,
+	subtitleEllipsizeMode?: 'head' | 'middle' | 'tail' | 'clip',
 	contentComponent?: React.ReactNode,
 
 	iconComponent?: React.ReactNode,
