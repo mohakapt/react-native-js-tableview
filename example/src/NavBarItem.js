@@ -1,19 +1,9 @@
-/* @flow */
-
-import * as React from 'react';
+import React from 'react';
 import { Platform, StyleSheet, Text, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 
 import Icon, { hasIcon } from './assets/icons';
 
-type Props = {
-	text?: string,
-	icon?: string,
-
-	tintColor?: string,
-	onPress?: () => void,
-}
-
-const NavBarItem = (props: Props) => {
+const NavBarItem = (props) => {
 	const getContent = () => {
 		const { text, icon, tintColor } = props;
 
