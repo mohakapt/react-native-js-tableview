@@ -23,10 +23,9 @@ class BioCell extends Component {
 
 	render() {
 		const {
-			children,
 			avatarName, avatarSize,
 			photoComponent, photoSource, photoStyle,
-			contentComponent, contentContainerStyle,
+			iconContainerStyle,
 
 			...remainingProps
 		} = this.props;
@@ -61,7 +60,7 @@ class BioCell extends Component {
 				hideAccessorySeparator
 				disabled={disabled}
 				iconComponent={renderPhoto()}
-				iconContainerStyle={[styles.imageContainer, contentContainerStyle]}
+				iconContainerStyle={[styles.imageContainer, iconContainerStyle]}
 				{...remainingProps} />
 		);
 	}
