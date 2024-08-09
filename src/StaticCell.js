@@ -15,13 +15,17 @@ class StaticCell extends Component {
 		titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		titleNumberOfLines: PropTypes.number,
 		titleEllipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
+
 		subtitle: PropTypes.string,
 		subtitleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 		subtitleNumberOfLines: PropTypes.number,
 		subtitleEllipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
-		contentComponent: PropTypes.node,
 
 		iconComponent: PropTypes.element,
+		iconContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+
+		contentComponent: PropTypes.node,
+		contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	}, AccessoryCell.propTypes);
 
 
@@ -30,7 +34,8 @@ class StaticCell extends Component {
 			children,
 			title, titleStyle, titleNumberOfLines, titleEllipsizeMode,
 			subtitle, subtitleStyle, subtitleNumberOfLines, subtitleEllipsizeMode,
-			iconComponent, contentComponent,
+			iconComponent, iconContainerStyle,
+			contentComponent, contentContainerStyle,
 
 			...remainingProps
 		} = this.props;
@@ -39,8 +44,9 @@ class StaticCell extends Component {
 
 		const renderIcon = () => {
 			if (iconComponent) {
+				const combinedStyles = [styles.iconContainer, iconContainerStyle];
 				return (
-					<View style={styles.iconContainer}>
+					<View style={combinedStyles}>
 						{iconComponent}
 					</View>
 				);
@@ -79,8 +85,9 @@ class StaticCell extends Component {
 				component = [renderTitle(), renderSubtitle()];
 			}
 
+			const combinedStyles = [styles.contentContainer, contentContainerStyle];
 			return (
-				<View style={styles.contentContainer}>
+				<View style={combinedStyles}>
 					{component}
 				</View>
 			);
