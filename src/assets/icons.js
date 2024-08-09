@@ -31,12 +31,4 @@ const Icon = (props) => {
 	);
 };
 
-Icon.propTypes = {
-	name: PropTypes.oneOf(Object.keys(icons)).isRequired,
-	tintColor: PropTypes.string,
-	style: PropTypes.object,
-};
-
-Icon.defaultProps = {};
-
 export default Icon;
