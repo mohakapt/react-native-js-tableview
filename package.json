@@ -3,39 +3,38 @@
   "version": "2.5.0",
   "description": "A JavaScript implementation for TableView that looks great on both iOS and Android.",
   "main": "index.js",
-  "author": "Haytham KATBY <mohakapt@gmail.com>",
+  "author": "Haytham KATBY <mohakapt@gmail.com> (https://github.com/mohakapt)",
   "license": "MIT",
   "private": false,
   "scripts": {
     "start": "react-native start"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
   "keywords": [
     "react-native",
     "tableview",
-    "uitableview"
+    "uitableview",
+    "ios",
+    "android"
   ],
-  "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "metro-react-native-babel-preset": "^0.53.0",
-    "react": "16.6.3",
-    "react-native": "^0.58.6",
-    "react-native-svg": "^9.2.4",
-    "react-navigation": "^2.18.3"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mohakapt/react-native-js-tableview"
   },
+  "homepage": "https://github.com/mohakapt/react-native-js-tableview#readme",
   "bugs": {
     "url": "https://github.com/mohakapt/react-native-js-tableview/issues"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   },
   "dependencies": {
     "chroma-js": "^2.*",
     "prop-types": "^15.*",
     "react-native-user-avatar": "^1.*"
+  },
+  "devDependencies": {
+    "react": "18.2.0",
+    "react-native": "0.74.5"
   }
 }
